@@ -76,19 +76,19 @@
       },
       {
         "state": "waving",
-        "gameAction": "happy",
-        "sourceFrameCount": 86,
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
         "actionFrames": [
-          8,
-          12,
-          24,
-          8
+          1,
+          7,
+          13,
+          1
         ],
         "frames": [
-          71,
-          75,
-          87,
-          71
+          471,
+          477,
+          483,
+          471
         ]
       },
       {
@@ -96,19 +96,20 @@
         "gameAction": "dance",
         "sourceFrameCount": 209,
         "actionFrames": [
-          1,
-          10,
-          19,
-          10,
-          1
+          127,
+          145,
+          154,
+          172,
+          181
         ],
         "frames": [
-          471,
-          480,
-          489,
-          480,
-          471
-        ]
+          597,
+          615,
+          624,
+          642,
+          651
+        ],
+        "registration": "bounded"
       },
       {
         "state": "failed",
@@ -158,23 +159,23 @@
       },
       {
         "state": "running",
-        "gameAction": "football",
-        "sourceFrameCount": 110,
+        "gameAction": "thirst",
+        "sourceFrameCount": 140,
         "actionFrames": [
-          39,
-          40,
-          41,
-          43,
-          41,
-          39
+          13,
+          19,
+          25,
+          31,
+          25,
+          13
         ],
         "frames": [
-          399,
-          400,
-          401,
-          403,
-          401,
-          399
+          692,
+          698,
+          704,
+          710,
+          704,
+          692
         ]
       },
       {
@@ -277,19 +278,19 @@
       },
       {
         "state": "waving",
-        "gameAction": "happy",
-        "sourceFrameCount": 32,
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
         "actionFrames": [
           1,
-          2,
-          3,
+          7,
+          13,
           1
         ],
         "frames": [
-          34,
-          35,
-          36,
-          34
+          332,
+          338,
+          344,
+          332
         ]
       },
       {
@@ -297,19 +298,20 @@
         "gameAction": "dance",
         "sourceFrameCount": 209,
         "actionFrames": [
-          1,
-          7,
-          13,
-          10,
-          1
+          127,
+          145,
+          154,
+          172,
+          181
         ],
         "frames": [
-          332,
-          338,
-          344,
-          341,
-          332
-        ]
+          458,
+          476,
+          485,
+          503,
+          512
+        ],
+        "registration": "bounded"
       },
       {
         "state": "failed",
@@ -359,23 +361,23 @@
       },
       {
         "state": "running",
-        "gameAction": "football",
-        "sourceFrameCount": 144,
+        "gameAction": "thirst",
+        "sourceFrameCount": 117,
         "actionFrames": [
-          13,
-          16,
-          19,
-          22,
-          19,
-          13
+          46,
+          51,
+          56,
+          61,
+          56,
+          46
         ],
         "frames": [
-          200,
-          203,
-          206,
-          209,
-          206,
-          200
+          586,
+          591,
+          596,
+          601,
+          596,
+          586
         ]
       },
       {
@@ -478,19 +480,19 @@
       },
       {
         "state": "waving",
-        "gameAction": "happy",
-        "sourceFrameCount": 32,
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
         "actionFrames": [
           1,
-          2,
-          3,
+          7,
+          13,
           1
         ],
         "frames": [
-          34,
-          35,
-          36,
-          34
+          332,
+          338,
+          344,
+          332
         ]
       },
       {
@@ -498,19 +500,20 @@
         "gameAction": "dance",
         "sourceFrameCount": 209,
         "actionFrames": [
-          1,
-          7,
-          13,
-          10,
-          1
+          127,
+          145,
+          154,
+          172,
+          181
         ],
         "frames": [
-          332,
-          338,
-          344,
-          341,
-          332
-        ]
+          458,
+          476,
+          485,
+          503,
+          512
+        ],
+        "registration": "bounded"
       },
       {
         "state": "failed",
@@ -560,23 +563,23 @@
       },
       {
         "state": "running",
-        "gameAction": "football",
-        "sourceFrameCount": 144,
+        "gameAction": "thirst",
+        "sourceFrameCount": 117,
         "actionFrames": [
-          13,
-          16,
-          19,
-          22,
-          19,
-          13
+          46,
+          51,
+          56,
+          61,
+          56,
+          46
         ],
         "frames": [
-          200,
-          203,
-          206,
-          209,
-          206,
-          200
+          586,
+          591,
+          596,
+          601,
+          596,
+          586
         ]
       },
       {
@@ -679,19 +682,19 @@
       },
       {
         "state": "waving",
-        "gameAction": "happy",
-        "sourceFrameCount": 32,
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
         "actionFrames": [
           1,
-          2,
-          3,
+          7,
+          13,
           1
         ],
         "frames": [
-          34,
-          35,
-          36,
-          34
+          332,
+          338,
+          344,
+          332
         ]
       },
       {
@@ -699,19 +702,20 @@
         "gameAction": "dance",
         "sourceFrameCount": 209,
         "actionFrames": [
-          1,
-          7,
-          13,
-          10,
-          1
+          127,
+          145,
+          154,
+          172,
+          181
         ],
         "frames": [
-          332,
-          338,
-          344,
-          341,
-          332
-        ]
+          458,
+          476,
+          485,
+          503,
+          512
+        ],
+        "registration": "bounded"
       },
       {
         "state": "failed",
@@ -761,23 +765,23 @@
       },
       {
         "state": "running",
-        "gameAction": "football",
-        "sourceFrameCount": 144,
+        "gameAction": "thirst",
+        "sourceFrameCount": 117,
         "actionFrames": [
-          13,
-          16,
-          19,
-          22,
-          19,
-          13
+          46,
+          51,
+          56,
+          61,
+          56,
+          46
         ],
         "frames": [
-          200,
-          203,
-          206,
-          209,
-          206,
-          200
+          586,
+          591,
+          596,
+          601,
+          596,
+          586
         ]
       },
       {

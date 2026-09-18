@@ -9,7 +9,20 @@
       3,
       5,
       7
-    ]
+    ],
+    "eyeSource": {
+      "sourceFolder": "normal-nono-frames",
+      "originalFrames": [
+        5,
+        3,
+        1,
+        3,
+        5,
+        7
+      ]
+    },
+    "bodyFrame": 5,
+    "registration": "fixed-body-original-eyes"
   },
   {
     "state": "running-right",
@@ -52,14 +65,14 @@
   },
   {
     "state": "jumping",
-    "sourceFile": "normal-exp-1.swf",
-    "sourceFrameCount": 69,
+    "sourceFile": "normal-exp-2.swf",
+    "sourceFrameCount": 62,
     "originalFrames": [
-      24,
-      27,
-      39,
-      30,
-      24
+      1,
+      6,
+      11,
+      40,
+      1
     ]
   },
   {
@@ -79,6 +92,19 @@
   },
   {
     "state": "waiting",
+    "sourceFile": "normal-exp-3.swf",
+    "sourceFrameCount": 70,
+    "originalFrames": [
+      1,
+      7,
+      13,
+      22,
+      7,
+      1
+    ]
+  },
+  {
+    "state": "running",
     "sourceFile": "normal-action-1.swf",
     "sourceFrameCount": 67,
     "originalFrames": [
@@ -91,29 +117,16 @@
     ]
   },
   {
-    "state": "running",
-    "sourceFile": "normal-action-4.swf",
-    "sourceFrameCount": 163,
-    "originalFrames": [
-      50,
-      55,
-      60,
-      65,
-      70,
-      50
-    ]
-  },
-  {
     "state": "review",
-    "sourceFile": "normal-exp-3.swf",
-    "sourceFrameCount": 70,
+    "sourceFile": "normal-exp-1.swf",
+    "sourceFrameCount": 69,
     "originalFrames": [
-      1,
-      7,
-      13,
-      22,
-      7,
-      1
+      24,
+      27,
+      39,
+      30,
+      27,
+      24
     ]
   }
 ]
