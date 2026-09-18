@@ -306,29 +306,20 @@
         "gameAction": "woter",
         "sourceFrameCount": 33,
         "actionFrames": [
-          29,
-          9,
-          11,
-          11,
-          23
+          1,
+          4,
+          6,
+          10,
+          27
         ],
         "frames": [
-          686,
-          666,
-          668,
-          668,
-          680
+          658,
+          661,
+          663,
+          667,
+          684
         ],
-        "registration": {
-          "mode": "body",
-          "referenceColumn": 4,
-          "idleBodyRatio": 0.9,
-          "scale": 1.4333333333333333,
-          "anchor": [
-            86.8,
-            140.5
-          ]
-        }
+        "registration": null
       },
       {
         "state": "failed",
@@ -526,28 +517,19 @@
         "sourceFrameCount": 54,
         "actionFrames": [
           1,
-          9,
-          11,
-          11,
-          26
+          3,
+          6,
+          12,
+          24
         ],
         "frames": [
           658,
-          666,
-          668,
-          668,
-          683
+          660,
+          663,
+          669,
+          681
         ],
-        "registration": {
-          "mode": "body",
-          "referenceColumn": 4,
-          "idleBodyRatio": 0.9,
-          "scale": 1.2222222222222223,
-          "anchor": [
-            92.0,
-            147.5
-          ]
-        }
+        "registration": null
       },
       {
         "state": "failed",
@@ -744,29 +726,20 @@
         "gameAction": "woter",
         "sourceFrameCount": 69,
         "actionFrames": [
-          24,
-          9,
+          1,
+          4,
+          7,
           13,
-          13,
-          21
+          24
         ],
         "frames": [
-          681,
-          666,
+          658,
+          661,
+          664,
           670,
-          670,
-          678
+          681
         ],
-        "registration": {
-          "mode": "body",
-          "referenceColumn": 4,
-          "idleBodyRatio": 0.9,
-          "scale": 1.3777777777777778,
-          "anchor": [
-            94.24444444444444,
-            138.55555555555554
-          ]
-        }
+        "registration": null
       },
       {
         "state": "failed",
