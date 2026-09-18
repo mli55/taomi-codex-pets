@@ -20,3 +20,13 @@
 .install-actions .download{background:#fff;color:#636366;border:1px solid #e5e5ea;min-height:40px;padding:10px;font-size:12px;font-weight:400;border-radius:10px;box-shadow:none}
 .install-actions .download:hover:not(:disabled){background:#f2f2f7}
 @media(max-width:380px){.install-actions{grid-template-columns:minmax(0,1fr)}.command-action{padding:16px}.command-line code{font-size:13px}.terminal-title small{font-size:9px}}
+
+/* Independent configuration choices, with a persistent selection in each group. */
+.configuration-group + .configuration-group{margin-top:24px}
+.configuration-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.configuration-option{min-width:0;min-height:60px;padding:12px 4px;border:1px solid #86868b;border-radius:12px;background:#fff;color:#1d1d1f;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s}
+.configuration-option:hover:not(:disabled){border-color:#1d1d1f}
+.configuration-option.selected{border:2px solid #0071e3;padding:11px 3px;background:#f5faff}
+.configuration-option:focus-visible{outline:3px solid #0071e380;outline-offset:3px}
+.configuration-option:disabled{border-color:#e5e5e7;color:#b6b6bb;background:#fafafa;cursor:default}
+@media(max-width:380px){.configuration-options{gap:5px}.configuration-option{font-size:13px;min-height:54px}}
