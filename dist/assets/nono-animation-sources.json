@@ -6,23 +6,10 @@
       1,
       2,
       3,
-      5,
-      6,
-      7
-    ],
-    "eyeSource": {
-      "sourceFile": "super-exp-3.swf",
-      "originalFrames": [
-        1,
-        1,
-        7,
-        7,
-        1,
-        1
-      ]
-    },
-    "bodyFrame": 1,
-    "registration": "fixed-body-original-eyes"
+      3,
+      2,
+      1
+    ]
   },
   {
     "state": "running-right",

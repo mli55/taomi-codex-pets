@@ -71,7 +71,7 @@ npm run check
 
 三个版本均展示九种 Codex 状态。普通 NoNo 的等待／工作使用惊讶／充电，悬停使用生气；超能使用惊讶／玩魔方，悬停使用生气；至尊使用轻微皱眉／召唤后半段，悬停使用惊讶。普通和至尊的检查状态使用高兴；超能改用召唤旋转，打招呼使用生气片段。原始动作与逐帧选择以各 `*-animation-sources.json` 为准。
 
-`scripts/prepare-full-ram.py` 展开拉姆嵌套动作；`scripts/prepare-full-nono.py` 从完整官方 NoNo 时间轴导出候选姿势；`scripts/compose-selected-actions.py` 生成初始图集。当前短片段由 `scripts/selected-pet-clips.json` 记录，`scripts/reselect-pet-clips.py` 精确导出选中帧并替换对应行，再运行两个配色脚本更新全部颜色，最后运行 `python3 scripts/stabilize-nono-idle.py` 固定 NoNo 待机身体，仅保留原眼睛变化。选帧优先保留正面首尾、身体稳定的近景，拉姆工作使用原口渴动作出现道具前的低头、眨眼片段，悬停使用舞蹈中的转身片段，检查使用高兴。逐动作的原片长度及选帧见各 `*-animation-sources.json`。网页展示实际安装图集和九个 Codex 状态，采用客户端逐帧时长；非待机动作播放三遍后回到待机。
+`scripts/prepare-full-ram.py` 展开拉姆嵌套动作；`scripts/prepare-full-nono.py` 从完整官方 NoNo 时间轴导出候选姿势；`scripts/compose-selected-actions.py` 生成初始图集。当前短片段由 `scripts/selected-pet-clips.json` 记录，`scripts/reselect-pet-clips.py` 精确导出选中帧并替换对应行，再运行两个配色脚本更新全部颜色，最后运行 `python3 scripts/stabilize-nono-idle.py` 固定普通和至尊 NoNo 待机身体。超能 NoNo 直接使用原待机完整帧 1、2、3、3、2、1，不拼接眼睛或身体。选帧优先保留正面首尾、身体稳定的近景，拉姆工作使用原口渴动作出现道具前的低头、眨眼片段，悬停使用舞蹈中的转身片段，检查使用高兴。逐动作的原片长度及选帧见各 `*-animation-sources.json`。网页展示实际安装图集和九个 Codex 状态，采用客户端逐帧时长；非待机动作播放三遍后回到待机。
 
 可检索名称：Taomi、淘米、普通 NoNo、至尊 NoNo、Codex Pet、Codex Pets、Ram、拉姆、超级拉姆、摩尔庄园、NoNo、超能 NoNo、赛尔号。
 

@@ -93,7 +93,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | nono-normal | waiting | normal-exp-3.swf | 1, 7, 13, 22, 7, 1 |
 | nono-normal | running | normal-action-1.swf | 1, 4, 7, 12, 15, 1 |
 | nono-normal | review | normal-exp-1.swf | 24, 27, 39, 30, 27, 24 |
-| nono | idle | base | 1, 2, 3, 5, 6, 7 |
+| nono | idle | base | 1, 2, 3, 3, 2, 1 |
 | nono | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 |
 | nono | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 |
 | nono | waving | super-exp-2.swf | 14, 18, 26, 30 |

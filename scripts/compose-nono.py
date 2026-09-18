@@ -14,6 +14,7 @@ for row,(state,folder,first,last,count) in enumerate(spec):
  directory=next((args.source_dir/folder).iterdir());available=sorted(directory.glob('*.png'),key=lambda p:int(p.stem));selected=[]
  for i in range(count):
   target=first+(last-first)*i/max(1,count-1);selected.append(min(available,key=lambda p:abs(int(p.stem)-target)))
+ if state=='idle' and args.variant=='super':selected=[directory/f'{n}.png' for n in [1,2,3,3,2,1]]
  frames=[]
  for path in selected:
   a=np.array(Image.open(path).convert('RGBA'));labs,n=label(a[:,:,3]>2)

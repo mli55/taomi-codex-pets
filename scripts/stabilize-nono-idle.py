@@ -18,13 +18,13 @@ def eyes(tile):
  mask &= binary_erosion(face,iterations=1)
  return box,mask
 
-for name in ['nono-normal','nono','nono-annual']:
+for name in ['nono-normal','nono-annual']:
  meta_path=A/(name+'-animation-sources.json');meta=json.loads(meta_path.read_text())
  if meta[0].get('registration')=='fixed-body-original-eyes':
   print(name,'already stabilized; regenerate source idle before changing selection');continue
  source=Image.open(A/(name+'.png')).convert('RGBA')
- row=6 if name=='nono' else 0
- indices=[0,0,1,1,0,0] if name=='nono' else list(range(6))
+ row=0
+ indices=list(range(6))
  donors=[source.crop((i*192,row*208,(i+1)*192,(row+1)*208)) for i in indices]
  original_source=meta[row]
  for path in [A/(name+'.png'),*sorted(A.glob(name+'-color-*.png'))]:
