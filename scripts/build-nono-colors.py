@@ -25,7 +25,7 @@ for variant in args.variants:
   if row<3 or (variant=='annual' and row==6 and 'sourceFile' not in entry):
    key=variant+'-base';xml=(args.base_dir/'nono-timeline.xml') if variant=='super' else (args.base_dir/'expanded'/(variant+'-nono-timeline.xml'))
   else:key=Path(entry['sourceFile']).stem;xml=args.action_dir/(key+'.xml')
-  jobs.append(dict(variant=variant,name=name,row=row,key=key,xml=str(xml),frames=entry['originalFrames']))
+  jobs.append(dict(variant=variant,name=name,row=row,key=key,xml=str(xml),frames=entry['originalFrames'],registration=entry.get('registration')))
 unique={}
 for j in jobs:
  d=unique.setdefault(j['key'],dict(j,frames=[]));d['frames']=sorted(set(d['frames']+j['frames']))
@@ -115,7 +115,12 @@ for variant in args.variants:
    black=[]
    for im,w in zip(probes[0],white):
     a=np.array(im);a[:,:,3]=np.array(w)[:,:,3];black.append(Image.fromarray(a))
-   for atlas,frames in zip(atlases,[black,white]):pack_row([(im,None) for im in frames],row,atlas)
+   for atlas,frames in zip(atlases,[black,white]):
+    if j.get('registration'):
+     import importlib.util
+     spec=importlib.util.spec_from_file_location('compose',Path(__file__).with_name('compose-selected-actions.py'));module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+     module.pack_row([(im,None) for im in frames],row,atlas,registration=j['registration'])
+    else:pack_row([(im,None) for im in frames],row,atlas)
   else:
    for col,(black,white) in enumerate(zip(*probes)):
     a=np.array(white);labs,n=label(a[:,:,3]>2)

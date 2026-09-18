@@ -37,7 +37,7 @@ for variant,states in plan['nono'].items():
    filename=selection['sourceFile'];directory=Path(filename).stem;tree=E.parse(a.nono_source/(directory+'.xml'));symbol=tree.find('.//item[@type="SymbolClassTag"]');names=[n.text for n in symbol.find('names')];sid=symbol.find('tags')[names.index('pet')].text
    sprite=tree.find(f'.//item[@spriteId="{sid}"]')
    entry={**entry,'sourceFile':filename,'directory':directory,'sourceSpriteId':int(sid),'sourceFrameCount':int(sprite.get('frameCount'))}
-  nonorows[variant][state]={**entry,'state':state,'originalFrames':frames};jobs.append((a.nono_source/(entry['directory']+'.xml'),entry['sourceSpriteId'],sorted(set(frames)),a.work/entry['directory']))
+  nonorows[variant][state]={**entry,'state':state,'originalFrames':frames,'registration':selection.get('registration')};jobs.append((a.nono_source/(entry['directory']+'.xml'),entry['sourceSpriteId'],sorted(set(frames)),a.work/entry['directory']))
 def export(job):
  xml,sid,frames,dest=job
  if dest.exists() and any(d.is_dir() and all((d/f'{f}.png').exists() for f in frames) for d in dest.iterdir()):return
@@ -61,7 +61,7 @@ for filename,forms in [('animation-sources.json',['super','water','wood','fire']
 for variant,states in nonorows.items():
  name='nono' if variant=='super' else 'nono-'+variant;atlas=Image.open(a.assets/(name+'.png')).convert('RGBA');meta=json.loads((a.assets/(name+'-animation-sources.json')).read_text())
  for state,entry in states.items():
-  row=c.STATES.index(state);atlas.paste((0,0,0,0),(0,row*208,1536,(row+1)*208));nd=next((a.work/entry['directory']).iterdir());pairs=[c.clean(Image.open(nd/f'{n}.png')) for n in entry['originalFrames']];c.pack_row(pairs,row,atlas)
-  meta[row]={k:entry[k] for k in ['state','sourceFile','sourceFrameCount','originalFrames']}
+  row=c.STATES.index(state);atlas.paste((0,0,0,0),(0,row*208,1536,(row+1)*208));nd=next((a.work/entry['directory']).iterdir());pairs=[c.clean(Image.open(nd/f'{n}.png')) for n in entry['originalFrames']];c.pack_row(pairs,row,atlas,registration=entry.get('registration'))
+  meta[row]={k:entry[k] for k in ['state','sourceFile','sourceFrameCount','originalFrames','registration']}
  atlas.save(a.assets/(name+'.png'),optimize=True);(a.assets/(name+'-animation-sources.json')).write_text(json.dumps(meta,indent=2)+'\n')
 print('Reviewed rows packed. Rebuild palettes before publishing these assets.',flush=True)

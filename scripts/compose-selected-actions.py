@@ -39,21 +39,68 @@ def clean(image,probe=None):
 def pack_row(frames,row,atlas,mask_atlas=None,base_scale=None,registration=None):
     boxes=[im.getbbox() for im,_ in frames]
     if any(b is None for b in boxes):raise ValueError(f'Empty selected frame in row {row}')
-    if registration=='bounded':
+    if isinstance(registration,dict) and registration.get('mode')=='body':
+        # Fix the scale from the unobscured native body and the idle body.
+        # Water/effects only constrain placement; oversized clips must be reselected.
+        if mask_atlas is None:raise ValueError('Body registration requires original color masks')
+        reference=frames[registration.get('referenceColumn',-1)][1].getbbox()
+        idle=mask_atlas.crop((0,0,192,208)).getbbox()
+        if reference is None or idle is None:raise ValueError('Missing reference body')
+        scale=registration.get('scale',(idle[2]-idle[0])/(reference[2]-reference[0])*registration.get('idleBodyRatio',1))
+        centers=[];relative=[]
+        for (im,mask),b in zip(frames,boxes):
+            body=mask.getbbox()
+            if body is None:raise ValueError('Selected frame obscures the entire body')
+            cx=(body[0]+body[2])/2;cy=(body[1]+body[3])/2
+            centers.append((cx,cy))
+            relative.append(((b[0]-cx)*scale,(b[1]-cy)*scale,(b[2]-cx)*scale,(b[3]-cy)*scale))
+        # One anchor for the entire clip keeps the body still while native poses change.
+        minx=max(2-b[0] for b in relative);maxx=min(190-b[2] for b in relative)
+        miny=max(4-b[1] for b in relative);maxy=min(204-b[3] for b in relative)
+        if minx>maxx or miny>maxy:
+            raise ValueError(f'Effects exceed body-sized cell in row {row}; choose closer source frames')
+        anchor=(max(minx,min(maxx,(idle[0]+idle[2])/2)),max(miny,min(maxy,(idle[1]+idle[3])/2)))
+        anchor=registration.get('anchor',anchor)
+        if not (minx<=anchor[0]<=maxx and miny<=anchor[1]<=maxy):
+            raise ValueError('New frames exceed the preserved body anchor')
+        for col,((im,mask),b,(cx,cy)) in enumerate(zip(frames,boxes,centers)):
+            size=(max(1,round((b[2]-b[0])*scale)),max(1,round((b[3]-b[1])*scale)))
+            dest=(round(anchor[0]+(b[0]-cx)*scale),round(anchor[1]+(b[1]-cy)*scale))
+            tile=Image.new('RGBA',(192,208));tile.paste(im.crop(b).resize(size,Image.Resampling.LANCZOS),dest)
+            mask_tile=Image.new('RGB',(192,208));mask_tile.paste(mask.crop(b).resize(size,Image.Resampling.LANCZOS),dest)
+            atlas.paste(tile,(col*192,row*208));mask_atlas.paste(mask_tile,(col*192,row*208))
+        return scale
+    if registration=='bounded' or isinstance(registration,dict) and registration.get('mode')=='bounded':
         # One scale for the whole row; keep a small amount of source travel.
         # Long stage translations must not shrink a desktop hover reaction.
         width=max(b[2]-b[0] for b in boxes);height=max(b[3]-b[1] for b in boxes)
         scale=min(168/width,182/height,base_scale if base_scale is not None else 100)
         centers=[((b[0]+b[2])/2,(b[1]+b[3])/2) for b in boxes]
         cx=sum(x for x,y in centers)/len(centers);cy=sum(y for x,y in centers)/len(centers)
+        if isinstance(registration,dict):
+            scale=registration.get('scale',scale);cx,cy=registration.get('sourceCenter',[cx,cy])
         for col,((im,mask),b,(x,y)) in enumerate(zip(frames,boxes,centers)):
             size=(max(1,round((b[2]-b[0])*scale)),max(1,round((b[3]-b[1])*scale)))
             dx=round(max(-8,min(8,(x-cx)*scale)));dy=round(max(-10,min(10,(y-cy)*scale)))
-            dest=(col*192+(192-size[0])//2+dx,row*208+(208-size[1])//2+dy)
+            if size[0]>188 or size[1]>204:raise ValueError('New pose exceeds the preserved scale')
+            x=max(2,min(190-size[0],(192-size[0])//2+dx));y=max(2,min(206-size[1],(208-size[1])//2+dy))
+            dest=(col*192+x,row*208+y)
             atlas.paste(im.crop(b).resize(size,Image.Resampling.LANCZOS),dest)
             if mask_atlas is not None:mask_atlas.paste(mask.crop(b).resize(size,Image.Resampling.LANCZOS),dest)
         return scale
     box=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
+    if isinstance(registration,dict) and registration.get('mode')=='fixed':
+        box=tuple(registration['sourceBox']);scale=registration['scale']
+        ox=(192-round((box[2]-box[0])*scale))//2;oy=(208-round((box[3]-box[1])*scale))//2
+        for col,((im,mask),b) in enumerate(zip(frames,boxes)):
+            # Extend the source crop for a new pose, retaining the previous scale/origin.
+            crop=(min(box[0],b[0]),min(box[1],b[1]),max(box[2],b[2]),max(box[3],b[3]))
+            size=(round((crop[2]-crop[0])*scale),round((crop[3]-crop[1])*scale))
+            x=ox+round((crop[0]-box[0])*scale);y=oy+round((crop[1]-box[1])*scale)
+            if x<1 or y<1 or x+size[0]>191 or y+size[1]>207:raise ValueError('New frame does not fit the preserved scale/origin')
+            atlas.paste(im.crop(crop).resize(size,Image.Resampling.LANCZOS),(col*192+x,row*208+y))
+            if mask_atlas is not None:mask_atlas.paste(mask.crop(crop).resize(size,Image.Resampling.LANCZOS),(col*192+x,row*208+y))
+        return scale
     width,height=box[2]-box[0],box[3]-box[1]
     scale=min(168/width,182/height,base_scale if base_scale is not None else 100)
     size=(max(1,round(width*scale)),max(1,round(height*scale)))

@@ -11,11 +11,19 @@ rows={k:v['rows'] for k,v in ram.items()}
 for f in ['nono-normal','nono','nono-annual']:rows[f]=json.loads((assets/(f+'-animation-sources.json')).read_text())
 colors=json.loads((assets/'palette.json').read_text())
 ncolors=json.loads((assets/'nono-palette.json').read_text())
+plan=json.loads((assets.parents[1]/'scripts/selected-pet-clips.json').read_text())
+for family,forms in plan.items():
+ for form,selections in forms.items():
+  name=form if family=='ram' else ('nono' if form=='super' else 'nono-'+form)
+  for state,selection in selections.items():
+   entry=rows[name][states.index(state)]
+   assert selection['frames']==entry.get('actionFrames',entry.get('originalFrames')),(name,state,'selection/source mismatch')
 total=0
-report=['# 动作检查记录','', '当前版本在本地预览；此前快照为 `7132242`。', '',
-'逐帧检查 11 个形态的九种 Codex 状态。优先区分悬停、工作与检查；保留原游戏图形。打招呼与悬停可来自同一长动画，但使用不同片段。循环首尾回到同一姿势的重复帧用于衔接，不代表不同状态复用同一动画。', '',
-'普通和神力拉姆工作采用此前悬停的转身片段，悬停采用原 woter 动作的落水、淋湿和恢复片段。超级拉姆使用跳舞前段的摇摆工作、后段的转身悬停。转身限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。', '',
+report=['# 动作检查记录','', '当前发布图集的动作与循环检查记录。', '',
+'逐帧检查 11 个形态的九种 Codex 状态。优先区分悬停、工作与检查；保留原游戏图形。打招呼与悬停可来自同一长动画，但使用不同片段。循环不强制以恢复帧结尾；转圈保留原方向，表情及摇摆使用邻近姿势接回首帧。', '',
+'普通和神力拉姆工作采用此前悬停的转身片段，悬停采用原 woter 动作中靠近身体的淋湿片段，按身体参考统一缩放，水花不参与定比例。超级拉姆使用跳舞前段的摇摆工作、后段的转身悬停。转身限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。', '',
 'NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔方工作、惊讶等待、召唤旋转悬停；至尊使用开机后半段工作、轻微皱眉等待、惊讶打招呼、召唤旋转悬停。三个版本的检查状态使用高兴；超能打招呼按选择使用生气片段。', '',
+'本轮 53 行重排已有像素，11 行补充原始中间姿势；保持现有比例，待机和左右移动未改。', '',
 '预览按客户端逐帧时长播放，非待机三遍后回待机。动画文件无法改变客户端状态触发或持续时间。', '',
 '| 形态 | Codex 状态 | 原动画 | 原帧号（从 1 起） |','|---|---|---|---|']
 for f,entries in rows.items():
