@@ -1,0 +1,102 @@
+{
+  "1": {
+    "name": "红色",
+    "slug": "red",
+    "offset": [
+      255,
+      -199,
+      -250
+    ],
+    "swatch": "#ff3805"
+  },
+  "2": {
+    "name": "黄色",
+    "slug": "yellow",
+    "offset": [
+      0,
+      -21,
+      -255
+    ],
+    "swatch": "#ffea00"
+  },
+  "3": {
+    "name": "天蓝色",
+    "slug": "blue",
+    "offset": [
+      -215,
+      -57,
+      31
+    ],
+    "swatch": "#28c6ff"
+  },
+  "4": {
+    "name": "粉红色",
+    "slug": "pink",
+    "offset": [
+      51,
+      -148,
+      0
+    ],
+    "swatch": "#ff6bff"
+  },
+  "5": {
+    "name": "橘黄色",
+    "slug": "orange",
+    "offset": [
+      102,
+      -118,
+      -255
+    ],
+    "swatch": "#ff8900"
+  },
+  "6": {
+    "name": "灰色",
+    "slug": "gray",
+    "offset": [
+      -150,
+      -150,
+      -150
+    ],
+    "swatch": "#696969"
+  },
+  "7": {
+    "name": "黑色",
+    "slug": "black",
+    "offset": [
+      -215,
+      -210,
+      -215
+    ],
+    "swatch": "#282d28"
+  },
+  "8": {
+    "name": "紫色",
+    "slug": "purple",
+    "offset": [
+      -82,
+      -194,
+      112
+    ],
+    "swatch": "#ad3dff"
+  },
+  "9": {
+    "name": "土色",
+    "slug": "brown",
+    "offset": [
+      -87,
+      -148,
+      -199
+    ],
+    "swatch": "#a86b38"
+  },
+  "10": {
+    "name": "绿色",
+    "slug": "green",
+    "offset": [
+      -189,
+      -41,
+      -189
+    ],
+    "swatch": "#42d642"
+  }
+}

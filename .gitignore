@@ -1,0 +1,8 @@
+.DS_Store
+.sites-runtime/
+node_modules/
+qa/
+*.tar.gz
+
+__pycache__/
+*.pyc

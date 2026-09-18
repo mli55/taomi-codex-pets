@@ -1,0 +1,42 @@
+{
+  "name": "taomi-codex-pets",
+  "version": "1.0.0",
+  "description": "Taomi Codex Pets：摩尔庄园拉姆与赛尔号普通、超能、至尊 NoNo 原版宠物",
+  "type": "module",
+  "bin": {
+    "codex-pets": "bin/install.mjs"
+  },
+  "files": [
+    "bin",
+    "dist/assets",
+    "README.md",
+    "SOURCES.md"
+  ],
+  "scripts": {
+    "start": "python3 -m http.server 4173 --directory dist",
+    "check": "node --check dist/app.js && node --check dist/ram.js && node --check dist/nono.js && node --check bin/install.mjs && node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mli55/taomi-codex-pets.git"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "codex",
+    "codex-pet",
+    "codex-pets",
+    "ram",
+    "nono",
+    "mole-world",
+    "seer",
+    "拉姆",
+    "超能nono",
+    "taomi",
+    "淘米",
+    "至尊nono",
+    "普通nono"
+  ]
+}

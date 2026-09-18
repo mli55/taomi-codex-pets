@@ -1,0 +1,466 @@
+{
+  "super": {
+    "sourceSpriteId": 940,
+    "rows": [
+      {
+        "state": "idle",
+        "gameAction": "down",
+        "frames": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "state": "running-right",
+        "gameAction": "right",
+        "frames": [
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64
+        ]
+      },
+      {
+        "state": "running-left",
+        "gameAction": "left",
+        "frames": [
+          26,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ]
+      },
+      {
+        "state": "waving",
+        "gameAction": "happy",
+        "frames": [
+          155,
+          157,
+          159,
+          161
+        ]
+      },
+      {
+        "state": "jumping",
+        "gameAction": "happy",
+        "frames": [
+          155,
+          156,
+          158,
+          159,
+          161
+        ]
+      },
+      {
+        "state": "failed",
+        "gameAction": "angry",
+        "frames": [
+          163,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169
+        ]
+      },
+      {
+        "state": "waiting",
+        "gameAction": "boring",
+        "frames": [
+          170,
+          171,
+          172,
+          173,
+          174,
+          175
+        ]
+      },
+      {
+        "state": "running",
+        "gameAction": "rightdown",
+        "frames": [
+          65,
+          66,
+          68,
+          70,
+          72,
+          74
+        ]
+      },
+      {
+        "state": "review",
+        "gameAction": "dance",
+        "frames": [
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ]
+      }
+    ]
+  },
+  "water": {
+    "sourceSpriteId": 538,
+    "rows": [
+      {
+        "state": "idle",
+        "gameAction": "down",
+        "frames": [
+          8,
+          9,
+          10,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "state": "running-right",
+        "gameAction": "right",
+        "frames": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ]
+      },
+      {
+        "state": "running-left",
+        "gameAction": "left",
+        "frames": [
+          27,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33
+        ]
+      },
+      {
+        "state": "waving",
+        "gameAction": "happy",
+        "frames": [
+          156,
+          158,
+          160,
+          162
+        ]
+      },
+      {
+        "state": "jumping",
+        "gameAction": "happy",
+        "frames": [
+          156,
+          157,
+          159,
+          160,
+          162
+        ]
+      },
+      {
+        "state": "failed",
+        "gameAction": "angry",
+        "frames": [
+          164,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170
+        ]
+      },
+      {
+        "state": "waiting",
+        "gameAction": "boring",
+        "frames": [
+          171,
+          172,
+          173,
+          174,
+          175,
+          176
+        ]
+      },
+      {
+        "state": "running",
+        "gameAction": "rightdown",
+        "frames": [
+          66,
+          67,
+          69,
+          71,
+          72,
+          74
+        ]
+      },
+      {
+        "state": "review",
+        "gameAction": "dance",
+        "frames": [
+          116,
+          117,
+          118,
+          119,
+          120,
+          121
+        ]
+      }
+    ]
+  },
+  "wood": {
+    "sourceSpriteId": 1029,
+    "rows": [
+      {
+        "state": "idle",
+        "gameAction": "down",
+        "frames": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "state": "running-right",
+        "gameAction": "right",
+        "frames": [
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64
+        ]
+      },
+      {
+        "state": "running-left",
+        "gameAction": "left",
+        "frames": [
+          26,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ]
+      },
+      {
+        "state": "waving",
+        "gameAction": "happy",
+        "frames": [
+          155,
+          157,
+          159,
+          161
+        ]
+      },
+      {
+        "state": "jumping",
+        "gameAction": "happy",
+        "frames": [
+          155,
+          156,
+          158,
+          159,
+          161
+        ]
+      },
+      {
+        "state": "failed",
+        "gameAction": "angry",
+        "frames": [
+          163,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169
+        ]
+      },
+      {
+        "state": "waiting",
+        "gameAction": "boring",
+        "frames": [
+          170,
+          171,
+          172,
+          173,
+          174,
+          175
+        ]
+      },
+      {
+        "state": "running",
+        "gameAction": "rightdown",
+        "frames": [
+          65,
+          66,
+          68,
+          70,
+          71,
+          73
+        ]
+      },
+      {
+        "state": "review",
+        "gameAction": "dance",
+        "frames": [
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ]
+      }
+    ]
+  },
+  "fire": {
+    "sourceSpriteId": 898,
+    "rows": [
+      {
+        "state": "idle",
+        "gameAction": "down",
+        "frames": [
+          8,
+          9,
+          10,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "state": "running-right",
+        "gameAction": "right",
+        "frames": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ]
+      },
+      {
+        "state": "running-left",
+        "gameAction": "left",
+        "frames": [
+          27,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33
+        ]
+      },
+      {
+        "state": "waving",
+        "gameAction": "happy",
+        "frames": [
+          156,
+          158,
+          160,
+          162
+        ]
+      },
+      {
+        "state": "jumping",
+        "gameAction": "happy",
+        "frames": [
+          156,
+          157,
+          159,
+          160,
+          162
+        ]
+      },
+      {
+        "state": "failed",
+        "gameAction": "angry",
+        "frames": [
+          164,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170
+        ]
+      },
+      {
+        "state": "waiting",
+        "gameAction": "boring",
+        "frames": [
+          171,
+          172,
+          173,
+          174,
+          175,
+          176
+        ]
+      },
+      {
+        "state": "running",
+        "gameAction": "rightdown",
+        "frames": [
+          66,
+          67,
+          69,
+          71,
+          72,
+          74
+        ]
+      },
+      {
+        "state": "review",
+        "gameAction": "dance",
+        "frames": [
+          116,
+          117,
+          118,
+          119,
+          120,
+          121
+        ]
+      }
+    ]
+  }
+}
