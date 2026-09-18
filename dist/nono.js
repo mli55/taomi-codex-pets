@@ -60,7 +60,7 @@ async function loadForm(next){
   try{
     let images=imageCache.get(assetKey);
     if(!images){
-      images=await Promise.all([assetKey+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=loop-continuity1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      images=await Promise.all([assetKey+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=nono-size1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
       imageCache.set(assetKey,images);
     }
     if(request!==generation)return;

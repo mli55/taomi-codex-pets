@@ -48,7 +48,21 @@
       18,
       26,
       30
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.41007194244604317,
+      "sourceBox": [
+        4,
+        41,
+        363,
+        373
+      ],
+      "cellOffset": [
+        -6,
+        -22
+      ]
+    }
   },
   {
     "state": "jumping",
@@ -85,7 +99,21 @@
       17,
       12,
       6
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.5135135135135135,
+      "sourceBox": [
+        21,
+        7,
+        245,
+        331
+      ],
+      "cellOffset": [
+        -1,
+        -19
+      ]
+    }
   },
   {
     "state": "waiting",
@@ -98,7 +126,21 @@
       23,
       17,
       7
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.5135135135135135,
+      "sourceBox": [
+        9,
+        49,
+        265,
+        313
+      ],
+      "cellOffset": [
+        -5,
+        -24
+      ]
+    }
   },
   {
     "state": "running",
@@ -124,6 +166,20 @@
       94,
       92,
       90
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.5135135135135135,
+      "sourceBox": [
+        284,
+        322,
+        477,
+        593
+      ],
+      "cellOffset": [
+        0,
+        -29
+      ]
+    }
   }
 ]

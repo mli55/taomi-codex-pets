@@ -658,7 +658,21 @@
           72,
           82,
           91
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.62,
+          "sourceBox": [
+            34,
+            14,
+            209,
+            205
+          ],
+          "cellOffset": [
+            -1,
+            9
+          ]
+        }
       },
       "review": {
         "sourceState": "jumping",
@@ -670,7 +684,21 @@
           30,
           39,
           27
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.6813186813186813,
+          "sourceBox": [
+            35,
+            20,
+            182,
+            243
+          ],
+          "cellOffset": [
+            1,
+            14
+          ]
+        }
       },
       "failed": {
         "sourceState": "failed",
@@ -684,7 +712,21 @@
           19,
           14,
           9
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.6458333333333334,
+          "sourceBox": [
+            3,
+            25,
+            189,
+            243
+          ],
+          "cellOffset": [
+            -1,
+            1
+          ]
+        }
       },
       "waiting": {
         "sourceState": "review",
@@ -711,12 +753,16 @@
         ],
         "registration": {
           "mode": "fixed",
-          "scale": 1.1275167785234899,
+          "scale": 0.6262626262626263,
           "sourceBox": [
             11,
-            32,
+            25,
             160,
             186
+          ],
+          "cellOffset": [
+            1,
+            34
           ]
         }
       },
@@ -729,7 +775,21 @@
           11,
           40,
           6
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.6526315789473685,
+          "sourceBox": [
+            4,
+            0,
+            156,
+            198
+          ],
+          "cellOffset": [
+            0,
+            7
+          ]
+        }
       }
     },
     "super": {
@@ -762,7 +822,21 @@
           18,
           26,
           30
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.41007194244604317,
+          "sourceBox": [
+            4,
+            41,
+            363,
+            373
+          ],
+          "cellOffset": [
+            -6,
+            -22
+          ]
+        }
       },
       "failed": {
         "sourceState": "failed",
@@ -776,7 +850,21 @@
           17,
           12,
           6
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.5135135135135135,
+          "sourceBox": [
+            21,
+            7,
+            245,
+            331
+          ],
+          "cellOffset": [
+            -1,
+            -19
+          ]
+        }
       },
       "waiting": {
         "sourceState": "jumping",
@@ -788,7 +876,21 @@
           23,
           17,
           7
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.5135135135135135,
+          "sourceBox": [
+            9,
+            49,
+            265,
+            313
+          ],
+          "cellOffset": [
+            -5,
+            -24
+          ]
+        }
       },
       "running": {
         "sourceState": "running",
@@ -812,7 +914,21 @@
           94,
           92,
           90
-        ]
+        ],
+        "registration": {
+          "mode": "fixed",
+          "scale": 0.5135135135135135,
+          "sourceBox": [
+            284,
+            322,
+            477,
+            593
+          ],
+          "cellOffset": [
+            0,
+            -29
+          ]
+        }
       }
     },
     "annual": {

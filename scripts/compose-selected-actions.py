@@ -61,6 +61,7 @@ def pack_row(frames,row,atlas,mask_atlas=None,base_scale=None,registration=None)
     if isinstance(registration,dict) and registration.get('mode')=='fixed':
         box=tuple(registration['sourceBox']);scale=registration['scale']
         ox=(192-round((box[2]-box[0])*scale))//2;oy=(208-round((box[3]-box[1])*scale))//2
+        dx,dy=registration.get('cellOffset',[0,0]);ox+=dx;oy+=dy
         for col,((im,mask),b) in enumerate(zip(frames,boxes)):
             # Extend the source crop for a new pose, retaining the previous scale/origin.
             crop=(min(box[0],b[0]),min(box[1],b[1]),max(box[2],b[2]),max(box[3],b[3]))
