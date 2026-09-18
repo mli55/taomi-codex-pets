@@ -82,7 +82,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | classic | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
 | classic | waving | dance | 1, 3, 6, 3 |
 | classic | jumping | dance | 63, 69, 75, 81, 87 |
-| classic | failed | angry | 1, 6, 10, 15, 24, 15, 10, 6 |
+| classic | failed | angry | 6, 9, 12, 16, 21, 24, 18, 12 |
 | classic | waiting | boring | 1, 3, 5, 9, 5, 3 |
 | classic | running | dance | 10, 19, 28, 36, 28, 19 |
 | classic | review | happy | 20, 24, 29, 34, 29, 24 |
