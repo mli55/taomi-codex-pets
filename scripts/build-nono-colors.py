@@ -15,7 +15,7 @@ parser.add_argument('--ffdec',required=True)
 parser.add_argument('--assets',type=Path,default=Path('dist/assets'))
 args=parser.parse_args();OUT=args.work_dir;OUT.mkdir(parents=True,exist_ok=True);JAR=args.ffdec
 jobs=[]
-for variant in ['normal','super']:
+for variant in ['normal','super','annual']:
  name='nono' if variant=='super' else 'nono-'+variant
  rows=json.loads((args.assets/(name+'-animation-sources.json')).read_text())
  for row,entry in enumerate(rows):
@@ -31,8 +31,17 @@ def export(j):
  tree=E.parse(j['xml']);symbol=tree.find('.//item[@type="SymbolClassTag"]');names=[x.text for x in symbol.find('names')];sid=symbol.find('tags')[names.index('pet')].text
  for tint in [0,255]:
   t=copy.deepcopy(tree);count=0
+  # Annual action SWFs omit instance names. Their recolorable shell is the
+  # white/warm-gray shape used by color_1 in the direction asset; the cream
+  # armor, yellow ears, eyes and effects are separate shapes.
+  shells=set()
+  if j['variant']=='annual' and not any(n.get('name','').startswith('color_') for n in t.iter('item')):
+   for n in t.iter('item'):
+    if not n.get('shapeId'):continue
+    colors={tuple(int(c.get(k,0)) for k in ['red','green','blue']) for c in n.iter('color')}
+    if colors=={(255,255,255),(217,211,200)}:shells.add(n.get('shapeId'))
   for node in t.iter('item'):
-   if not node.get('name','').startswith('color_'):continue
+   if not node.get('name','').startswith('color_') and node.get('characterId') not in shells:continue
    node.set('placeFlagHasColorTransform','true');ct=node.find('colorTransform')
    if ct is None:ct=E.SubElement(node,'colorTransform')
    ct.attrib.update(dict(type='CXFORMWITHALPHA',hasAddTerms='true',hasMultTerms='true',nbits='10',alphaMultTerm='256',alphaAddTerm='0',redMultTerm='0',greenMultTerm='0',blueMultTerm='0',redAddTerm=str(tint),greenAddTerm=str(tint),blueAddTerm=str(tint)));count+=1
@@ -83,11 +92,14 @@ def pack_row(frames,row,atlas,mask_atlas=None,base_scale=None):
 
 assets=args.assets
 palette=[(c['id'],c['name'],c['rgb']) for c in json.loads((assets/'nono-palette.json').read_text())]
-for variant in ['normal','super']:
+for variant in ['normal','super','annual']:
  name='nono' if variant=='super' else 'nono-'+variant
  atlases=[Image.new('RGBA',(1536,1872)) for _ in range(2)]
  for j in [j for j in jobs if j['variant']==variant]:
   row=j['row'];probes=[]
+  if variant=='annual' and row==6:
+   for atlas in atlases:atlas.paste(atlas.crop((0,0,1536,208)),(0,row*208))
+   continue
   for tint in [0,255]:
    folder=next((OUT/(j['key']+'-'+str(tint))).iterdir());probes.append([Image.open(folder/f'{f}.png').convert('RGBA') for f in j['frames']])
   if row>=3:

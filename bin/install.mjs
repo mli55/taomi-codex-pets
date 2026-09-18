@@ -7,7 +7,7 @@ const forms={junior:'初级拉姆',middle:'中级拉姆',senior:'高级拉姆',c
 const nonoPalette=JSON.parse(await readFile(new URL('../dist/assets/nono-palette.json',import.meta.url),'utf8'));
 const args=process.argv.slice(2);
 if(args.includes('--help')||args.includes('-h')){
-  console.log('用法: npx --yes github:mli55/taomi-codex-pets [--pet ram|nono] [--form junior|middle|senior|classic|super|water|wood|fire] [--color 1..10] [--variant normal|super|annual] [--nono-color original|yellow|maroon|purple|red|green|pink|cream|blue|gray|orange|lime]\n拉姆使用原游戏十色，默认黄色（2）。NoNo 默认原色，其他色值按游戏截图还原；至尊版仅保留原色。已有宠物不会被覆盖。');process.exit(0);
+  console.log('用法: npx --yes github:mli55/taomi-codex-pets [--pet ram|nono] [--form junior|middle|senior|classic|super|water|wood|fire] [--color 1..10] [--variant normal|super|annual] [--nono-color original|yellow|maroon|purple|red|green|pink|cream|blue|gray|orange|lime]\n拉姆使用原游戏十色，默认黄色（2）。NoNo 默认原色，其他色值按游戏截图还原。已有宠物不会被覆盖。');process.exit(0);
 }
 let pet='ram', form='super', color='2',variant='super',nonoColor='original';
 for(let i=0;i<args.length;i+=2){
@@ -19,7 +19,7 @@ for(let i=0;i<args.length;i+=2){
   else if(flag==='--color'&&/^(?:[1-9]|10)$/.test(value))color=value;
   else{console.error('参数无效。使用 --help 查看说明。');process.exit(1);}
 }
-if(nonoColor!=='original'&&(pet!=='nono'||variant==='annual')){console.error('--nono-color 仅支持普通和超能 NoNo。');process.exit(1);}
+if(nonoColor!=='original'&&pet!=='nono'){console.error('--nono-color 仅支持 NoNo。');process.exit(1);}
 const colorNames=['','红色','黄色','天蓝色','粉红色','橘黄色','灰色','黑色','紫色','土色','绿色'];
 const colorSlugs=['','red','yellow','blue','pink','orange','gray','black','purple','brown','green'];
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');

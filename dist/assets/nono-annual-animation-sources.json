@@ -41,37 +41,40 @@
   },
   {
     "state": "waving",
-    "sourceFolder": "annual-exp-1-frames",
+    "sourceFile": "annual-action-2.swf",
+    "sourceFrameCount": 65,
     "originalFrames": [
-      1,
-      5,
-      14,
-      18
+      9,
+      17,
+      23,
+      34
     ]
   },
   {
     "state": "jumping",
-    "sourceFolder": "annual-action-6-frames",
+    "sourceFile": "annual-exp-3.swf",
+    "sourceFrameCount": 41,
     "originalFrames": [
-      44,
-      48,
-      52,
-      61,
-      65
+      1,
+      9,
+      18,
+      26,
+      35
     ]
   },
   {
     "state": "failed",
-    "sourceFolder": "annual-exp-4-frames",
+    "sourceFile": "annual-exp-4.swf",
+    "sourceFrameCount": 71,
     "originalFrames": [
       1,
       10,
-      20,
-      24,
-      34,
-      43,
-      52,
-      62
+      19,
+      31,
+      40,
+      49,
+      58,
+      70
     ]
   },
   {
@@ -88,26 +91,28 @@
   },
   {
     "state": "running",
-    "sourceFolder": "annual-nono-frames",
+    "sourceFile": "annual-action-7.swf",
+    "sourceFrameCount": 250,
     "originalFrames": [
-      56,
-      57,
-      59,
-      60,
-      62,
-      63
+      1,
+      12,
+      12,
+      23,
+      23,
+      33
     ]
   },
   {
     "state": "review",
-    "sourceFolder": "annual-exp-3-frames",
+    "sourceFile": "annual-exp-1.swf",
+    "sourceFrameCount": 65,
     "originalFrames": [
       1,
-      9,
+      6,
+      12,
       17,
-      25,
-      33,
-      41
+      23,
+      28
     ]
   }
 ]
