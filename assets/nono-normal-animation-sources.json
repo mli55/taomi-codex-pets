@@ -1,0 +1,113 @@
+[
+  {
+    "state": "idle",
+    "sourceFolder": "normal-nono-frames",
+    "originalFrames": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "state": "running-right",
+    "sourceFolder": "normal-nono-frames",
+    "originalFrames": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55
+    ]
+  },
+  {
+    "state": "running-left",
+    "sourceFolder": "normal-nono-frames",
+    "originalFrames": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  {
+    "state": "waving",
+    "sourceFolder": "normal-exp-1-frames",
+    "originalFrames": [
+      1,
+      15,
+      28,
+      42
+    ]
+  },
+  {
+    "state": "jumping",
+    "sourceFolder": "normal-exp-1-frames",
+    "originalFrames": [
+      28,
+      37,
+      46,
+      51,
+      60
+    ]
+  },
+  {
+    "state": "failed",
+    "sourceFolder": "normal-exp-4-frames",
+    "originalFrames": [
+      1,
+      9,
+      17,
+      25,
+      36,
+      44,
+      52,
+      60
+    ]
+  },
+  {
+    "state": "waiting",
+    "sourceFolder": "normal-action-1-frames",
+    "originalFrames": [
+      14,
+      27,
+      36,
+      45,
+      58,
+      67
+    ]
+  },
+  {
+    "state": "running",
+    "sourceFolder": "normal-nono-frames",
+    "originalFrames": [
+      56,
+      57,
+      59,
+      60,
+      62,
+      63
+    ]
+  },
+  {
+    "state": "review",
+    "sourceFolder": "normal-exp-3-frames",
+    "originalFrames": [
+      1,
+      10,
+      15,
+      24,
+      33,
+      38
+    ]
+  }
+]

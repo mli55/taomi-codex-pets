@@ -1,0 +1,113 @@
+[
+  {
+    "state": "idle",
+    "sourceFolder": "nono-timeline-frames",
+    "originalFrames": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "state": "running-right",
+    "sourceFolder": "nono-timeline-frames",
+    "originalFrames": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55
+    ]
+  },
+  {
+    "state": "running-left",
+    "sourceFolder": "nono-timeline-frames",
+    "originalFrames": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  {
+    "state": "waving",
+    "sourceFolder": "super-exp-1_1-frames",
+    "originalFrames": [
+      63,
+      75,
+      82,
+      94
+    ]
+  },
+  {
+    "state": "jumping",
+    "sourceFolder": "super-action-6_1-frames",
+    "originalFrames": [
+      43,
+      50,
+      57,
+      71,
+      78
+    ]
+  },
+  {
+    "state": "failed",
+    "sourceFolder": "super-exp-4_1-frames",
+    "originalFrames": [
+      1,
+      9,
+      17,
+      26,
+      34,
+      42,
+      50,
+      58
+    ]
+  },
+  {
+    "state": "waiting",
+    "sourceFolder": "super-action-1_1-frames",
+    "originalFrames": [
+      1,
+      5,
+      13,
+      17,
+      25,
+      29
+    ]
+  },
+  {
+    "state": "running",
+    "sourceFolder": "super-action-7_1-frames",
+    "originalFrames": [
+      1,
+      18,
+      36,
+      71,
+      88,
+      106
+    ]
+  },
+  {
+    "state": "review",
+    "sourceFolder": "super-exp-3_1-frames",
+    "originalFrames": [
+      1,
+      6,
+      11,
+      20,
+      25,
+      30
+    ]
+  }
+]
