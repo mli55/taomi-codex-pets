@@ -34,7 +34,7 @@ function chooseVariant(next){
   variant=next;selectedVariants[type]=next;
   syncConfiguration();loadForm(COMBINATIONS[type][variant]);
 }
-const PALETTE = {"1": {"name": "红色", "slug": "red", "offset": [255, -199, -250], "swatch": "#ff3805"}, "2": {"name": "黄色", "slug": "yellow", "offset": [0, -21, -255], "swatch": "#ffea00"}, "3": {"name": "天蓝色", "slug": "blue", "offset": [-215, -57, 31], "swatch": "#28c6ff"}, "4": {"name": "粉红色", "slug": "pink", "offset": [51, -148, 0], "swatch": "#ff6bff"}, "5": {"name": "橘黄色", "slug": "orange", "offset": [102, -118, -255], "swatch": "#ff8900"}, "6": {"name": "灰色", "slug": "gray", "offset": [-150, -150, -150], "swatch": "#696969"}, "7": {"name": "黑色", "slug": "black", "offset": [-215, -210, -215], "swatch": "#282d28"}, "8": {"name": "紫色", "slug": "purple", "offset": [-82, -194, 112], "swatch": "#ad3dff"}, "9": {"name": "土色", "slug": "brown", "offset": [-87, -148, -199], "swatch": "#a86b38"}, "10": {"name": "绿色", "slug": "green", "offset": [-189, -41, -189], "swatch": "#42d642"}};
+const PALETTE = {"1": {"name": "黄色", "slug": "yellow", "offset": [0, -21, -255], "swatch": "#ffea00", "gameColorId": 2}, "2": {"name": "红色", "slug": "red", "offset": [255, -199, -250], "swatch": "#ff3805", "gameColorId": 1}, "3": {"name": "天蓝色", "slug": "blue", "offset": [-215, -57, 31], "swatch": "#28c6ff", "gameColorId": 3}, "4": {"name": "粉红色", "slug": "pink", "offset": [51, -148, 0], "swatch": "#ff6bff", "gameColorId": 4}, "5": {"name": "橘黄色", "slug": "orange", "offset": [102, -118, -255], "swatch": "#ff8900", "gameColorId": 5}, "6": {"name": "灰色", "slug": "gray", "offset": [-150, -150, -150], "swatch": "#696969", "gameColorId": 6}, "7": {"name": "黑色", "slug": "black", "offset": [-215, -210, -215], "swatch": "#282d28", "gameColorId": 7}, "8": {"name": "紫色", "slug": "purple", "offset": [-82, -194, 112], "swatch": "#ad3dff", "gameColorId": 8}, "9": {"name": "土色", "slug": "brown", "offset": [-87, -148, -199], "swatch": "#a86b38", "gameColorId": 9}, "10": {"name": "绿色", "slug": "green", "offset": [-189, -41, -189], "swatch": "#42d642", "gameColorId": 10}};
 const root=document.getElementById('ram-panel');
 const PREVIEW_ACTIONS=PetPlayback.actions;
 const actionGroup=root.querySelector('.states');
@@ -43,7 +43,7 @@ const $ = id => document.getElementById('ram-'+id);
 const canvas = $('pet'), ctx = canvas.getContext('2d');
 const sheet = document.createElement('canvas'); sheet.width=1536; sheet.height=1872;
 const sheetCtx=sheet.getContext('2d',{willReadFrequently:true});
-let form='super', color='2', state='idle', original=null, currentFrame=0, playbackRow=0, loadedForm=null, generation=0;
+let form='super', color='1', state='idle', original=null, currentFrame=0, playbackRow=0, loadedForm=null, generation=0;
 let hovering=false;
 let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const imageCache=new Map(); let bodyMask=null;
@@ -96,7 +96,7 @@ async function loadForm(next){
   try{
     let images=imageCache.get(next);
     if(!images){
-      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=woter-restored1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=yellow-first1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
       imageCache.set(next,images);
     }
     if(request!==generation)return;
@@ -136,7 +136,7 @@ async function exportPet(onlyPng=false){
   try{const png=await pngBlob();
     if(onlyPng)downloadBlob(png,id+'-spritesheet.png');
     else{const metadata={id,displayName,spriteVersionNumber:1,spritesheetPath:'spritesheet.png'};
-      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n状态：待机、向右、向左、打招呼、跳跃（悬停）、失败、等待、工作、检查。\n游戏配色：${PALETTE[color].name}（ID ${color}）\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n摩尔庄园同人作品，非官方出品；角色权益归原权利方所有。\n`;
+      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n状态：待机、向右、向左、打招呼、跳跃（悬停）、失败、等待、工作、检查。\n配色：${PALETTE[color].name}（编号 ${color}）\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n摩尔庄园同人作品，非官方出品；角色权益归原权利方所有。\n`;
       downloadBlob(makeZip([{name:id+'/pet.json',data:JSON.stringify(metadata,null,2)},{name:id+'/spritesheet.png',data:new Uint8Array(await png.arrayBuffer())},{name:id+'/README.txt',data:readme}]),id+'.zip');}
     $('download-status').textContent='已开始下载。';
   }catch(error){$('download-status').textContent=error.message||'下载失败，请重试。';}

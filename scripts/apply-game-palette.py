@@ -13,5 +13,5 @@ for form in a.forms:
   dark=np.clip(153+np.array(entry['offset']),0,255)-153
   result=neutral.copy();result[:,:,:3]=np.clip(np.round(neutral[:,:,:3].astype(float)+mask[:,:,0,None]*white+mask[:,:,1,None]*gray+mask[:,:,2,None]*dark),0,255)
   im=Image.fromarray(result);im.save(a.assets/f'{form}-{key}.png',optimize=True)
-  if key=='2':im.save(a.assets/f'{form}.png',optimize=True)
+  if entry['slug']=='yellow':im.save(a.assets/f'{form}.png',optimize=True)
  print(form,'10 official colors prepared')

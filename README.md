@@ -14,7 +14,7 @@
 需要 Node.js 18 或更新版本：
 
 ```sh
-npx --yes github:mli55/taomi-codex-pets --form super --color 2
+npx --yes github:mli55/taomi-codex-pets --form super --color 1
 ```
 
 NoNo（默认超能版）：
@@ -30,7 +30,7 @@ npx --yes github:mli55/taomi-codex-pets --pet nono --variant super
 `--form`：`junior` 初级、`middle` 中级、`senior` 高级、`classic` 超级、`super` 神力超级、`water` 水系、`wood` 木系、`fire` 火系。
 
 
-`--color`：1 红色、2 黄色、3 天蓝色、4 粉红色、5 橘黄色、6 灰色、7 黑色、8 紫色、9 土色、10 绿色。
+`--color`：1 黄色、2 红色、3 天蓝色、4 粉红色、5 橘黄色、6 灰色、7 黑色、8 紫色、9 土色、10 绿色。
 
 安装器只复制宠物数据到 `CODEX_HOME/pets`，默认 `~/.codex/pets`，不会覆盖已有宠物。打开 Codex「设置 → Pets / 宠物」，刷新后选择它；输入 `/pet` 唤出宠物。
 
