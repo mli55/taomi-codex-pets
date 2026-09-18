@@ -101,15 +101,15 @@ async function exportPet(onlyPng=false){
   try{const png=await pngBlob();
     if(onlyPng)downloadBlob(png,id+'-spritesheet.png');
     else{const metadata={id,displayName,spriteVersionNumber:1,spritesheetPath:'spritesheet.png'};
-      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n游戏配色：${color==='original'?'原游戏配色':'按游戏换色面板截图还原（近似色值）'}\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n赛尔号同人作品，非官方出品；角色权益归原权利方所有。\n`;
-      downloadBlob(makeZip([{name:id+'/pet.json',data:JSON.stringify(metadata,null,2)},{name:id+'/spritesheet.png',data:new Uint8Array(await png.arrayBuffer())},{name:id+'/README.txt',data:readme}]),id+'.zip');}
+      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n本包包含原游戏动作图集及 v2 补全参考说明。现有可安装图集为 v1；若需升级，请按 V2-UPGRADE.txt 和 v2-reference.json 优先复用原素材，仅补全缺失朝向，保留原有九行动作。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n游戏配色：${color==='original'?'原游戏配色':'按游戏换色面板截图还原（近似色值）'}\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n赛尔号同人作品，非官方出品；角色权益归原权利方所有。\n`;
+      downloadBlob(makeZip([{name:id+'/pet.json',data:JSON.stringify(metadata,null,2)},{name:id+'/spritesheet.png',data:new Uint8Array(await png.arrayBuffer())},{name:id+'/README.txt',data:readme},{name:id+'/V2-UPGRADE.txt',data:PetUpgrade.instructions},{name:id+'/v2-reference.json',data:JSON.stringify(PetUpgrade.manifest(displayName),null,2)}]),id+'.zip');}
     $('download-status').textContent='已开始下载。';
   }catch(error){$('download-status').textContent=error.message||'下载失败，请重试。';}
   finally{const ready=loadedForm===form;$('download').disabled=!ready;$('download-png').disabled=!ready;}
 }
 $('download').addEventListener('click',()=>exportPet());$('download-png').addEventListener('click',()=>exportPet(true));
 $('copy-prompt').addEventListener('click',async()=>{
-  const prompt=`请帮我安装已经下载的 Codex 宠物包 ${slug()}.zip。先在我的下载目录找到该文件，检查 ZIP 只包含宠物数据，没有绝对路径或路径穿越；读取 pet.json，核对 spritesheet.png 是1536×1872透明图集。将宠物文件夹放到 CODEX_HOME/pets（未配置时用 ~/.codex/pets）。如果同名宠物存在，请保留原文件，改用新目录。完成后告诉我在设置 → Pets 刷新并选择 ${PETS[form].name}。源码：https://github.com/mli55/taomi-codex-pets`;
+  const prompt=`请帮我安装已经下载的 Codex 宠物包 ${slug()}.zip。本包包含原游戏动作图集及 v2 补全参考说明。现有可安装图集为 v1；若需升级，请按 V2-UPGRADE.txt 和 v2-reference.json 优先复用原素材，仅补全缺失朝向，保留原有九行动作。先在我的下载目录找到该文件，检查 ZIP 只包含宠物数据，没有绝对路径或路径穿越；读取 pet.json，核对 spritesheet.png 是1536×1872透明图集。将宠物文件夹放到 CODEX_HOME/pets（未配置时用 ~/.codex/pets）。如果同名宠物存在，请保留原文件，改用新目录。完成后告诉我在设置 → Pets 刷新并选择 ${PETS[form].name}。源码：https://github.com/mli55/taomi-codex-pets`;
   try{await navigator.clipboard.writeText(prompt);$('copy-prompt').textContent='✓ 已复制，粘贴给 Codex 即可';}
   catch{const box=document.createElement('textarea');box.value=prompt;box.setAttribute('aria-label','安装说明，请手动复制');box.style.cssText='width:100%;min-height:140px;margin-top:12px';$('copy-prompt').after(box);box.focus();box.select();$('copy-prompt').textContent='请复制下方安装说明';}
 });
