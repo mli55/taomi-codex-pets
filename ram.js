@@ -35,48 +35,63 @@ function chooseVariant(next){
   syncConfiguration();loadForm(COMBINATIONS[type][variant]);
 }
 const PALETTE = {"1": {"name": "红色", "slug": "red", "offset": [255, -199, -250], "swatch": "#ff3805"}, "2": {"name": "黄色", "slug": "yellow", "offset": [0, -21, -255], "swatch": "#ffea00"}, "3": {"name": "天蓝色", "slug": "blue", "offset": [-215, -57, 31], "swatch": "#28c6ff"}, "4": {"name": "粉红色", "slug": "pink", "offset": [51, -148, 0], "swatch": "#ff6bff"}, "5": {"name": "橘黄色", "slug": "orange", "offset": [102, -118, -255], "swatch": "#ff8900"}, "6": {"name": "灰色", "slug": "gray", "offset": [-150, -150, -150], "swatch": "#696969"}, "7": {"name": "黑色", "slug": "black", "offset": [-215, -210, -215], "swatch": "#282d28"}, "8": {"name": "紫色", "slug": "purple", "offset": [-82, -194, 112], "swatch": "#ad3dff"}, "9": {"name": "土色", "slug": "brown", "offset": [-87, -148, -199], "swatch": "#a86b38"}, "10": {"name": "绿色", "slug": "green", "offset": [-189, -41, -189], "swatch": "#42d642"}};
-const STATES = {
-  idle: [0,6,650,'发呆中'], 'running-right': [1,8,120,'向右走'], 'running-left': [2,8,120,'向左走'],
-  waving: [3,4,180,'和你打招呼'], jumping: [4,5,160,'高兴地回应你'], failed: [5,8,160,'遇到问题啦'],
-  waiting: [6,6,200,'等你回来'], running: [7,6,140,'认真忙碌中'], review: [8,6,180,'跳舞庆祝完成']
-};
 const root=document.getElementById('ram-panel');
-const PREVIEW_ACTIONS=[['idle','正面'],['jumping','高兴'],['review','跳舞'],['running','踢球'],['waiting','无聊'],['running-left','向左'],['running-right','向右'],['failed','生气']];
+const PREVIEW_ACTIONS=PetPlayback.actions;
 const actionGroup=root.querySelector('.states');
-actionGroup.replaceChildren(...PREVIEW_ACTIONS.map(([key,name])=>{const b=document.createElement('button');b.dataset.state=key;b.textContent=name;b.setAttribute('aria-pressed',String(key==='idle'));b.classList.toggle('selected',key==='idle');return b;}));
+actionGroup.replaceChildren(...PREVIEW_ACTIONS.map(([key,name])=>{const b=document.createElement('button');b.dataset.state=key;b.textContent=name;b.title=key;b.setAttribute('aria-pressed',String(key==='idle'));b.classList.toggle('selected',key==='idle');return b;}));
 const $ = id => document.getElementById('ram-'+id);
 const canvas = $('pet'), ctx = canvas.getContext('2d');
 const sheet = document.createElement('canvas'); sheet.width=1536; sheet.height=1872;
 const sheetCtx=sheet.getContext('2d',{willReadFrequently:true});
-let form='super', color='2', state='idle', original=null, currentFrame=0, lastFrame=0, loadedForm=null, generation=0;
+let form='super', color='2', state='idle', original=null, currentFrame=0, playbackRow=0, loadedForm=null, generation=0;
 let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const imageCache=new Map(); let bodyMask=null;
 function markGroup(selector, selected) { root.querySelectorAll(selector).forEach(el=>{const active=selected(el);el.classList.toggle('selected',active);el.setAttribute('aria-pressed',String(active));}); }
-function resetFrame(){currentFrame=0;lastFrame=0;render();}
-function render(){ctx.clearRect(0,0,576,624);if(loadedForm!==form)return;const row=STATES[state][0];ctx.drawImage(sheet,currentFrame*192,row*208,192,208,0,0,576,624);}
-function animate(time){const info=STATES[state];if(!paused && !document.hidden && !root.hidden && loadedForm===form && time-lastFrame>=info[2]){currentFrame=(currentFrame+1)%info[1];lastFrame=time;render();}requestAnimationFrame(animate);}
-function applyColor(){
-  if(!original||loadedForm!==form)return;
-  const pixels=new ImageData(new Uint8ClampedArray(original.data),original.width,original.height);
+const player=PetPlayback.createPlayer(frame=>{
+  currentFrame=frame.column;playbackRow=frame.row;
+  canvas.dataset.animationState=frame.state;
+  canvas.dataset.frame=String(frame.column+1);
+  canvas.dataset.row=String(frame.row);
+  const selected=actionGroup.querySelector('[data-state="'+state+'"]');
+  if(selected)$('state-label').textContent=selected.textContent+(frame.state==='idle'&&state!=='idle'?' · 已回到待机':'');
+  render();
+},matchMedia('(prefers-reduced-motion: reduce)').matches);
+function resetFrame(){player.select(state);}
+function render(){
+  ctx.clearRect(0,0,576,624);if(loadedForm!==form)return;
+  ctx.drawImage(sheet,currentFrame*192,playbackRow*208,192,208,0,0,576,624);
+}
+function animate(time){
+  player.tick(time,paused||document.hidden||root.hidden||loadedForm!==form);
+  requestAnimationFrame(animate);
+}
+function tintedPixels(source,mask){
+  const pixels=new ImageData(new Uint8ClampedArray(source.data),source.width,source.height);
   const offsets=PALETTE[color].offset;
   const white=offsets.map(v=>Math.max(0,Math.min(255,255+v))-255);
   const gray=offsets.map(v=>Math.max(0,Math.min(255,204+v))-204);
   const dark=offsets.map(v=>Math.max(0,Math.min(255,153+v))-153);
-  for(let i=0;i<pixels.data.length;i+=4){const w=bodyMask[i]/255,g=bodyMask[i+1]/255,d=bodyMask[i+2]/255;if(!w&&!g&&!d)continue;
+  for(let i=0;i<pixels.data.length;i+=4){const w=mask[i]/255,g=mask[i+1]/255,d=mask[i+2]/255;if(!w&&!g&&!d)continue;
     for(let c=0;c<3;c++)pixels.data[i+c]=Math.max(0,Math.min(255,pixels.data[i+c]+white[c]*w+gray[c]*g+dark[c]*d));
   }
-  sheetCtx.putImageData(pixels,0,0);render();
+  return pixels;
+}
+function applyColor(){
+  if(!original||loadedForm!==form)return;
+  sheetCtx.putImageData(tintedPixels(original,bodyMask),0,0);
+  render();
 }
 async function loadForm(next){
   form=next;const request=++generation;loadedForm=null;original=null;render();
   $('download').disabled=true;$('download-png').disabled=true;$('pet-label').textContent=PETS[form].name;
+  canvas.setAttribute('aria-label',PETS[form].name+'动画预览');
   
   $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;
   $('download-status').textContent='';
   try{
     let images=imageCache.get(next);
     if(!images){
-      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file;await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=reviewed-clips2';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
       imageCache.set(next,images);
     }
     if(request!==generation)return;
@@ -116,7 +131,7 @@ async function exportPet(onlyPng=false){
   try{const png=await pngBlob();
     if(onlyPng)downloadBlob(png,id+'-spritesheet.png');
     else{const metadata={id,displayName,spriteVersionNumber:1,spritesheetPath:'spritesheet.png'};
-      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n动作：正面、向右、向左、高兴（打招呼）、高兴（悬停）、生气、无聊、右下（工作中）、跳舞（完成）。\n游戏配色：${PALETTE[color].name}（ID ${color}）\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n摩尔庄园同人作品，非官方出品；角色权益归原权利方所有。\n`;
+      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n动作：正面、向右、向左、招呼（中级为跳舞，其余为高兴）、跳舞（悬停）、生气、无聊、踢球（工作中）、高兴（完成）。\n游戏配色：${PALETTE[color].name}（ID ${color}）\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n摩尔庄园同人作品，非官方出品；角色权益归原权利方所有。\n`;
       downloadBlob(makeZip([{name:id+'/pet.json',data:JSON.stringify(metadata,null,2)},{name:id+'/spritesheet.png',data:new Uint8Array(await png.arrayBuffer())},{name:id+'/README.txt',data:readme}]),id+'.zip');}
     $('download-status').textContent='已开始下载。';
   }catch(error){$('download-status').textContent=error.message||'下载失败，请重试。';}

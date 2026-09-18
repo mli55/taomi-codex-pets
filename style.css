@@ -10,20 +10,22 @@
 .states{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 .states button,.configuration-option{padding:9px 2px;min-width:0;white-space:nowrap}
 
-/* Command installation is the primary action; the ZIP remains an alternative. */
+/* Keep installation controls quiet and compact. */
 .install-actions{grid-template-columns:minmax(0,1fr);gap:10px}
-.command-action{padding:18px;background:#eaf3ff;border:1px solid #007aff40;border-radius:15px;gap:15px;box-shadow:0 2px 8px #007aff08}
-.command-action:hover{background:#dfedff;border-color:#007aff80}
-.command-header{font-size:13px}.terminal-title{gap:8px;color:#1c1c1e;font-weight:600;flex-wrap:wrap}.terminal-title small{font-size:10px;font-weight:400;color:#7d91aa}
+.command-action{padding:12px 14px;background:#eaf3ff;border:1px solid #007aff30;border-radius:10px;gap:8px;box-shadow:none;font-weight:400}
+.command-action:hover{background:#dfedff;border-color:#007aff60}
+.command-header{font-size:12px}.terminal-title{gap:8px;color:#636366;font-weight:400;flex-wrap:wrap}.terminal-title small{font-size:10px;font-weight:400;color:#8e8e93}
 
-.command-line{gap:10px}.command-line code{font-size:14px;line-height:1.8;color:#1c1c1e;font-weight:500}.shell-prompt{font-size:14px;color:#007aff}.copy-feedback{color:#007aff;font-size:12px}.copy-icon{width:18px;height:18px}
+.command-line{gap:8px}.command-line code{font-size:12px;line-height:1.6;color:#636366;font-weight:400}.shell-prompt{font-size:12px;color:var(--blue)}.copy-feedback{color:var(--blue);font-size:11px}.copy-icon{width:15px;height:15px}
 .install-actions .download{background:#fff;color:#636366;border:1px solid #e5e5ea;min-height:40px;padding:10px;font-size:12px;font-weight:400;border-radius:10px;box-shadow:none}
 .install-actions .download:hover:not(:disabled){background:#f2f2f7}
-@media(max-width:380px){.install-actions{grid-template-columns:minmax(0,1fr)}.command-action{padding:16px}.command-line code{font-size:13px}.terminal-title small{font-size:9px}}
+@media(max-width:380px){.install-actions{grid-template-columns:minmax(0,1fr)}.command-action{padding:11px 12px}.command-line code{font-size:12px}.terminal-title small{font-size:9px}}
 
-/* Independent configuration choices, with a persistent selection in each group. */
+/* Types control which variants are available; all options stay visible. */
 .configuration-group + .configuration-group{margin-top:24px}
 .configuration-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.type-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+.variant-options{grid-template-columns:repeat(4,minmax(0,1fr))}
 .configuration-option:disabled{cursor:default}
 
 /* Keep pet navigation alongside the brand and installation guide. */
@@ -45,3 +47,5 @@
 .type-options{grid-template-columns:repeat(3,minmax(0,1fr))}
 .variant-options{grid-template-columns:repeat(4,minmax(0,1fr))}
 .form.selected{background:#fff;color:#1c1c1e;box-shadow:0 1px 5px #00000014,0 0 1px #0000001a}
+
+.action-library-link{margin-left:auto;font-size:12px;font-weight:400;color:var(--blue);padding:3px 0}
