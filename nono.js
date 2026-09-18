@@ -16,6 +16,7 @@ function syncActions(){
 }
 const $ = id => document.getElementById('nono-'+id);
 const canvas = $('pet'), ctx = canvas.getContext('2d');
+ctx.imageSmoothingEnabled=false;
 const sheet = document.createElement('canvas'); sheet.width=1536; sheet.height=1872;
 const sheetCtx=sheet.getContext('2d',{willReadFrequently:true});
 let form='nono', color='original', state='idle', original=null, currentFrame=0, playbackRow=0, loadedForm=null, generation=0;
@@ -59,7 +60,7 @@ async function loadForm(next){
   try{
     let images=imageCache.get(assetKey);
     if(!images){
-      images=await Promise.all([assetKey+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=all-nono-native-idle1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      images=await Promise.all([assetKey+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=nono-native-eyes2';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
       imageCache.set(assetKey,images);
     }
     if(request!==generation)return;
