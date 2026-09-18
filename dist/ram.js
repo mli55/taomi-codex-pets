@@ -87,7 +87,7 @@ async function loadForm(next){
     applyColor();resetFrame();$('download').disabled=false;$('download-png').disabled=false;
   }catch(error){if(request!==generation)return;$('download-status').textContent=error.message;}
 }
-function chooseColor(next){color=next;markGroup('.swatch',el=>el.dataset.color===next);$('color-note').textContent=PALETTE[color].name;applyColor();$('download-status').textContent='';
+function chooseColor(next){color=next;markGroup('.swatch',el=>el.dataset.color===next);applyColor();$('download-status').textContent='';
   $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;}
 root.querySelectorAll('.level-option').forEach(b=>b.addEventListener('click',()=>chooseLevel(b.dataset.level)));
 root.querySelectorAll('.power-option').forEach(b=>b.addEventListener('click',()=>choosePower(b.dataset.power)));
