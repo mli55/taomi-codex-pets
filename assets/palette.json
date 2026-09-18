@@ -1,15 +1,5 @@
 {
   "1": {
-    "name": "红色",
-    "slug": "red",
-    "offset": [
-      255,
-      -199,
-      -250
-    ],
-    "swatch": "#ff3805"
-  },
-  "2": {
     "name": "黄色",
     "slug": "yellow",
     "offset": [
@@ -17,7 +7,19 @@
       -21,
       -255
     ],
-    "swatch": "#ffea00"
+    "swatch": "#ffea00",
+    "gameColorId": 2
+  },
+  "2": {
+    "name": "红色",
+    "slug": "red",
+    "offset": [
+      255,
+      -199,
+      -250
+    ],
+    "swatch": "#ff3805",
+    "gameColorId": 1
   },
   "3": {
     "name": "天蓝色",
@@ -27,7 +29,8 @@
       -57,
       31
     ],
-    "swatch": "#28c6ff"
+    "swatch": "#28c6ff",
+    "gameColorId": 3
   },
   "4": {
     "name": "粉红色",
@@ -37,7 +40,8 @@
       -148,
       0
     ],
-    "swatch": "#ff6bff"
+    "swatch": "#ff6bff",
+    "gameColorId": 4
   },
   "5": {
     "name": "橘黄色",
@@ -47,7 +51,8 @@
       -118,
       -255
     ],
-    "swatch": "#ff8900"
+    "swatch": "#ff8900",
+    "gameColorId": 5
   },
   "6": {
     "name": "灰色",
@@ -57,7 +62,8 @@
       -150,
       -150
     ],
-    "swatch": "#696969"
+    "swatch": "#696969",
+    "gameColorId": 6
   },
   "7": {
     "name": "黑色",
@@ -67,7 +73,8 @@
       -210,
       -215
     ],
-    "swatch": "#282d28"
+    "swatch": "#282d28",
+    "gameColorId": 7
   },
   "8": {
     "name": "紫色",
@@ -77,7 +84,8 @@
       -194,
       112
     ],
-    "swatch": "#ad3dff"
+    "swatch": "#ad3dff",
+    "gameColorId": 8
   },
   "9": {
     "name": "土色",
@@ -87,7 +95,8 @@
       -148,
       -199
     ],
-    "swatch": "#a86b38"
+    "swatch": "#a86b38",
+    "gameColorId": 9
   },
   "10": {
     "name": "绿色",
@@ -97,6 +106,7 @@
       -41,
       -189
     ],
-    "swatch": "#42d642"
+    "swatch": "#42d642",
+    "gameColorId": 10
   }
 }
