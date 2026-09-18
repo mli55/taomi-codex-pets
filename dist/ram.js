@@ -12,29 +12,27 @@ const PETS = {
 };
 // Only combinations present in the original game assets are selectable.
 const COMBINATIONS = {
-  junior:{base:'junior'}, middle:{base:'middle'}, senior:{base:'senior'},
+  normal:{junior:'junior',middle:'middle',senior:'senior'},
   divine:{water:'water',wood:'wood',fire:'fire'}, classic:{base:'classic',super:'super'}
 };
-let level='classic', power='super', baseLevel='classic';
+let type='classic', variant='super';
+const selectedVariants={normal:'junior',divine:'water',classic:'super'};
 function syncConfiguration(){
-  markGroup('.level-option',el=>el.dataset.level===level);
-  markGroup('.power-option',el=>el.dataset.power===power);
-  root.querySelectorAll('.level-option').forEach(el=>{
-    el.disabled=!Object.hasOwn(COMBINATIONS[el.dataset.level],power);
+  markGroup('.type-option',el=>el.dataset.type===type);
+  markGroup('.variant-option',el=>el.dataset.variant===variant);
+  root.querySelectorAll('.variant-option').forEach(el=>{
+    el.disabled=!Object.hasOwn(COMBINATIONS[type],el.dataset.variant);
   });
 }
-function chooseLevel(next){
-  if(!Object.hasOwn(COMBINATIONS,next)||!Object.hasOwn(COMBINATIONS[next],power))return;
-  level=next;if(power==='base')baseLevel=next;
-  syncConfiguration();loadForm(COMBINATIONS[level][power]);
+function chooseType(next){
+  if(!Object.hasOwn(COMBINATIONS,next))return;
+  type=next;variant=selectedVariants[type];
+  syncConfiguration();loadForm(COMBINATIONS[type][variant]);
 }
-function choosePower(next){
-  const available=Object.keys(COMBINATIONS).filter(key=>Object.hasOwn(COMBINATIONS[key],next));
-  if(!available.length)return;
-  power=next;
-  if(next==='base')level=baseLevel;
-  else if(!available.includes(level))level=available[0];
-  syncConfiguration();loadForm(COMBINATIONS[level][power]);
+function chooseVariant(next){
+  if(!Object.hasOwn(COMBINATIONS[type],next))return;
+  variant=next;selectedVariants[type]=next;
+  syncConfiguration();loadForm(COMBINATIONS[type][variant]);
 }
 const PALETTE = {"1": {"name": "红色", "slug": "red", "offset": [255, -199, -250], "swatch": "#ff3805"}, "2": {"name": "黄色", "slug": "yellow", "offset": [0, -21, -255], "swatch": "#ffea00"}, "3": {"name": "天蓝色", "slug": "blue", "offset": [-215, -57, 31], "swatch": "#28c6ff"}, "4": {"name": "粉红色", "slug": "pink", "offset": [51, -148, 0], "swatch": "#ff6bff"}, "5": {"name": "橘黄色", "slug": "orange", "offset": [102, -118, -255], "swatch": "#ff8900"}, "6": {"name": "灰色", "slug": "gray", "offset": [-150, -150, -150], "swatch": "#696969"}, "7": {"name": "黑色", "slug": "black", "offset": [-215, -210, -215], "swatch": "#282d28"}, "8": {"name": "紫色", "slug": "purple", "offset": [-82, -194, 112], "swatch": "#ad3dff"}, "9": {"name": "土色", "slug": "brown", "offset": [-87, -148, -199], "swatch": "#a86b38"}, "10": {"name": "绿色", "slug": "green", "offset": [-189, -41, -189], "swatch": "#42d642"}};
 const STATES = {
@@ -89,8 +87,8 @@ async function loadForm(next){
 }
 function chooseColor(next){color=next;markGroup('.swatch',el=>el.dataset.color===next);applyColor();$('download-status').textContent='';
   $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;}
-root.querySelectorAll('.level-option').forEach(b=>b.addEventListener('click',()=>chooseLevel(b.dataset.level)));
-root.querySelectorAll('.power-option').forEach(b=>b.addEventListener('click',()=>choosePower(b.dataset.power)));
+root.querySelectorAll('.type-option').forEach(b=>b.addEventListener('click',()=>chooseType(b.dataset.type)));
+root.querySelectorAll('.variant-option').forEach(b=>b.addEventListener('click',()=>chooseVariant(b.dataset.variant)));
 root.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>chooseColor(b.dataset.color)));
 
 actionGroup.addEventListener('click',event=>{const b=event.target.closest('button[data-state]');if(!b)return;state=b.dataset.state;markGroup('[data-state]',el=>el.dataset.state===state);$('state-label').textContent=b.textContent;resetFrame();});
@@ -130,6 +128,6 @@ $('copy-prompt').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(prompt);$('copy-prompt').textContent='✓ 已复制，粘贴给 Codex 即可';}
   catch{const box=document.createElement('textarea');box.value=prompt;box.setAttribute('aria-label','安装说明，请手动复制');box.style.cssText='width:100%;min-height:140px;margin-top:12px';$('copy-prompt').after(box);box.focus();box.select();$('copy-prompt').textContent='请复制下方安装说明';}
 });
-syncConfiguration();loadForm(COMBINATIONS[level][power]);requestAnimationFrame(animate);
+syncConfiguration();loadForm(COMBINATIONS[type][variant]);requestAnimationFrame(animate);
 
 })();
