@@ -10,6 +10,26 @@ const PETS = {
   wood: { name: '弹力木系拉姆', hue: 116 },
   fire: { name: '霹雳火系拉姆', hue: 23 }
 };
+// Only combinations present in the original game assets are selectable.
+const COMBINATIONS = {
+  junior:{base:'junior'}, middle:{base:'middle'}, senior:{base:'senior'},
+  divine:{water:'water',wood:'wood',fire:'fire'}, classic:{base:'classic',super:'super'}
+};
+let level='classic';
+const powers={junior:'base',middle:'base',senior:'base',divine:'water',classic:'super'};
+function syncConfiguration(){
+  markGroup('.level-option',el=>el.dataset.level===level);
+  markGroup('.power-option',el=>el.dataset.power===powers[level]);
+  root.querySelectorAll('.power-option').forEach(el=>{el.disabled=!Object.hasOwn(COMBINATIONS[level],el.dataset.power);});
+}
+function chooseLevel(next){
+  if(!Object.hasOwn(COMBINATIONS,next))return;
+  level=next;syncConfiguration();loadForm(COMBINATIONS[level][powers[level]]);
+}
+function choosePower(next){
+  if(!Object.hasOwn(COMBINATIONS[level],next))return;
+  powers[level]=next;syncConfiguration();loadForm(COMBINATIONS[level][next]);
+}
 const PALETTE = {"1": {"name": "红色", "slug": "red", "offset": [255, -199, -250], "swatch": "#ff3805"}, "2": {"name": "黄色", "slug": "yellow", "offset": [0, -21, -255], "swatch": "#ffea00"}, "3": {"name": "天蓝色", "slug": "blue", "offset": [-215, -57, 31], "swatch": "#28c6ff"}, "4": {"name": "粉红色", "slug": "pink", "offset": [51, -148, 0], "swatch": "#ff6bff"}, "5": {"name": "橘黄色", "slug": "orange", "offset": [102, -118, -255], "swatch": "#ff8900"}, "6": {"name": "灰色", "slug": "gray", "offset": [-150, -150, -150], "swatch": "#696969"}, "7": {"name": "黑色", "slug": "black", "offset": [-215, -210, -215], "swatch": "#282d28"}, "8": {"name": "紫色", "slug": "purple", "offset": [-82, -194, 112], "swatch": "#ad3dff"}, "9": {"name": "土色", "slug": "brown", "offset": [-87, -148, -199], "swatch": "#a86b38"}, "10": {"name": "绿色", "slug": "green", "offset": [-189, -41, -189], "swatch": "#42d642"}};
 const STATES = {
   idle: [0,6,650,'发呆中'], 'running-right': [1,8,120,'向右走'], 'running-left': [2,8,120,'向左走'],
@@ -17,6 +37,9 @@ const STATES = {
   waiting: [6,6,200,'等你回来'], running: [7,6,140,'认真忙碌中'], review: [8,6,180,'跳舞庆祝完成']
 };
 const root=document.getElementById('ram-panel');
+const PREVIEW_ACTIONS=[['idle','正面'],['jumping','高兴'],['review','跳舞'],['running','踢球'],['waiting','无聊'],['running-left','向左'],['running-right','向右'],['failed','生气']];
+const actionGroup=root.querySelector('.states');
+actionGroup.replaceChildren(...PREVIEW_ACTIONS.map(([key,name])=>{const b=document.createElement('button');b.dataset.state=key;b.textContent=name;b.setAttribute('aria-pressed',String(key==='idle'));b.classList.toggle('selected',key==='idle');return b;}));
 const $ = id => document.getElementById('ram-'+id);
 const canvas = $('pet'), ctx = canvas.getContext('2d');
 const sheet = document.createElement('canvas'); sheet.width=1536; sheet.height=1872;
@@ -46,7 +69,6 @@ async function loadForm(next){
   
   $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;
   $('download-status').textContent='';
-  root.querySelectorAll('.form').forEach(el=>{const a=el.dataset.form===form;el.classList.toggle('active',a);el.setAttribute('aria-pressed',String(a));});
   try{
     let images=imageCache.get(next);
     if(!images){
@@ -61,10 +83,11 @@ async function loadForm(next){
 }
 function chooseColor(next){color=next;markGroup('.swatch',el=>el.dataset.color===next);$('color-note').textContent=PALETTE[color].name;applyColor();$('download-status').textContent='';
   $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;}
-root.querySelectorAll('.form').forEach(b=>b.addEventListener('click',()=>loadForm(b.dataset.form)));
+root.querySelectorAll('.level-option').forEach(b=>b.addEventListener('click',()=>chooseLevel(b.dataset.level)));
+root.querySelectorAll('.power-option').forEach(b=>b.addEventListener('click',()=>choosePower(b.dataset.power)));
 root.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>chooseColor(b.dataset.color)));
 
-root.querySelectorAll('[data-state]').forEach(b=>b.addEventListener('click',()=>{state=b.dataset.state;markGroup('[data-state]',el=>el.dataset.state===state);$('state-label').textContent=b.textContent;resetFrame();}));
+actionGroup.addEventListener('click',event=>{const b=event.target.closest('button[data-state]');if(!b)return;state=b.dataset.state;markGroup('[data-state]',el=>el.dataset.state===state);$('state-label').textContent=b.textContent;resetFrame();});
 function syncPause(){$('pause').textContent=paused?'▷ 播放动画':'Ⅱ 暂停动画';$('pause').setAttribute('aria-pressed',String(paused));}
 $('pause').addEventListener('click',()=>{paused=!paused;syncPause();});syncPause();
 $('background').addEventListener('click',()=>{const dark=$('preview-panel').classList.toggle('dark');$('background').querySelector('span').textContent=dark?'浅色背景':'深色背景';});
@@ -101,6 +124,6 @@ $('copy-prompt').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(prompt);$('copy-prompt').textContent='✓ 已复制，粘贴给 Codex 即可';}
   catch{const box=document.createElement('textarea');box.value=prompt;box.setAttribute('aria-label','安装说明，请手动复制');box.style.cssText='width:100%;min-height:140px;margin-top:12px';$('copy-prompt').after(box);box.focus();box.select();$('copy-prompt').textContent='请复制下方安装说明';}
 });
-loadForm('super');requestAnimationFrame(animate);
+syncConfiguration();loadForm(COMBINATIONS[level][powers[level]]);requestAnimationFrame(animate);
 
 })();
