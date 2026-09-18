@@ -4,11 +4,11 @@
 
 逐帧检查 11 个形态的九种 Codex 状态。优先区分悬停、工作与检查；保留原游戏图形。打招呼与悬停可来自同一长动画，但使用不同片段。循环不强制以恢复帧结尾；转圈保留原方向，表情及摇摆使用邻近姿势接回首帧。
 
-普通和神力拉姆工作采用此前悬停的转身片段，悬停采用原 woter 动作中靠近身体的淋湿片段，按身体参考统一缩放，水花不参与定比例。超级拉姆使用跳舞前段的摇摆工作、后段的转身悬停。转身限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。
+普通和神力拉姆工作采用此前悬停的转身片段，悬停恢复最初 woter 的水珠落下、淋湿和恢复片段及整体缩放。超级拉姆使用跳舞前段的摇摆工作、后段的转身悬停。转身限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。
 
 NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔方工作、惊讶等待、召唤旋转悬停；至尊使用开机后半段工作、轻微皱眉等待、惊讶打招呼、召唤旋转悬停。三个版本的检查状态使用高兴；超能打招呼按选择使用生气片段。
 
-本轮 53 行重排已有像素，11 行补充原始中间姿势；保持现有比例，待机和左右移动未改。
+保留 47 行重排已有像素，11 行补充原始中间姿势；woter 单独恢复到调整前，待机和左右移动未改。
 
 预览按客户端逐帧时长播放，非待机三遍后回待机。动画文件无法改变客户端状态触发或持续时间。
 
@@ -27,7 +27,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | water | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
 | water | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
 | water | waving | dance | 1, 7, 13, 7 |
-| water | jumping | woter | 29, 9, 11, 11, 23 |
+| water | jumping | woter | 1, 4, 6, 10, 27 |
 | water | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
 | water | waiting | boring | 1, 4, 8, 11, 8, 4 |
 | water | running | dance | 127, 136, 145, 154, 163, 172 |
@@ -36,7 +36,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | wood | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
 | wood | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
 | wood | waving | dance | 1, 7, 13, 7 |
-| wood | jumping | woter | 1, 9, 11, 11, 26 |
+| wood | jumping | woter | 1, 3, 6, 12, 24 |
 | wood | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
 | wood | waiting | boring | 1, 4, 8, 11, 8, 4 |
 | wood | running | dance | 127, 136, 145, 154, 163, 172 |
@@ -45,7 +45,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | fire | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
 | fire | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
 | fire | waving | dance | 1, 7, 13, 7 |
-| fire | jumping | woter | 24, 9, 13, 13, 21 |
+| fire | jumping | woter | 1, 4, 7, 13, 24 |
 | fire | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
 | fire | waiting | boring | 1, 4, 8, 11, 8, 4 |
 | fire | running | dance | 127, 136, 145, 154, 163, 172 |
@@ -54,7 +54,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | junior | running-right | right | 1, 3, 4, 6, 8, 10, 11, 13 |
 | junior | running-left | left | 1, 3, 4, 6, 8, 10, 11, 13 |
 | junior | waving | dance | 1, 7, 13, 7 |
-| junior | jumping | woter | 38, 16, 17, 17, 18 |
+| junior | jumping | woter | 1, 3, 6, 16, 38 |
 | junior | failed | angry | 14, 28, 41, 41, 41, 41, 41, 28 |
 | junior | waiting | boring | 22, 32, 42, 63, 73, 32 |
 | junior | running | dance | 128, 137, 146, 155, 164, 173 |
@@ -63,7 +63,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | middle | running-right | right | 1, 3, 5, 7, 8, 10, 12, 14 |
 | middle | running-left | left | 1, 3, 5, 7, 8, 10, 12, 14 |
 | middle | waving | dance | 1, 7, 13, 7 |
-| middle | jumping | woter | 32, 7, 9, 9, 11 |
+| middle | jumping | woter | 1, 3, 7, 11, 32 |
 | middle | failed | angry | 1, 7, 12, 18, 24, 18, 12, 7 |
 | middle | waiting | boring | 179, 188, 197, 207, 197, 188 |
 | middle | running | dance | 128, 137, 146, 155, 164, 173 |
@@ -72,7 +72,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | senior | running-right | right | 1, 2, 3, 4, 5, 6, 7, 8 |
 | senior | running-left | left | 1, 2, 3, 4, 5, 6, 7, 8 |
 | senior | waving | dance | 1, 7, 13, 7 |
-| senior | jumping | woter | 1, 9, 13, 13, 21 |
+| senior | jumping | woter | 1, 3, 6, 10, 24 |
 | senior | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
 | senior | waiting | boring | 1, 4, 8, 11, 8, 4 |
 | senior | running | dance | 128, 137, 146, 155, 164, 173 |
