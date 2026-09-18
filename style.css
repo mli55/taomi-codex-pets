@@ -40,3 +40,8 @@
 #nono-colors{display:grid;grid-template-columns:repeat(12,minmax(20px,1fr));gap:5px;overflow-x:auto;flex-wrap:nowrap;padding:3px 0}
 #nono-colors .swatch{width:100%;max-width:28px;height:auto;aspect-ratio:1;justify-self:center}
 #nono-colors .swatch[data-color="original"]{background:linear-gradient(145deg,#fff,#e9e9ed)}
+
+/* Share the same segmented-control treatment with NoNo. */
+.type-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+.variant-options{grid-template-columns:repeat(4,minmax(0,1fr))}
+.form.selected{background:#fff;color:#1c1c1e;box-shadow:0 1px 5px #00000014,0 0 1px #0000001a}
