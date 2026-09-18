@@ -24,16 +24,17 @@
         ]
       },
       "running": {
-        "sourceState": "waiting",
-        "gameAction": "thirst",
+        "sourceState": "review",
+        "gameAction": "dance",
         "frames": [
-          13,
           19,
-          25,
-          31,
-          25,
-          13
-        ]
+          28,
+          37,
+          46,
+          37,
+          19
+        ],
+        "registration": "bounded"
       },
       "waving": {
         "sourceState": "review",
@@ -532,16 +533,17 @@
         ]
       },
       "running": {
-        "sourceState": "waiting",
-        "gameAction": "thirst",
+        "sourceState": "review",
+        "gameAction": "dance",
         "frames": [
-          5,
-          14,
-          22,
-          31,
-          22,
-          5
-        ]
+          1,
+          10,
+          19,
+          28,
+          36,
+          1
+        ],
+        "registration": "bounded"
       },
       "waving": {
         "sourceState": "review",
