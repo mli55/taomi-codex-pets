@@ -49,12 +49,12 @@ npx --yes github:mli55/taomi-codex-pets --pet nono --variant super
 | idle | down |
 | running-right | right |
 | running-left | left |
-| waving | happy |
-| jumping（鼠标悬停） | happy |
+| waving | happy（中级为 dance） |
+| jumping（鼠标悬停） | dance |
 | failed | angry |
 | waiting | boring |
-| running | rightdown |
-| review（任务完成） | dance |
+| running | football |
+| review（任务完成） | happy |
 
 ## 网站开发
 
@@ -65,13 +65,13 @@ npm run check
 
 打开 `http://localhost:4173`。网站是静态 HTML/CSS/JavaScript，配色和 ZIP 打包都在浏览器中完成，无账号、无后端、无数据上传。网页字体无法联网加载时自动使用系统字体。
 
-`scripts/compose-official.py` 将官方 SWF 导出的原始帧与三通道身体与眼皮遮罩对齐到 Codex 图集；`scripts/apply-game-palette.py` 按官方十色生成可直接安装的图集。这些脚本需要 Pillow、NumPy、SciPy。完整素材来源和处理方法见 [SOURCES.md](SOURCES.md)。
+`scripts/compose-selected-actions.py` 将完整官方时间轴中选出的帧与三通道身体及眼皮遮罩对齐到 Codex 图集；`scripts/apply-game-palette.py` 按官方十色生成可直接安装的图集。这些脚本需要 Pillow、NumPy、SciPy。完整素材来源和处理方法见 [SOURCES.md](SOURCES.md)。
 
 ## NoNo 三种版本
 
-超能 NoNo 的九行状态依次使用：待命、右移、左移、高兴、召唤、悲伤、充电、玩魔方、惊讶。原始帧来自赛尔号官方服务器，未重新配色。`scripts/compose-nono.py` 对齐原面屏并去除独立地面投影；帧号见 [nono-animation-sources.json](dist/assets/nono-animation-sources.json)。
+三个版本均展示九种 Codex 状态。普通 NoNo 的等待／工作使用充电／玩球；超能使用充电／玩魔方，悬停使用生气；至尊使用轻微皱眉／召唤后半段，悬停使用开心。原始动作与逐帧选择以各 `*-animation-sources.json` 为准。
 
-普通 NoNo 和至尊 NoNo 的原版造型分别提取自官方 `normal/` 与 `annual/` 资源。普通版跳跃状态使用原开心表情；普通与至尊版忙碌状态使用原斜向移动；至尊版等待状态使用原待命动作。对应原动作缺失时，不混用其他版本的素材。映射见 `dist/assets/nono-normal-animation-sources.json` 和 `nono-annual-animation-sources.json`。
+`scripts/prepare-full-ram.py` 展开拉姆嵌套动作；`scripts/prepare-full-nono.py` 从完整官方 NoNo 时间轴导出候选姿势；`scripts/compose-selected-actions.py` 生成初始图集。当前短片段由 `scripts/selected-pet-clips.json` 记录，`scripts/reselect-pet-clips.py` 精确导出选中帧并替换对应行，再运行两个配色脚本更新全部颜色。选帧优先保留正面首尾、身体稳定的近景，中级拉姆的玩球行保持原样。逐动作的原片长度及选帧见各 `*-animation-sources.json`。网页展示实际安装图集和九个 Codex 状态，采用客户端逐帧时长；非待机动作播放三遍后回到待机。
 
 可检索名称：Taomi、淘米、普通 NoNo、至尊 NoNo、Codex Pet、Codex Pets、Ram、拉姆、超级拉姆、摩尔庄园、NoNo、超能 NoNo、赛尔号。
 

@@ -22,6 +22,9 @@ for id in roots:visit(id)
 for id in seen:
  x=nodes[id]
  if not x.get('type','').startswith('DefineShape'):continue
+ # These original eye-white shapes also occur without a +255 transform in
+ # the dance timeline. They must never enter the body-colour probe.
+ if id in {'10','413','422'}:continue
  for c in x.iter('color'):
   rgb=tuple(int(c.get(k,0)) for k in ['red','green','blue']);v={(255,255,255):(255,0,255),(204,204,204):(0,255,255),(153,153,153):(255,255,0)}.get(rgb)
   if v:

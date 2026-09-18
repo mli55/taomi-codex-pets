@@ -1,0 +1,752 @@
+{
+  "ram": {
+    "super": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          8,
+          12,
+          20,
+          28,
+          12,
+          8
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          1,
+          8,
+          14,
+          21,
+          14,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "frames": [
+          39,
+          40,
+          41,
+          43,
+          41,
+          39
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "frames": [
+          8,
+          12,
+          24,
+          8
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          10,
+          19,
+          10,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          1,
+          3,
+          6,
+          8,
+          11,
+          6,
+          3,
+          1
+        ]
+      }
+    },
+    "water": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          1,
+          4,
+          8,
+          11,
+          4,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "frames": [
+          13,
+          16,
+          19,
+          22,
+          19,
+          13
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "frames": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          1,
+          6,
+          11,
+          16,
+          23,
+          11,
+          6,
+          1
+        ]
+      }
+    },
+    "wood": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          1,
+          4,
+          8,
+          11,
+          4,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "frames": [
+          13,
+          16,
+          19,
+          22,
+          19,
+          13
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "frames": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          1,
+          6,
+          11,
+          16,
+          23,
+          11,
+          6,
+          1
+        ]
+      }
+    },
+    "fire": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          1,
+          4,
+          8,
+          11,
+          4,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "frames": [
+          13,
+          16,
+          19,
+          22,
+          19,
+          13
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "frames": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          1,
+          6,
+          11,
+          16,
+          23,
+          11,
+          6,
+          1
+        ]
+      }
+    },
+    "junior": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          1,
+          6,
+          13,
+          22,
+          6,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          22,
+          32,
+          42,
+          63,
+          73,
+          22
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "frames": [
+          112,
+          118,
+          123,
+          130,
+          123,
+          112
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "frames": [
+          1,
+          6,
+          13,
+          1
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          14,
+          28,
+          41,
+          41,
+          41,
+          28,
+          28,
+          14
+        ]
+      }
+    },
+    "middle": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          1,
+          3,
+          4,
+          3,
+          3,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          1,
+          4,
+          8,
+          12,
+          8,
+          1
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ]
+      },
+      "idle": {
+        "sourceState": "idle",
+        "frames": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          1,
+          7,
+          12,
+          18,
+          24,
+          12,
+          7,
+          1
+        ]
+      }
+    },
+    "senior": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          1,
+          4,
+          8,
+          11,
+          4,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "frames": [
+          13,
+          16,
+          19,
+          22,
+          19,
+          13
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "frames": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          1,
+          6,
+          11,
+          16,
+          23,
+          11,
+          6,
+          1
+        ]
+      }
+    },
+    "classic": {
+      "review": {
+        "sourceState": "jumping",
+        "frames": [
+          20,
+          24,
+          29,
+          34,
+          24,
+          20
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "frames": [
+          1,
+          3,
+          5,
+          9,
+          5,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "frames": [
+          64,
+          68,
+          72,
+          78,
+          72,
+          64
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "frames": [
+          20,
+          24,
+          29,
+          20
+        ]
+      },
+      "jumping": {
+        "sourceState": "review",
+        "frames": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "frames": [
+          1,
+          6,
+          10,
+          15,
+          24,
+          10,
+          6,
+          1
+        ]
+      }
+    }
+  },
+  "nono": {
+    "normal": {
+      "waving": {
+        "sourceState": "waving",
+        "sourceFile": "normal-action-2.swf",
+        "frames": [
+          67,
+          72,
+          82,
+          91
+        ]
+      },
+      "review": {
+        "sourceState": "review",
+        "sourceFile": "normal-exp-3.swf",
+        "frames": [
+          1,
+          7,
+          13,
+          22,
+          7,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "sourceFile": "normal-exp-4.swf",
+        "frames": [
+          1,
+          9,
+          14,
+          19,
+          24,
+          19,
+          9,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "sourceFile": "normal-action-1.swf",
+        "frames": [
+          1,
+          4,
+          7,
+          12,
+          15,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "sourceFile": "normal-action-4.swf",
+        "frames": [
+          50,
+          55,
+          60,
+          65,
+          70,
+          50
+        ]
+      },
+      "jumping": {
+        "sourceState": "jumping",
+        "sourceFile": "normal-exp-1.swf",
+        "frames": [
+          24,
+          27,
+          39,
+          30,
+          24
+        ]
+      }
+    },
+    "super": {
+      "jumping": {
+        "sourceState": "jumping",
+        "sourceFile": "super-exp-2.swf",
+        "frames": [
+          14,
+          18,
+          22,
+          26,
+          30
+        ]
+      },
+      "waving": {
+        "sourceState": "waving",
+        "sourceFile": "super-exp-3.swf",
+        "frames": [
+          1,
+          7,
+          23,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "sourceFile": "super-exp-4.swf",
+        "frames": [
+          1,
+          6,
+          12,
+          17,
+          22,
+          17,
+          12,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "sourceFile": "super-action-1.swf",
+        "frames": [
+          1,
+          6,
+          11,
+          17,
+          11,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "sourceFile": "super-action-7.swf",
+        "frames": [
+          46,
+          52,
+          58,
+          64,
+          58,
+          46
+        ]
+      },
+      "review": {
+        "sourceState": "review",
+        "sourceFile": "super-exp-1.swf",
+        "frames": [
+          89,
+          90,
+          92,
+          94,
+          92,
+          89
+        ]
+      }
+    },
+    "annual": {
+      "waving": {
+        "sourceState": "waving",
+        "sourceFile": "annual-action-2.swf",
+        "frames": [
+          53,
+          56,
+          59,
+          64
+        ]
+      },
+      "review": {
+        "sourceState": "review",
+        "sourceFile": "annual-exp-3.swf",
+        "frames": [
+          1,
+          6,
+          9,
+          11,
+          6,
+          1
+        ]
+      },
+      "failed": {
+        "sourceState": "failed",
+        "sourceFile": "annual-exp-4.swf",
+        "frames": [
+          1,
+          7,
+          10,
+          13,
+          16,
+          13,
+          7,
+          1
+        ]
+      },
+      "running": {
+        "sourceState": "running",
+        "sourceFile": "annual-action-6.swf",
+        "frames": [
+          45,
+          48,
+          50,
+          56,
+          59,
+          64
+        ]
+      },
+      "jumping": {
+        "sourceState": "jumping",
+        "sourceFile": "annual-exp-1.swf",
+        "frames": [
+          1,
+          4,
+          9,
+          6,
+          1
+        ]
+      },
+      "waiting": {
+        "sourceState": "waiting",
+        "sourceFile": "annual-exp-2.swf",
+        "frames": [
+          11,
+          14,
+          16,
+          18,
+          16,
+          11
+        ]
+      }
+    }
+  }
+}

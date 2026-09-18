@@ -1,464 +1,804 @@
 {
   "super": {
     "sourceSpriteId": 940,
+    "sampling": "reviewed clips from full nested timelines",
     "rows": [
       {
         "state": "idle",
         "gameAction": "down",
-        "frames": [
-          9,
-          10,
-          11,
+        "sourceFrameCount": 21,
+        "actionFrames": [
+          1,
+          5,
+          8,
           12,
-          13,
-          14
+          15,
+          19
+        ],
+        "frames": [
+          1,
+          5,
+          8,
+          12,
+          15,
+          19
         ]
       },
       {
         "state": "running-right",
         "gameAction": "right",
+        "sourceFrameCount": 21,
+        "actionFrames": [
+          1,
+          4,
+          6,
+          9,
+          11,
+          14,
+          16,
+          19
+        ],
         "frames": [
-          57,
-          58,
-          59,
-          60,
-          61,
-          62,
-          63,
-          64
+          22,
+          25,
+          27,
+          30,
+          32,
+          35,
+          37,
+          40
         ]
       },
       {
         "state": "running-left",
         "gameAction": "left",
+        "sourceFrameCount": 21,
+        "actionFrames": [
+          1,
+          4,
+          6,
+          9,
+          11,
+          14,
+          16,
+          19
+        ],
         "frames": [
-          26,
-          26,
-          27,
-          28,
-          29,
-          30,
-          31,
-          32
+          43,
+          46,
+          48,
+          51,
+          53,
+          56,
+          58,
+          61
         ]
       },
       {
         "state": "waving",
         "gameAction": "happy",
+        "sourceFrameCount": 86,
+        "actionFrames": [
+          8,
+          12,
+          24,
+          8
+        ],
         "frames": [
-          155,
-          157,
-          159,
-          161
+          71,
+          75,
+          87,
+          71
         ]
       },
       {
         "state": "jumping",
-        "gameAction": "happy",
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
+        "actionFrames": [
+          1,
+          10,
+          19,
+          10,
+          1
+        ],
         "frames": [
-          155,
-          156,
-          158,
-          159,
-          161
+          471,
+          480,
+          489,
+          480,
+          471
         ]
       },
       {
         "state": "failed",
         "gameAction": "angry",
+        "sourceFrameCount": 57,
+        "actionFrames": [
+          1,
+          3,
+          6,
+          8,
+          11,
+          6,
+          3,
+          1
+        ],
         "frames": [
-          163,
-          163,
-          164,
-          165,
-          166,
-          167,
-          168,
-          169
+          150,
+          152,
+          155,
+          157,
+          160,
+          155,
+          152,
+          150
         ]
       },
       {
         "state": "waiting",
         "gameAction": "boring",
+        "sourceFrameCount": 154,
+        "actionFrames": [
+          1,
+          8,
+          14,
+          21,
+          14,
+          1
+        ],
         "frames": [
-          170,
-          171,
-          172,
-          173,
-          174,
-          175
+          207,
+          214,
+          220,
+          227,
+          220,
+          207
         ]
       },
       {
         "state": "running",
-        "gameAction": "rightdown",
+        "gameAction": "football",
+        "sourceFrameCount": 110,
+        "actionFrames": [
+          39,
+          40,
+          41,
+          43,
+          41,
+          39
+        ],
         "frames": [
-          65,
-          66,
-          68,
-          70,
-          72,
-          74
+          399,
+          400,
+          401,
+          403,
+          401,
+          399
         ]
       },
       {
         "state": "review",
-        "gameAction": "dance",
+        "gameAction": "happy",
+        "sourceFrameCount": 86,
+        "actionFrames": [
+          8,
+          12,
+          20,
+          28,
+          12,
+          8
+        ],
         "frames": [
-          115,
-          116,
-          117,
-          118,
-          119,
-          120
+          71,
+          75,
+          83,
+          91,
+          75,
+          71
         ]
       }
     ]
   },
   "water": {
     "sourceSpriteId": 538,
+    "sampling": "reviewed clips from full nested timelines",
     "rows": [
       {
         "state": "idle",
         "gameAction": "down",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          3,
+          4,
+          6,
+          7,
+          9
+        ],
         "frames": [
-          8,
-          9,
-          10,
-          12,
-          13,
-          14
+          1,
+          3,
+          4,
+          6,
+          7,
+          9
         ]
       },
       {
         "state": "running-right",
         "gameAction": "right",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
         "frames": [
-          58,
-          59,
-          60,
-          61,
-          62,
-          63,
-          64,
-          65
+          12,
+          13,
+          14,
+          15,
+          17,
+          18,
+          19,
+          20
         ]
       },
       {
         "state": "running-left",
         "gameAction": "left",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
         "frames": [
-          27,
-          27,
+          23,
+          24,
+          25,
+          26,
           28,
           29,
           30,
-          31,
-          32,
-          33
+          31
         ]
       },
       {
         "state": "waving",
         "gameAction": "happy",
+        "sourceFrameCount": 32,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          1
+        ],
         "frames": [
-          156,
-          158,
-          160,
-          162
+          34,
+          35,
+          36,
+          34
         ]
       },
       {
         "state": "jumping",
-        "gameAction": "happy",
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
+        "actionFrames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ],
         "frames": [
-          156,
-          157,
-          159,
-          160,
-          162
+          332,
+          338,
+          344,
+          341,
+          332
         ]
       },
       {
         "state": "failed",
         "gameAction": "angry",
+        "sourceFrameCount": 41,
+        "actionFrames": [
+          1,
+          6,
+          11,
+          16,
+          23,
+          11,
+          6,
+          1
+        ],
         "frames": [
-          164,
-          164,
-          165,
-          166,
-          167,
-          168,
-          169,
-          170
+          66,
+          71,
+          76,
+          81,
+          88,
+          76,
+          71,
+          66
         ]
       },
       {
         "state": "waiting",
         "gameAction": "boring",
+        "sourceFrameCount": 81,
+        "actionFrames": [
+          1,
+          4,
+          8,
+          11,
+          4,
+          1
+        ],
         "frames": [
-          171,
-          172,
-          173,
-          174,
-          175,
-          176
+          107,
+          110,
+          114,
+          117,
+          110,
+          107
         ]
       },
       {
         "state": "running",
-        "gameAction": "rightdown",
+        "gameAction": "football",
+        "sourceFrameCount": 144,
+        "actionFrames": [
+          13,
+          16,
+          19,
+          22,
+          19,
+          13
+        ],
         "frames": [
-          66,
-          67,
-          69,
-          71,
-          72,
-          74
+          200,
+          203,
+          206,
+          209,
+          206,
+          200
         ]
       },
       {
         "state": "review",
-        "gameAction": "dance",
+        "gameAction": "happy",
+        "sourceFrameCount": 32,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1
+        ],
         "frames": [
-          116,
-          117,
-          118,
-          119,
-          120,
-          121
+          34,
+          35,
+          36,
+          35,
+          35,
+          34
         ]
       }
     ]
   },
   "wood": {
     "sourceSpriteId": 1029,
+    "sampling": "reviewed clips from full nested timelines",
     "rows": [
       {
         "state": "idle",
         "gameAction": "down",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          3,
+          4,
+          6,
+          7,
+          9
+        ],
         "frames": [
-          8,
-          9,
-          10,
-          11,
-          12,
-          13
+          1,
+          3,
+          4,
+          6,
+          7,
+          9
         ]
       },
       {
         "state": "running-right",
         "gameAction": "right",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
         "frames": [
-          57,
-          58,
-          59,
-          60,
-          61,
-          62,
-          63,
-          64
+          12,
+          13,
+          14,
+          15,
+          17,
+          18,
+          19,
+          20
         ]
       },
       {
         "state": "running-left",
         "gameAction": "left",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
         "frames": [
+          23,
+          24,
+          25,
           26,
-          26,
-          27,
           28,
           29,
           30,
-          31,
-          32
+          31
         ]
       },
       {
         "state": "waving",
         "gameAction": "happy",
+        "sourceFrameCount": 32,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          1
+        ],
         "frames": [
-          155,
-          157,
-          159,
-          161
+          34,
+          35,
+          36,
+          34
         ]
       },
       {
         "state": "jumping",
-        "gameAction": "happy",
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
+        "actionFrames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ],
         "frames": [
-          155,
-          156,
-          158,
-          159,
-          161
+          332,
+          338,
+          344,
+          341,
+          332
         ]
       },
       {
         "state": "failed",
         "gameAction": "angry",
+        "sourceFrameCount": 41,
+        "actionFrames": [
+          1,
+          6,
+          11,
+          16,
+          23,
+          11,
+          6,
+          1
+        ],
         "frames": [
-          163,
-          163,
-          164,
-          165,
-          166,
-          167,
-          168,
-          169
+          66,
+          71,
+          76,
+          81,
+          88,
+          76,
+          71,
+          66
         ]
       },
       {
         "state": "waiting",
         "gameAction": "boring",
+        "sourceFrameCount": 81,
+        "actionFrames": [
+          1,
+          4,
+          8,
+          11,
+          4,
+          1
+        ],
         "frames": [
-          170,
-          171,
-          172,
-          173,
-          174,
-          175
+          107,
+          110,
+          114,
+          117,
+          110,
+          107
         ]
       },
       {
         "state": "running",
-        "gameAction": "rightdown",
+        "gameAction": "football",
+        "sourceFrameCount": 144,
+        "actionFrames": [
+          13,
+          16,
+          19,
+          22,
+          19,
+          13
+        ],
         "frames": [
-          65,
-          66,
-          68,
-          70,
-          71,
-          73
+          200,
+          203,
+          206,
+          209,
+          206,
+          200
         ]
       },
       {
         "state": "review",
-        "gameAction": "dance",
+        "gameAction": "happy",
+        "sourceFrameCount": 32,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1
+        ],
         "frames": [
-          115,
-          116,
-          117,
-          118,
-          119,
-          120
+          34,
+          35,
+          36,
+          35,
+          35,
+          34
         ]
       }
     ]
   },
   "fire": {
     "sourceSpriteId": 898,
+    "sampling": "reviewed clips from full nested timelines",
     "rows": [
       {
         "state": "idle",
         "gameAction": "down",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          3,
+          4,
+          6,
+          7,
+          9
+        ],
         "frames": [
-          8,
-          9,
-          10,
-          12,
-          13,
-          14
+          1,
+          3,
+          4,
+          6,
+          7,
+          9
         ]
       },
       {
         "state": "running-right",
         "gameAction": "right",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
         "frames": [
-          58,
-          59,
-          60,
-          61,
-          62,
-          63,
-          64,
-          65
+          12,
+          13,
+          14,
+          15,
+          17,
+          18,
+          19,
+          20
         ]
       },
       {
         "state": "running-left",
         "gameAction": "left",
+        "sourceFrameCount": 11,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
         "frames": [
-          27,
-          27,
+          23,
+          24,
+          25,
+          26,
           28,
           29,
           30,
-          31,
-          32,
-          33
+          31
         ]
       },
       {
         "state": "waving",
         "gameAction": "happy",
+        "sourceFrameCount": 32,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          1
+        ],
         "frames": [
-          156,
-          158,
-          160,
-          162
+          34,
+          35,
+          36,
+          34
         ]
       },
       {
         "state": "jumping",
-        "gameAction": "happy",
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
+        "actionFrames": [
+          1,
+          7,
+          13,
+          10,
+          1
+        ],
         "frames": [
-          156,
-          157,
-          159,
-          160,
-          162
+          332,
+          338,
+          344,
+          341,
+          332
         ]
       },
       {
         "state": "failed",
         "gameAction": "angry",
+        "sourceFrameCount": 41,
+        "actionFrames": [
+          1,
+          6,
+          11,
+          16,
+          23,
+          11,
+          6,
+          1
+        ],
         "frames": [
-          164,
-          164,
-          165,
-          166,
-          167,
-          168,
-          169,
-          170
+          66,
+          71,
+          76,
+          81,
+          88,
+          76,
+          71,
+          66
         ]
       },
       {
         "state": "waiting",
         "gameAction": "boring",
+        "sourceFrameCount": 81,
+        "actionFrames": [
+          1,
+          4,
+          8,
+          11,
+          4,
+          1
+        ],
         "frames": [
-          171,
-          172,
-          173,
-          174,
-          175,
-          176
+          107,
+          110,
+          114,
+          117,
+          110,
+          107
         ]
       },
       {
         "state": "running",
-        "gameAction": "rightdown",
+        "gameAction": "football",
+        "sourceFrameCount": 144,
+        "actionFrames": [
+          13,
+          16,
+          19,
+          22,
+          19,
+          13
+        ],
         "frames": [
-          66,
-          67,
-          69,
-          71,
-          72,
-          74
+          200,
+          203,
+          206,
+          209,
+          206,
+          200
         ]
       },
       {
         "state": "review",
-        "gameAction": "dance",
+        "gameAction": "happy",
+        "sourceFrameCount": 32,
+        "actionFrames": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1
+        ],
         "frames": [
-          116,
-          117,
-          118,
-          119,
-          120,
-          121
+          34,
+          35,
+          36,
+          35,
+          35,
+          34
         ]
       }
     ]

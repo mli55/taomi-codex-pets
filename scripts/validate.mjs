@@ -6,5 +6,5 @@ for(const form of ['junior','middle','senior','classic','super','water','wood','
   console.log(form+': 1536 × 1872 PNG, '+image.length+' bytes');
 }
 const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
-for(const resource of ['app.js','style.css']){if(!html.includes(resource))throw Error('missing '+resource);await readFile(new URL('../dist/'+resource,import.meta.url));}
+for(const resource of ['app.js','pet-playback.js','ram.js','nono.js','style.css']){if(!html.includes(resource))throw Error('missing '+resource);await readFile(new URL('../dist/'+resource,import.meta.url));}
 console.log('All asset and entrypoint checks passed.');

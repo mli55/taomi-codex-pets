@@ -4,11 +4,11 @@
     "sourceFolder": "annual-nono-frames",
     "originalFrames": [
       1,
-      2,
       3,
       5,
-      6,
-      7
+      7,
+      5,
+      3
     ]
   },
   {
@@ -44,22 +44,22 @@
     "sourceFile": "annual-action-2.swf",
     "sourceFrameCount": 65,
     "originalFrames": [
-      9,
-      17,
-      23,
-      34
+      53,
+      56,
+      59,
+      64
     ]
   },
   {
     "state": "jumping",
-    "sourceFile": "annual-exp-3.swf",
-    "sourceFrameCount": 41,
+    "sourceFile": "annual-exp-1.swf",
+    "sourceFrameCount": 65,
     "originalFrames": [
       1,
+      4,
       9,
-      18,
-      26,
-      35
+      6,
+      1
     ]
   },
   {
@@ -68,51 +68,52 @@
     "sourceFrameCount": 71,
     "originalFrames": [
       1,
+      7,
       10,
-      19,
-      31,
-      40,
-      49,
-      58,
-      70
+      13,
+      16,
+      13,
+      7,
+      1
     ]
   },
   {
     "state": "waiting",
-    "sourceFolder": "annual-nono-frames",
+    "sourceFile": "annual-exp-2.swf",
+    "sourceFrameCount": 50,
     "originalFrames": [
-      1,
-      2,
-      3,
-      5,
-      6,
-      7
+      11,
+      14,
+      16,
+      18,
+      16,
+      11
     ]
   },
   {
     "state": "running",
-    "sourceFile": "annual-action-7.swf",
-    "sourceFrameCount": 250,
+    "sourceFile": "annual-action-6.swf",
+    "sourceFrameCount": 65,
     "originalFrames": [
-      1,
-      12,
-      12,
-      23,
-      23,
-      33
+      45,
+      48,
+      50,
+      56,
+      59,
+      64
     ]
   },
   {
     "state": "review",
-    "sourceFile": "annual-exp-1.swf",
-    "sourceFrameCount": 65,
+    "sourceFile": "annual-exp-3.swf",
+    "sourceFrameCount": 41,
     "originalFrames": [
       1,
       6,
-      12,
-      17,
-      23,
-      28
+      9,
+      11,
+      6,
+      1
     ]
   }
 ]

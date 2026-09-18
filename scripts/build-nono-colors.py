@@ -13,13 +13,16 @@ parser.add_argument('--action-dir',type=Path,required=True)
 parser.add_argument('--work-dir',type=Path,required=True)
 parser.add_argument('--ffdec',required=True)
 parser.add_argument('--assets',type=Path,default=Path('dist/assets'))
+parser.add_argument('--variants',nargs='+',default=['normal','super','annual'])
+parser.add_argument('--rows',nargs='+',type=int)
 args=parser.parse_args();OUT=args.work_dir;OUT.mkdir(parents=True,exist_ok=True);JAR=args.ffdec
 jobs=[]
-for variant in ['normal','super','annual']:
+for variant in args.variants:
  name='nono' if variant=='super' else 'nono-'+variant
  rows=json.loads((args.assets/(name+'-animation-sources.json')).read_text())
  for row,entry in enumerate(rows):
-  if row<3 or (variant=='annual' and row==6):
+  if args.rows is not None and row not in args.rows:continue
+  if row<3 or (variant=='annual' and row==6 and 'sourceFile' not in entry):
    key=variant+'-base';xml=(args.base_dir/'nono-timeline.xml') if variant=='super' else (args.base_dir/'expanded'/(variant+'-nono-timeline.xml'))
   else:key=Path(entry['sourceFile']).stem;xml=args.action_dir/(key+'.xml')
   jobs.append(dict(variant=variant,name=name,row=row,key=key,xml=str(xml),frames=entry['originalFrames']))
@@ -27,7 +30,10 @@ unique={}
 for j in jobs:
  d=unique.setdefault(j['key'],dict(j,frames=[]));d['frames']=sorted(set(d['frames']+j['frames']))
 def export(j):
- if all((OUT/(j['key']+'-'+str(t))).exists() for t in [0,255]):return
+ # A cached export may predate a new frame selection.
+ if all(any(folder.is_dir() and all((folder/f'{frame}.png').exists() for frame in j['frames'])
+            for folder in (OUT/(j['key']+'-'+str(t))).iterdir())
+        if (OUT/(j['key']+'-'+str(t))).exists() else False for t in [0,255]):return
  tree=E.parse(j['xml']);symbol=tree.find('.//item[@type="SymbolClassTag"]');names=[x.text for x in symbol.find('names')];sid=symbol.find('tags')[names.index('pet')].text
  for tint in [0,255]:
   t=copy.deepcopy(tree);count=0
@@ -92,12 +98,12 @@ def pack_row(frames,row,atlas,mask_atlas=None,base_scale=None):
 
 assets=args.assets
 palette=[(c['id'],c['name'],c['rgb']) for c in json.loads((assets/'nono-palette.json').read_text())]
-for variant in ['normal','super','annual']:
+for variant in args.variants:
  name='nono' if variant=='super' else 'nono-'+variant
  atlases=[Image.new('RGBA',(1536,1872)) for _ in range(2)]
  for j in [j for j in jobs if j['variant']==variant]:
   row=j['row'];probes=[]
-  if variant=='annual' and row==6:
+  if variant=='annual' and row==6 and j['key'].endswith('-base'):
    for atlas in atlases:atlas.paste(atlas.crop((0,0,1536,208)),(0,row*208))
    continue
   for tint in [0,255]:
@@ -128,7 +134,12 @@ for variant in ['normal','super','annual']:
  for key,color_name,rgb in palette:
   if rgb is None:continue
   out=white.copy();out[:,:,:3]=black[:,:,:3]+(white[:,:,:3]-black[:,:,:3])*np.array(rgb)/255
-  Image.fromarray(np.clip(np.round(out),0,255).astype('uint8')).save(assets/f'{name}-color-{key}.png',optimize=True)
+  result=Image.fromarray(np.clip(np.round(out),0,255).astype('uint8'))
+  if args.rows is not None:
+   existing=Image.open(assets/f'{name}-color-{key}.png').convert('RGBA')
+   for row in args.rows:existing.paste(result.crop((0,row*208,1536,(row+1)*208)),(0,row*208))
+   result=existing
+  result.save(assets/f'{name}-color-{key}.png',optimize=True)
  print(name,'12 colors packed',flush=True)
  # A contact sheet for visual verification of actual source container recoloring.
  contact=Image.new('RGBA',(192*4,208*3),'#e9edf3')

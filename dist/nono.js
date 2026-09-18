@@ -3,33 +3,48 @@
 const PETS={
  'nono-normal':{name:'普通 NoNo',variant:'normal',slug:'seer-normal-nono',busy:'玩球',wait:'充电'},
  nono:{name:'超能 NoNo',variant:'super',slug:'seer-super-nono',busy:'玩魔方',wait:'充电'},
- 'nono-annual':{name:'至尊 NoNo',variant:'annual',slug:'seer-annual-nono',busy:'玩魔方',wait:'待命'}
+ 'nono-annual':{name:'至尊 NoNo',variant:'annual',slug:'seer-annual-nono',busy:'玩球',wait:'待命'}
 };
 const PALETTE=[{"id": "original", "name": "白色", "rgb": null}, {"id": "yellow", "name": "黄色", "rgb": [255, 194, 0]}, {"id": "maroon", "name": "深红色", "rgb": [161, 0, 0]}, {"id": "purple", "name": "紫色", "rgb": [143, 30, 194]}, {"id": "red", "name": "红色", "rgb": [208, 0, 0]}, {"id": "green", "name": "绿色", "rgb": [51, 174, 0]}, {"id": "pink", "name": "粉色", "rgb": [255, 170, 175]}, {"id": "cream", "name": "浅黄色", "rgb": [255, 255, 181]}, {"id": "blue", "name": "蓝色", "rgb": [0, 177, 255]}, {"id": "gray", "name": "灰色", "rgb": [73, 73, 73]}, {"id": "orange", "name": "橙色", "rgb": [226, 124, 0]}, {"id": "lime", "name": "黄绿色", "rgb": [152, 229, 0]}];
-const STATES = {
-  idle: [0,6,650,'发呆中'], 'running-right': [1,8,120,'向右走'], 'running-left': [2,8,120,'向左走'],
-  waving: [3,4,180,'和你打招呼'], jumping: [4,5,160,'开心地蹦一蹦'], failed: [5,8,160,'遇到问题啦'],
-  waiting: [6,6,200,'等你回来'], running: [7,6,140,'认真忙碌中'], review: [8,6,180,'仔细检查中']
-};
 const root=document.getElementById('nono-panel');
 const actionGroup=root.querySelector('.states');
 function syncActions(){
-  const actions=[['idle','待命'],['waving','开机'],['jumping','惊讶'],['running',PETS[form].busy],...(form==='nono-annual'?[]:[['waiting','充电']]),['review','开心'],['running-left','向左'],['running-right','向右'],['failed','悲哀']];
+  const actions=PetPlayback.actions;
   if(!actions.some(([key])=>key===state))state='idle';
-  actionGroup.replaceChildren(...actions.map(([key,name])=>{const b=document.createElement('button');b.dataset.state=key;b.textContent=name;b.setAttribute('aria-pressed',String(key===state));b.classList.toggle('selected',key===state);return b;}));
+  actionGroup.replaceChildren(...actions.map(([key,name])=>{const b=document.createElement('button');b.dataset.state=key;b.textContent=name;b.title=key;b.setAttribute('aria-pressed',String(key===state));b.classList.toggle('selected',key===state);return b;}));
   $('state-label').textContent=actions.find(([key])=>key===state)[1];
 }
 const $ = id => document.getElementById('nono-'+id);
 const canvas = $('pet'), ctx = canvas.getContext('2d');
 const sheet = document.createElement('canvas'); sheet.width=1536; sheet.height=1872;
 const sheetCtx=sheet.getContext('2d',{willReadFrequently:true});
-let form='nono', color='original', state='idle', original=null, currentFrame=0, lastFrame=0, loadedForm=null, generation=0;
+let form='nono', color='original', state='idle', original=null, currentFrame=0, playbackRow=0, loadedForm=null, generation=0;
+let hovering=false;
 let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const imageCache=new Map(); let bodyMask=null;
 function markGroup(selector, selected) { root.querySelectorAll(selector).forEach(el=>{const active=selected(el);el.classList.toggle('selected',active);el.setAttribute('aria-pressed',String(active));}); }
-function resetFrame(){currentFrame=0;lastFrame=0;render();}
-function render(){ctx.clearRect(0,0,576,624);if(loadedForm!==form)return;const row=STATES[state][0];ctx.drawImage(sheet,currentFrame*192,row*208,192,208,0,0,576,624);}
-function animate(time){const info=STATES[state];if(!paused && !document.hidden && !root.hidden && loadedForm===form && time-lastFrame>=info[2]){currentFrame=(currentFrame+1)%info[1];lastFrame=time;render();}requestAnimationFrame(animate);}
+const player=PetPlayback.createPlayer(frame=>{
+  currentFrame=frame.column;playbackRow=frame.row;
+  canvas.dataset.animationState=frame.state;
+  canvas.dataset.frame=String(frame.column+1);
+  canvas.dataset.row=String(frame.row);
+  const activeState=hovering?'jumping':state;
+  const selected=actionGroup.querySelector('[data-state="'+activeState+'"]');
+  if(selected)$('state-label').textContent=selected.textContent+(frame.state==='idle'&&activeState!=='idle'?' · 已回到待机':'');
+  render();
+},matchMedia('(prefers-reduced-motion: reduce)').matches);
+function resetFrame(){player.select(hovering?'jumping':state);}
+canvas.addEventListener('pointerenter',event=>{if(event.pointerType==='touch')return;hovering=true;resetFrame();});
+canvas.addEventListener('pointerleave',()=>{hovering=false;resetFrame();});
+canvas.addEventListener('pointercancel',()=>{hovering=false;resetFrame();});
+function render(){
+  ctx.clearRect(0,0,576,624);if(loadedForm!==form)return;
+  ctx.drawImage(sheet,currentFrame*192,playbackRow*208,192,208,0,0,576,624);
+}
+function animate(time){
+  player.tick(time,paused||document.hidden||root.hidden||loadedForm!==form);
+  requestAnimationFrame(animate);
+}
 async function loadForm(next){
   form=next;const assetKey=next+(color==='original'?'':'-color-'+color);const request=++generation;loadedForm=null;original=null;render();
   $('download').disabled=true;$('download-png').disabled=true;$('pet-label').textContent=PETS[form].name;
@@ -44,7 +59,7 @@ async function loadForm(next){
   try{
     let images=imageCache.get(assetKey);
     if(!images){
-      images=await Promise.all([assetKey+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=colors1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      images=await Promise.all([assetKey+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=annual-actions2';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
       imageCache.set(assetKey,images);
     }
     if(request!==generation)return;

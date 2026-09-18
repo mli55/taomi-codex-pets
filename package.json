@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "start": "python3 -m http.server 4173 --directory dist",
-    "check": "node --check dist/app.js && node --check dist/ram.js && node --check dist/nono.js && node --check bin/install.mjs && node scripts/validate.mjs"
+    "check": "node --check dist/pet-playback.js && node --check dist/app.js && node --check dist/ram.js && node --check dist/nono.js && node --check bin/install.mjs && node scripts/validate.mjs"
   },
   "engines": {
     "node": ">=18"
