@@ -41,25 +41,25 @@
   },
   {
     "state": "waving",
-    "sourceFile": "annual-action-2.swf",
-    "sourceFrameCount": 65,
-    "originalFrames": [
-      53,
-      56,
-      59,
-      64
-    ]
-  },
-  {
-    "state": "jumping",
     "sourceFile": "annual-exp-3.swf",
     "sourceFrameCount": 41,
     "originalFrames": [
       1,
       6,
       11,
-      6,
       1
+    ]
+  },
+  {
+    "state": "jumping",
+    "sourceFile": "annual-action-6.swf",
+    "sourceFrameCount": 65,
+    "originalFrames": [
+      45,
+      48,
+      50,
+      59,
+      64
     ]
   },
   {
@@ -92,14 +92,14 @@
   },
   {
     "state": "running",
-    "sourceFile": "annual-action-6.swf",
+    "sourceFile": "annual-action-2.swf",
     "sourceFrameCount": 65,
     "originalFrames": [
-      45,
-      48,
-      50,
-      56,
+      53,
+      55,
+      57,
       59,
+      61,
       64
     ]
   },
