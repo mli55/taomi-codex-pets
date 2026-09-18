@@ -1,16 +1,24 @@
 (()=>{
 'use strict';
 const PETS={
- 'nono-normal':{name:'普通 NoNo',variant:'normal',slug:'seer-normal-nono',busy:'忙碌',wait:'充电'},
+ 'nono-normal':{name:'普通 NoNo',variant:'normal',slug:'seer-normal-nono',busy:'玩球',wait:'充电'},
  nono:{name:'超能 NoNo',variant:'super',slug:'seer-super-nono',busy:'玩魔方',wait:'充电'},
- 'nono-annual':{name:'至尊 NoNo',variant:'annual',slug:'seer-annual-nono',busy:'忙碌',wait:'待命'}
+ 'nono-annual':{name:'至尊 NoNo',variant:'annual',slug:'seer-annual-nono',busy:'玩魔方',wait:'待命'}
 };
+const PALETTE=[{"id": "original", "name": "白色", "rgb": null}, {"id": "yellow", "name": "黄色", "rgb": [255, 194, 0]}, {"id": "maroon", "name": "深红色", "rgb": [161, 0, 0]}, {"id": "purple", "name": "紫色", "rgb": [143, 30, 194]}, {"id": "red", "name": "红色", "rgb": [208, 0, 0]}, {"id": "green", "name": "绿色", "rgb": [51, 174, 0]}, {"id": "pink", "name": "粉色", "rgb": [255, 170, 175]}, {"id": "cream", "name": "浅黄色", "rgb": [255, 255, 181]}, {"id": "blue", "name": "蓝色", "rgb": [0, 177, 255]}, {"id": "gray", "name": "灰色", "rgb": [73, 73, 73]}, {"id": "orange", "name": "橙色", "rgb": [226, 124, 0]}, {"id": "lime", "name": "黄绿色", "rgb": [152, 229, 0]}];
 const STATES = {
   idle: [0,6,650,'发呆中'], 'running-right': [1,8,120,'向右走'], 'running-left': [2,8,120,'向左走'],
   waving: [3,4,180,'和你打招呼'], jumping: [4,5,160,'开心地蹦一蹦'], failed: [5,8,160,'遇到问题啦'],
   waiting: [6,6,200,'等你回来'], running: [7,6,140,'认真忙碌中'], review: [8,6,180,'仔细检查中']
 };
 const root=document.getElementById('nono-panel');
+const actionGroup=root.querySelector('.states');
+function syncActions(){
+  const actions=[['idle','待命'],['waving','开机'],['jumping','惊讶'],['running',PETS[form].busy],...(form==='nono-annual'?[]:[['waiting','充电']]),['review','开心'],['running-left','向左'],['running-right','向右'],['failed','悲哀']];
+  if(!actions.some(([key])=>key===state))state='idle';
+  actionGroup.replaceChildren(...actions.map(([key,name])=>{const b=document.createElement('button');b.dataset.state=key;b.textContent=name;b.setAttribute('aria-pressed',String(key===state));b.classList.toggle('selected',key===state);return b;}));
+  $('state-label').textContent=actions.find(([key])=>key===state)[1];
+}
 const $ = id => document.getElementById('nono-'+id);
 const canvas = $('pet'), ctx = canvas.getContext('2d');
 const sheet = document.createElement('canvas'); sheet.width=1536; sheet.height=1872;
@@ -23,33 +31,40 @@ function resetFrame(){currentFrame=0;lastFrame=0;render();}
 function render(){ctx.clearRect(0,0,576,624);if(loadedForm!==form)return;const row=STATES[state][0];ctx.drawImage(sheet,currentFrame*192,row*208,192,208,0,0,576,624);}
 function animate(time){const info=STATES[state];if(!paused && !document.hidden && !root.hidden && loadedForm===form && time-lastFrame>=info[2]){currentFrame=(currentFrame+1)%info[1];lastFrame=time;render();}requestAnimationFrame(animate);}
 async function loadForm(next){
-  form=next;const request=++generation;loadedForm=null;original=null;render();
+  form=next;if(form==='nono-annual')color='original';const assetKey=next+(color==='original'?'':'-color-'+color);const request=++generation;loadedForm=null;original=null;render();
   $('download').disabled=true;$('download-png').disabled=true;$('pet-label').textContent=PETS[form].name;
-  $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --pet nono --variant '+PETS[form].variant;
+  $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --pet nono --variant '+PETS[form].variant+(color==='original'?'':' --nono-color '+color);
+  $('colors-section').hidden=form==='nono-annual';markGroup('.swatch',el=>el.dataset.color===color);
   
-  root.querySelector('[data-state=jumping]').textContent=form==='nono-normal'?'开心':'召唤';
+  syncActions();
   $('pet').setAttribute('aria-label',PETS[form].name+'动画预览');
-  root.querySelector('[data-state=running]').textContent=PETS[form].busy;root.querySelector('[data-state=waiting]').textContent=PETS[form].wait;
   $('download-status').textContent='';
   $('state-label').textContent=root.querySelector('[data-state="'+state+'"]').textContent;
   root.querySelectorAll('.form').forEach(el=>{const a=el.dataset.form===form;el.classList.toggle('active',a);el.setAttribute('aria-pressed',String(a));});
   try{
-    let images=imageCache.get(next);
+    let images=imageCache.get(assetKey);
     if(!images){
-      images=await Promise.all([next+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file;await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
-      imageCache.set(next,images);
+      images=await Promise.all([assetKey+'.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=colors1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      imageCache.set(assetKey,images);
     }
     if(request!==generation)return;
     sheetCtx.clearRect(0,0,1536,1872);sheetCtx.drawImage(images[0],0,0);original=sheetCtx.getImageData(0,0,1536,1872);loadedForm=next;
     resetFrame();$('download').disabled=false;$('download-png').disabled=false;
   }catch(error){if(request!==generation)return;$('download-status').textContent=error.message;}
 }
+const colors=$('colors');
+colors.replaceChildren(...PALETTE.map(c=>{
+  const b=document.createElement('button');b.className='swatch';b.dataset.color=c.id;
+  b.style.setProperty('--swatch',c.rgb?'rgb('+c.rgb.join(',')+')':'#ffffff');
+  b.setAttribute('aria-label',c.name);b.title=c.name;b.setAttribute('aria-pressed',String(c.id===color));
+  b.addEventListener('click',()=>{if(color!==c.id){color=c.id;loadForm(form);}});return b;
+}));
 root.querySelectorAll('.form').forEach(b=>b.addEventListener('click',()=>loadForm(b.dataset.form)));
-root.querySelectorAll('[data-state]').forEach(b=>b.addEventListener('click',()=>{state=b.dataset.state;markGroup('[data-state]',el=>el.dataset.state===state);$('state-label').textContent=b.textContent;resetFrame();}));
+actionGroup.addEventListener('click',event=>{const b=event.target.closest('button[data-state]');if(!b)return;state=b.dataset.state;markGroup('[data-state]',el=>el.dataset.state===state);$('state-label').textContent=b.textContent;resetFrame();});
 function syncPause(){$('pause').textContent=paused?'▷ 播放动画':'Ⅱ 暂停动画';$('pause').setAttribute('aria-pressed',String(paused));}
 $('pause').addEventListener('click',()=>{paused=!paused;syncPause();});syncPause();
 $('background').addEventListener('click',()=>{const dark=$('preview-panel').classList.toggle('dark');$('background').querySelector('span').textContent=dark?'浅色背景':'深色背景';});
-function slug(){return PETS[form].slug;}
+function slug(){return PETS[form].slug+(color==='original'?'':'-'+color);}
 function pngBlob(){return new Promise((resolve,reject)=>sheet.toBlob(b=>b?resolve(b):reject(Error('图片导出失败，请重试。')),'image/png'));}
 function downloadBlob(blob,name){const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
 const encoder=new TextEncoder();
@@ -65,12 +80,12 @@ function makeZip(files){
   const end=new Uint8Array(22),v=new DataView(end.buffer);v.setUint32(0,0x06054b50,true);v.setUint16(8,files.length,true);v.setUint16(10,files.length,true);v.setUint32(12,centralSize,true);v.setUint32(16,offset,true);return new Blob([...parts,...central,end],{type:'application/zip'});
 }
 async function exportPet(onlyPng=false){
-  if(loadedForm!==form)return;const id=slug(),displayName=PETS[form].name;
+  if(loadedForm!==form)return;const id=slug(),displayName=PETS[form].name+(color==='original'?'':' · '+PALETTE.find(c=>c.id===color).name);
   $('download').disabled=true;$('download-png').disabled=true;$('download-status').textContent='正在打包你选的NoNo…';
   try{const png=await pngBlob();
     if(onlyPng)downloadBlob(png,id+'-spritesheet.png');
     else{const metadata={id,displayName,spriteVersionNumber:1,spritesheetPath:'spritesheet.png'};
-      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n游戏配色：原游戏配色\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n赛尔号同人作品，非官方出品；角色权益归原权利方所有。\n`;
+      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n游戏配色：${color==='original'?'原游戏配色':'按游戏换色面板截图还原（近似色值）'}\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n赛尔号同人作品，非官方出品；角色权益归原权利方所有。\n`;
       downloadBlob(makeZip([{name:id+'/pet.json',data:JSON.stringify(metadata,null,2)},{name:id+'/spritesheet.png',data:new Uint8Array(await png.arrayBuffer())},{name:id+'/README.txt',data:readme}]),id+'.zip');}
     $('download-status').textContent='已开始下载。';
   }catch(error){$('download-status').textContent=error.message||'下载失败，请重试。';}
