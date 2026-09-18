@@ -31,10 +31,10 @@ function resetFrame(){currentFrame=0;lastFrame=0;render();}
 function render(){ctx.clearRect(0,0,576,624);if(loadedForm!==form)return;const row=STATES[state][0];ctx.drawImage(sheet,currentFrame*192,row*208,192,208,0,0,576,624);}
 function animate(time){const info=STATES[state];if(!paused && !document.hidden && !root.hidden && loadedForm===form && time-lastFrame>=info[2]){currentFrame=(currentFrame+1)%info[1];lastFrame=time;render();}requestAnimationFrame(animate);}
 async function loadForm(next){
-  form=next;if(form==='nono-annual')color='original';const assetKey=next+(color==='original'?'':'-color-'+color);const request=++generation;loadedForm=null;original=null;render();
+  form=next;const assetKey=next+(color==='original'?'':'-color-'+color);const request=++generation;loadedForm=null;original=null;render();
   $('download').disabled=true;$('download-png').disabled=true;$('pet-label').textContent=PETS[form].name;
   $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --pet nono --variant '+PETS[form].variant+(color==='original'?'':' --nono-color '+color);
-  $('colors-section').hidden=form==='nono-annual';markGroup('.swatch',el=>el.dataset.color===color);
+  markGroup('.swatch',el=>el.dataset.color===color);
   
   syncActions();
   $('pet').setAttribute('aria-label',PETS[form].name+'动画预览');
