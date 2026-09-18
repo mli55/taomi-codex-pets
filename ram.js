@@ -96,7 +96,7 @@ async function loadForm(next){
   try{
     let images=imageCache.get(next);
     if(!images){
-      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=animation-review2';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=ram-woter1';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
       imageCache.set(next,images);
     }
     if(request!==generation)return;
@@ -136,7 +136,7 @@ async function exportPet(onlyPng=false){
   try{const png=await pngBlob();
     if(onlyPng)downloadBlob(png,id+'-spritesheet.png');
     else{const metadata={id,displayName,spriteVersionNumber:1,spritesheetPath:'spritesheet.png'};
-      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n动作：正面、向右、向左、招呼（中级为跳舞，其余为高兴）、跳舞（悬停）、生气、无聊、踢球（工作中）、高兴（完成）。\n游戏配色：${PALETTE[color].name}（ID ${color}）\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n摩尔庄园同人作品，非官方出品；角色权益归原权利方所有。\n`;
+      const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n状态：待机、向右、向左、打招呼、跳跃（悬停）、失败、等待、工作、检查。\n游戏配色：${PALETTE[color].name}（ID ${color}）\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n摩尔庄园同人作品，非官方出品；角色权益归原权利方所有。\n`;
       downloadBlob(makeZip([{name:id+'/pet.json',data:JSON.stringify(metadata,null,2)},{name:id+'/spritesheet.png',data:new Uint8Array(await png.arrayBuffer())},{name:id+'/README.txt',data:readme}]),id+'.zip');}
     $('download-status').textContent='已开始下载。';
   }catch(error){$('download-status').textContent=error.message||'下载失败，请重试。';}

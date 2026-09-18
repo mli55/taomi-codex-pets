@@ -93,23 +93,23 @@
       },
       {
         "state": "jumping",
-        "gameAction": "dance",
-        "sourceFrameCount": 210,
+        "gameAction": "woter",
+        "sourceFrameCount": 59,
         "actionFrames": [
-          128,
-          146,
-          155,
-          164,
-          173
+          1,
+          3,
+          6,
+          16,
+          38
         ],
         "frames": [
-          920,
-          938,
-          947,
-          956,
-          965
+          1089,
+          1091,
+          1094,
+          1104,
+          1126
         ],
-        "registration": "bounded"
+        "registration": null
       },
       {
         "state": "failed",
@@ -159,24 +159,25 @@
       },
       {
         "state": "running",
-        "gameAction": "thirst",
-        "sourceFrameCount": 86,
+        "gameAction": "dance",
+        "sourceFrameCount": 210,
         "actionFrames": [
-          1,
-          8,
-          16,
-          23,
-          16,
-          1
+          128,
+          146,
+          155,
+          164,
+          173,
+          128
         ],
         "frames": [
-          1003,
-          1010,
-          1018,
-          1025,
-          1018,
-          1003
-        ]
+          920,
+          938,
+          947,
+          956,
+          965,
+          920
+        ],
+        "registration": "bounded"
       },
       {
         "state": "review",
@@ -296,23 +297,23 @@
       },
       {
         "state": "jumping",
-        "gameAction": "dance",
-        "sourceFrameCount": 210,
+        "gameAction": "woter",
+        "sourceFrameCount": 50,
         "actionFrames": [
-          128,
-          146,
-          155,
-          164,
-          173
+          1,
+          3,
+          7,
+          11,
+          32
         ],
         "frames": [
-          621,
-          639,
-          648,
-          657,
-          666
+          790,
+          792,
+          796,
+          800,
+          821
         ],
-        "registration": "bounded"
+        "registration": null
       },
       {
         "state": "failed",
@@ -363,24 +364,25 @@
       },
       {
         "state": "running",
-        "gameAction": "thirst",
-        "sourceFrameCount": 86,
+        "gameAction": "dance",
+        "sourceFrameCount": 210,
         "actionFrames": [
-          1,
-          8,
-          16,
-          23,
-          16,
-          1
+          128,
+          146,
+          155,
+          164,
+          173,
+          128
         ],
         "frames": [
-          704,
-          711,
-          719,
-          726,
-          719,
-          704
-        ]
+          621,
+          639,
+          648,
+          657,
+          666,
+          621
+        ],
+        "registration": "bounded"
       },
       {
         "state": "review",
@@ -499,23 +501,23 @@
       },
       {
         "state": "jumping",
-        "gameAction": "dance",
-        "sourceFrameCount": 210,
+        "gameAction": "woter",
+        "sourceFrameCount": 27,
         "actionFrames": [
-          128,
-          146,
-          155,
-          164,
-          173
+          1,
+          3,
+          6,
+          10,
+          24
         ],
         "frames": [
-          459,
-          477,
-          486,
-          495,
-          504
+          659,
+          661,
+          664,
+          668,
+          682
         ],
-        "registration": "bounded"
+        "registration": null
       },
       {
         "state": "failed",
@@ -565,24 +567,25 @@
       },
       {
         "state": "running",
-        "gameAction": "thirst",
-        "sourceFrameCount": 117,
+        "gameAction": "dance",
+        "sourceFrameCount": 210,
         "actionFrames": [
-          46,
-          51,
-          56,
-          61,
-          56,
-          46
+          128,
+          146,
+          155,
+          164,
+          173,
+          128
         ],
         "frames": [
-          587,
-          592,
-          597,
-          602,
-          597,
-          587
-        ]
+          459,
+          477,
+          486,
+          495,
+          504,
+          459
+        ],
+        "registration": "bounded"
       },
       {
         "state": "review",
