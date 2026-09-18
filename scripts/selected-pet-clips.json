@@ -625,26 +625,18 @@
       },
       "failed": {
         "sourceState": "failed",
+        "gameAction": "spring",
         "frames": [
-          6,
-          9,
-          12,
-          16,
-          21,
-          24,
-          18,
-          12
+          137,
+          139,
+          141,
+          143,
+          145,
+          143,
+          139,
+          137
         ],
-        "registration": {
-          "mode": "fixed",
-          "scale": 0.9824561403508771,
-          "sourceBox": [
-            847,
-            409,
-            1018,
-            571
-          ]
-        }
+        "registration": "bounded"
       }
     }
   },

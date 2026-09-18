@@ -17,7 +17,7 @@ MAPPING = [('idle','down',6), ('running-right','right',8), ('running-left','left
 FORMS = {'super': (7,940), 'water': (2,538), 'wood': (4,1029), 'fire': (1,898)}
 LEVELS = {'junior':936, 'middle':1532, 'senior':1777, 'classic':2525}
 
-def prepare(source, output, form, extra_actions=('thirst','woter')):
+def prepare(source, output, form, extra_actions=('thirst','woter','spring')):
     level = form in LEVELS
     number, sprite_id = (form, LEVELS[form]) if level else FORMS[form]
     neutral_xml = 'lamubone.xml' if level else f'skill{number}.xml'

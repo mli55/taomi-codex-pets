@@ -36,6 +36,8 @@ npx --yes github:mli55/taomi-codex-pets --pet nono --variant super
 
 也可以在网站选好形态与颜色，下载 ZIP，解压后把整个宠物文件夹放进上述目录。包内只有 `pet.json`、`spritesheet.png` 和说明文件。网页中的「复制给 Codex 的安装说明」会生成与你所选宠物一致的提示词。
 
+本包包含原游戏动作图集及 v2 补全参考说明。现有可安装图集为 v1；若需升级，请按 V2-UPGRADE.txt 和 v2-reference.json 优先复用原素材，仅补全缺失朝向，保留原有九行动作。
+
 ## 格式与原版还原
 
 - 图集：1536 × 1872，8 列 × 9 行，单格 192 × 208，透明 PNG。

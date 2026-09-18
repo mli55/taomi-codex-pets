@@ -752,38 +752,29 @@
       },
       {
         "state": "failed",
-        "gameAction": "angry",
-        "sourceFrameCount": 106,
+        "gameAction": "spring",
+        "sourceFrameCount": 217,
         "actionFrames": [
-          6,
-          9,
-          12,
-          16,
-          21,
-          24,
-          18,
-          12
+          137,
+          139,
+          141,
+          143,
+          145,
+          143,
+          139,
+          137
         ],
         "frames": [
-          150,
-          153,
-          156,
-          160,
-          165,
-          168,
-          162,
-          156
+          918,
+          920,
+          922,
+          924,
+          926,
+          924,
+          920,
+          918
         ],
-        "registration": {
-          "mode": "fixed",
-          "scale": 0.9824561403508771,
-          "sourceBox": [
-            847,
-            409,
-            1018,
-            571
-          ]
-        }
+        "registration": "bounded"
       },
       {
         "state": "waiting",

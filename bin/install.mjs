@@ -2,6 +2,7 @@
 import { mkdir, readFile, writeFile, copyFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
+import '../dist/pet-upgrade.js';
 import { fileURLToPath } from 'node:url';
 const forms={junior:'初级拉姆',middle:'中级拉姆',senior:'高级拉姆',classic:'超级拉姆',super:'神力超级拉姆',water:'神奇水系拉姆',wood:'弹力木系拉姆',fire:'霹雳火系拉姆'};
 const nonoPalette=JSON.parse(await readFile(new URL('../dist/assets/nono-palette.json',import.meta.url),'utf8'));
@@ -34,5 +35,7 @@ try{
   while(true){try{await mkdir(destination);break;}catch(error){if(error.code!=='EEXIST')throw error;id=`${baseId}-${++n}`;destination=path.join(base,id);}}
   await copyFile(source,path.join(destination,'spritesheet.png'));
   await writeFile(path.join(destination,'pet.json'),JSON.stringify({id,displayName,description:(pet==='nono'?'赛尔号':'摩尔庄园')+'同人 Codex 宠物；角色权益归原权利方所有。',spriteVersionNumber:1,spritesheetPath:'spritesheet.png'},null,2)+'\n');
+  await writeFile(path.join(destination,'V2-UPGRADE.txt'),globalThis.PetUpgrade.instructions);
+  await writeFile(path.join(destination,'v2-reference.json'),JSON.stringify(globalThis.PetUpgrade.manifest(displayName),null,2)+'\n');
   console.log(`已安装 ${displayName}\n${destination}\n\n打开 Codex 设置 → Pets / 宠物，刷新后选择它。输入 /pet 唤出宠物。`);
 }catch(error){console.error('安装失败：'+error.message);process.exitCode=1;}
