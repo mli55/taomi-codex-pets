@@ -9,7 +9,20 @@
       7,
       5,
       3
-    ]
+    ],
+    "eyeSource": {
+      "sourceFolder": "annual-nono-frames",
+      "originalFrames": [
+        1,
+        3,
+        5,
+        7,
+        5,
+        3
+      ]
+    },
+    "bodyFrame": 1,
+    "registration": "fixed-body-original-eyes"
   },
   {
     "state": "running-right",
@@ -52,12 +65,12 @@
   },
   {
     "state": "jumping",
-    "sourceFile": "annual-exp-1.swf",
-    "sourceFrameCount": 65,
+    "sourceFile": "annual-exp-3.swf",
+    "sourceFrameCount": 41,
     "originalFrames": [
       1,
-      4,
-      9,
+      6,
+      11,
       6,
       1
     ]
@@ -105,14 +118,14 @@
   },
   {
     "state": "review",
-    "sourceFile": "annual-exp-3.swf",
-    "sourceFrameCount": 41,
+    "sourceFile": "annual-exp-1.swf",
+    "sourceFrameCount": 65,
     "originalFrames": [
       1,
-      6,
+      4,
       9,
-      11,
       6,
+      4,
       1
     ]
   }

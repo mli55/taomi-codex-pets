@@ -69,15 +69,15 @@ npm run check
 
 ## NoNo 三种版本
 
-三个版本均展示九种 Codex 状态。普通 NoNo 的等待／工作使用充电／玩球；超能使用充电／玩魔方，悬停使用生气；至尊使用轻微皱眉／召唤后半段，悬停使用开心。原始动作与逐帧选择以各 `*-animation-sources.json` 为准。
+三个版本均展示九种 Codex 状态。普通 NoNo 的等待／工作使用惊讶／充电，悬停使用生气；超能使用惊讶／玩魔方，悬停使用生气；至尊使用轻微皱眉／召唤后半段，悬停使用惊讶。普通和至尊的检查状态使用高兴；超能改用召唤旋转，打招呼使用生气片段。原始动作与逐帧选择以各 `*-animation-sources.json` 为准。
 
-`scripts/prepare-full-ram.py` 展开拉姆嵌套动作；`scripts/prepare-full-nono.py` 从完整官方 NoNo 时间轴导出候选姿势；`scripts/compose-selected-actions.py` 生成初始图集。当前短片段由 `scripts/selected-pet-clips.json` 记录，`scripts/reselect-pet-clips.py` 精确导出选中帧并替换对应行，再运行两个配色脚本更新全部颜色。选帧优先保留正面首尾、身体稳定的近景，中级拉姆的玩球行保持原样。逐动作的原片长度及选帧见各 `*-animation-sources.json`。网页展示实际安装图集和九个 Codex 状态，采用客户端逐帧时长；非待机动作播放三遍后回到待机。
+`scripts/prepare-full-ram.py` 展开拉姆嵌套动作；`scripts/prepare-full-nono.py` 从完整官方 NoNo 时间轴导出候选姿势；`scripts/compose-selected-actions.py` 生成初始图集。当前短片段由 `scripts/selected-pet-clips.json` 记录，`scripts/reselect-pet-clips.py` 精确导出选中帧并替换对应行，再运行两个配色脚本更新全部颜色，最后运行 `python3 scripts/stabilize-nono-idle.py` 固定 NoNo 待机身体，仅保留原眼睛变化。选帧优先保留正面首尾、身体稳定的近景，拉姆工作使用原口渴动作出现道具前的低头、眨眼片段，悬停使用舞蹈中的转身片段，检查使用高兴。逐动作的原片长度及选帧见各 `*-animation-sources.json`。网页展示实际安装图集和九个 Codex 状态，采用客户端逐帧时长；非待机动作播放三遍后回到待机。
 
 可检索名称：Taomi、淘米、普通 NoNo、至尊 NoNo、Codex Pet、Codex Pets、Ram、拉姆、超级拉姆、摩尔庄园、NoNo、超能 NoNo、赛尔号。
 
 角色、美术和原游戏内容权益归上海淘米及相关权利方所有。本仓库不以开源代码许可授权原游戏素材。Codex 格式说明参考 [官方 Pets 文档](https://learn.chatgpt.com/docs/pets)。
 
-NoNo 换色：已从官方客户端和三种素材确认存在指定机身部件的换色机制；完整官方色值尚未核实，目前不开放自配颜色。详见 [SOURCES.md](SOURCES.md)。
+NoNo 换色：已从官方客户端和三种素材确认存在指定机身部件的换色机制；选项参考用户提供的游戏变色界面，色值为截图近似值；默认保留原素材颜色，不开放任意自配颜色。详见 [SOURCES.md](SOURCES.md)。
 
 ## GitHub Pages
 

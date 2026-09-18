@@ -44,6 +44,7 @@ const canvas = $('pet'), ctx = canvas.getContext('2d');
 const sheet = document.createElement('canvas'); sheet.width=1536; sheet.height=1872;
 const sheetCtx=sheet.getContext('2d',{willReadFrequently:true});
 let form='super', color='2', state='idle', original=null, currentFrame=0, playbackRow=0, loadedForm=null, generation=0;
+let hovering=false;
 let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const imageCache=new Map(); let bodyMask=null;
 function markGroup(selector, selected) { root.querySelectorAll(selector).forEach(el=>{const active=selected(el);el.classList.toggle('selected',active);el.setAttribute('aria-pressed',String(active));}); }
@@ -52,11 +53,15 @@ const player=PetPlayback.createPlayer(frame=>{
   canvas.dataset.animationState=frame.state;
   canvas.dataset.frame=String(frame.column+1);
   canvas.dataset.row=String(frame.row);
-  const selected=actionGroup.querySelector('[data-state="'+state+'"]');
-  if(selected)$('state-label').textContent=selected.textContent+(frame.state==='idle'&&state!=='idle'?' · 已回到待机':'');
+  const activeState=hovering?'jumping':state;
+  const selected=actionGroup.querySelector('[data-state="'+activeState+'"]');
+  if(selected)$('state-label').textContent=selected.textContent+(frame.state==='idle'&&activeState!=='idle'?' · 已回到待机':'');
   render();
 },matchMedia('(prefers-reduced-motion: reduce)').matches);
-function resetFrame(){player.select(state);}
+function resetFrame(){player.select(hovering?'jumping':state);}
+canvas.addEventListener('pointerenter',event=>{if(event.pointerType==='touch')return;hovering=true;resetFrame();});
+canvas.addEventListener('pointerleave',()=>{hovering=false;resetFrame();});
+canvas.addEventListener('pointercancel',()=>{hovering=false;resetFrame();});
 function render(){
   ctx.clearRect(0,0,576,624);if(loadedForm!==form)return;
   ctx.drawImage(sheet,currentFrame*192,playbackRow*208,192,208,0,0,576,624);
@@ -91,7 +96,7 @@ async function loadForm(next){
   try{
     let images=imageCache.get(next);
     if(!images){
-      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=reviewed-clips2';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
+      images=await Promise.all([next+'-neutral.png',next+'-mask.png'].map(async file=>{const image=new Image();image.src='assets/'+file+'?v=animation-review2';await image.decode();if(image.naturalWidth!==1536||image.naturalHeight!==1872)throw Error('宠物图集尺寸不正确');return image;}));
       imageCache.set(next,images);
     }
     if(request!==generation)return;

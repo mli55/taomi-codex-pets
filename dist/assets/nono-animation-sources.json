@@ -9,7 +9,20 @@
       5,
       6,
       7
-    ]
+    ],
+    "eyeSource": {
+      "sourceFile": "super-exp-3.swf",
+      "originalFrames": [
+        1,
+        1,
+        7,
+        7,
+        1,
+        1
+      ]
+    },
+    "bodyFrame": 1,
+    "registration": "fixed-body-original-eyes"
   },
   {
     "state": "running-right",
@@ -41,13 +54,13 @@
   },
   {
     "state": "waving",
-    "sourceFile": "super-exp-3.swf",
-    "sourceFrameCount": 74,
+    "sourceFile": "super-exp-2.swf",
+    "sourceFrameCount": 46,
     "originalFrames": [
-      1,
-      7,
-      23,
-      1
+      14,
+      18,
+      26,
+      30
     ]
   },
   {
@@ -80,14 +93,14 @@
   },
   {
     "state": "waiting",
-    "sourceFile": "super-action-1.swf",
-    "sourceFrameCount": 62,
+    "sourceFile": "super-exp-3.swf",
+    "sourceFrameCount": 74,
     "originalFrames": [
       1,
-      6,
-      11,
+      7,
       17,
-      11,
+      23,
+      7,
       1
     ]
   },
@@ -106,15 +119,15 @@
   },
   {
     "state": "review",
-    "sourceFile": "super-exp-1.swf",
-    "sourceFrameCount": 94,
+    "sourceFile": "super-action-6.swf",
+    "sourceFrameCount": 106,
     "originalFrames": [
-      89,
-      90,
-      92,
-      94,
-      92,
-      89
+      42,
+      45,
+      48,
+      51,
+      54,
+      56
     ]
   }
 ]

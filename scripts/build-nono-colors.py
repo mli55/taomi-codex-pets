@@ -140,7 +140,16 @@ for variant in args.variants:
    for row in args.rows:existing.paste(result.crop((0,row*208,1536,(row+1)*208)),(0,row*208))
    result=existing
   result.save(assets/f'{name}-color-{key}.png',optimize=True)
- print(name,'12 colors packed',flush=True)
+ # Keep the legacy white download in sync even though the picker uses original.
+ legacy=assets/f'{name}-color-white.png'
+ if legacy.exists():
+  result=Image.fromarray(np.clip(np.round(white),0,255).astype('uint8'))
+  if args.rows is not None:
+   existing=Image.open(legacy).convert('RGBA')
+   for row in args.rows:existing.paste(result.crop((0,row*208,1536,(row+1)*208)),(0,row*208))
+   result=existing
+  result.save(legacy,optimize=True)
+ print(name,'colors packed',flush=True)
  # A contact sheet for visual verification of actual source container recoloring.
  contact=Image.new('RGBA',(192*4,208*3),'#e9edf3')
  for i,(key,_,_) in enumerate(palette[1:]):

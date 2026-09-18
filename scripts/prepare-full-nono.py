@@ -46,7 +46,9 @@ if __name__=='__main__':
             if v=='annual' and state=='running':kind,n='action',6
             if v=='normal' and state=='running':n=4
             jobs.append((a.source_dir,a.output_dir,v,state,kind,n,a.ffdec))
-    jobs.append((a.source_dir,a.output_dir,'super','angry','exp',2,a.ffdec))
+    for variant in ['normal','super']:
+        jobs.append((a.source_dir,a.output_dir,variant,'angry','exp',2,a.ffdec))
+    jobs.append((a.source_dir,a.output_dir,'super','summon','action',6,a.ffdec))
     # The annual cube shot places the prop far from the body. Keep its ball
     # action available for the compact working loop instead.
     jobs.append((a.source_dir,a.output_dir,'annual','ball','action',4,a.ffdec))

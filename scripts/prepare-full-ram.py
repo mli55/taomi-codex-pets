@@ -17,7 +17,7 @@ MAPPING = [('idle','down',6), ('running-right','right',8), ('running-left','left
 FORMS = {'super': (7,940), 'water': (2,538), 'wood': (4,1029), 'fire': (1,898)}
 LEVELS = {'junior':936, 'middle':1532, 'senior':1777, 'classic':2525}
 
-def prepare(source, output, form):
+def prepare(source, output, form, extra_actions=('thirst',)):
     level = form in LEVELS
     number, sprite_id = (form, LEVELS[form]) if level else FORMS[form]
     neutral_xml = 'lamubone.xml' if level else f'skill{number}.xml'
@@ -53,7 +53,7 @@ def prepare(source, output, form):
             for name in pending:
                 snapshots[name] = copy.deepcopy(display)
             pending.clear()
-    labels = list(dict.fromkeys(a for _,a,_ in MAPPING))
+    labels = list(dict.fromkeys([a for _,a,_ in MAPPING] + list(extra_actions)))
     timeline, actions, rows, frame = [], [], [], 1
     for action in labels:
         objects = snapshots[action]

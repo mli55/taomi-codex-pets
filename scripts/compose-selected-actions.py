@@ -36,9 +36,23 @@ def clean(image,probe=None):
     if mask is not None:mask[pixels[:,:,3]==0]=0
     return Image.fromarray(pixels),None if mask is None else Image.fromarray(mask)
 
-def pack_row(frames,row,atlas,mask_atlas=None,base_scale=None):
+def pack_row(frames,row,atlas,mask_atlas=None,base_scale=None,registration=None):
     boxes=[im.getbbox() for im,_ in frames]
     if any(b is None for b in boxes):raise ValueError(f'Empty selected frame in row {row}')
+    if registration=='bounded':
+        # One scale for the whole row; keep a small amount of source travel.
+        # Long stage translations must not shrink a desktop hover reaction.
+        width=max(b[2]-b[0] for b in boxes);height=max(b[3]-b[1] for b in boxes)
+        scale=min(168/width,182/height,base_scale if base_scale is not None else 100)
+        centers=[((b[0]+b[2])/2,(b[1]+b[3])/2) for b in boxes]
+        cx=sum(x for x,y in centers)/len(centers);cy=sum(y for x,y in centers)/len(centers)
+        for col,((im,mask),b,(x,y)) in enumerate(zip(frames,boxes,centers)):
+            size=(max(1,round((b[2]-b[0])*scale)),max(1,round((b[3]-b[1])*scale)))
+            dx=round(max(-8,min(8,(x-cx)*scale)));dy=round(max(-10,min(10,(y-cy)*scale)))
+            dest=(col*192+(192-size[0])//2+dx,row*208+(208-size[1])//2+dy)
+            atlas.paste(im.crop(b).resize(size,Image.Resampling.LANCZOS),dest)
+            if mask_atlas is not None:mask_atlas.paste(mask.crop(b).resize(size,Image.Resampling.LANCZOS),dest)
+        return scale
     box=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
     width,height=box[2]-box[0],box[3]-box[1]
     scale=min(168/width,182/height,base_scale if base_scale is not None else 100)
