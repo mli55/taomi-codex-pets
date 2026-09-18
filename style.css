@@ -15,7 +15,7 @@
 .command-action{padding:18px;background:#eaf3ff;border:1px solid #007aff40;border-radius:15px;gap:15px;box-shadow:0 2px 8px #007aff08}
 .command-action:hover{background:#dfedff;border-color:#007aff80}
 .command-header{font-size:13px}.terminal-title{gap:8px;color:#1c1c1e;font-weight:600;flex-wrap:wrap}.terminal-title small{font-size:10px;font-weight:400;color:#7d91aa}
-.recommended{font-size:10px;font-weight:500;color:#007aff;background:#007aff12;padding:3px 7px;border-radius:6px}
+
 .command-line{gap:10px}.command-line code{font-size:14px;line-height:1.8;color:#1c1c1e;font-weight:500}.shell-prompt{font-size:14px;color:#007aff}.copy-feedback{color:#007aff;font-size:12px}.copy-icon{width:18px;height:18px}
 .install-actions .download{background:#fff;color:#636366;border:1px solid #e5e5ea;min-height:40px;padding:10px;font-size:12px;font-weight:400;border-radius:10px;box-shadow:none}
 .install-actions .download:hover:not(:disabled){background:#f2f2f7}
