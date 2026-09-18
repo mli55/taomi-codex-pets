@@ -4,7 +4,7 @@
 
 逐帧检查 11 个形态的九种 Codex 状态。优先区分悬停、工作与检查；保留原游戏图形。打招呼与悬停可来自同一长动画，但使用不同片段。循环首尾回到同一姿势的重复帧用于衔接，不代表不同状态复用同一动画。
 
-拉姆工作采用原口渴动作出现水瓶、气泡前的片段。悬停采用转身，并限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。
+普通和神力拉姆工作采用此前悬停的转身片段，悬停采用原 woter 动作的落水、淋湿和恢复片段。超级拉姆仍使用口渴片段工作、转身悬停。转身限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。
 
 NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔方工作、惊讶等待、召唤旋转悬停；至尊使用开机后半段工作、轻微皱眉等待、惊讶打招呼、召唤旋转悬停。三个版本的检查状态使用高兴；超能打招呼按选择使用生气片段。
 
@@ -25,55 +25,55 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | water | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
 | water | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
 | water | waving | dance | 1, 7, 13, 1 |
-| water | jumping | dance | 127, 145, 154, 172, 181 |
+| water | jumping | woter | 1, 4, 6, 10, 27 |
 | water | failed | angry | 1, 6, 11, 16, 23, 11, 6, 1 |
 | water | waiting | boring | 1, 4, 8, 11, 4, 1 |
-| water | running | thirst | 46, 51, 56, 61, 56, 46 |
+| water | running | dance | 127, 145, 154, 172, 181, 127 |
 | water | review | happy | 1, 2, 3, 2, 2, 1 |
 | wood | idle | down | 1, 3, 4, 6, 7, 9 |
 | wood | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
 | wood | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
 | wood | waving | dance | 1, 7, 13, 1 |
-| wood | jumping | dance | 127, 145, 154, 172, 181 |
+| wood | jumping | woter | 1, 3, 6, 12, 24 |
 | wood | failed | angry | 1, 6, 11, 16, 23, 11, 6, 1 |
 | wood | waiting | boring | 1, 4, 8, 11, 4, 1 |
-| wood | running | thirst | 46, 51, 56, 61, 56, 46 |
+| wood | running | dance | 127, 145, 154, 172, 181, 127 |
 | wood | review | happy | 1, 2, 3, 2, 2, 1 |
 | fire | idle | down | 1, 3, 4, 6, 7, 9 |
 | fire | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
 | fire | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
 | fire | waving | dance | 1, 7, 13, 1 |
-| fire | jumping | dance | 127, 145, 154, 172, 181 |
+| fire | jumping | woter | 1, 4, 7, 13, 24 |
 | fire | failed | angry | 1, 6, 11, 16, 23, 11, 6, 1 |
 | fire | waiting | boring | 1, 4, 8, 11, 4, 1 |
-| fire | running | thirst | 46, 51, 56, 61, 56, 46 |
+| fire | running | dance | 127, 145, 154, 172, 181, 127 |
 | fire | review | happy | 1, 2, 3, 2, 2, 1 |
 | junior | idle | down | 1, 3, 6, 8, 11, 13 |
 | junior | running-right | right | 1, 3, 4, 6, 8, 10, 11, 13 |
 | junior | running-left | left | 1, 3, 4, 6, 8, 10, 11, 13 |
 | junior | waving | dance | 1, 7, 13, 1 |
-| junior | jumping | dance | 128, 146, 155, 164, 173 |
+| junior | jumping | woter | 1, 3, 6, 16, 38 |
 | junior | failed | angry | 14, 28, 41, 41, 41, 28, 28, 14 |
 | junior | waiting | boring | 22, 32, 42, 63, 73, 22 |
-| junior | running | thirst | 1, 8, 16, 23, 16, 1 |
+| junior | running | dance | 128, 146, 155, 164, 173, 128 |
 | junior | review | happy | 1, 6, 13, 22, 6, 1 |
 | middle | idle | down | 1, 5, 6, 5, 1, 1 |
 | middle | running-right | right | 1, 3, 5, 7, 8, 10, 12, 14 |
 | middle | running-left | left | 1, 3, 5, 7, 8, 10, 12, 14 |
 | middle | waving | dance | 1, 7, 13, 1 |
-| middle | jumping | dance | 128, 146, 155, 164, 173 |
+| middle | jumping | woter | 1, 3, 7, 11, 32 |
 | middle | failed | angry | 1, 7, 12, 18, 24, 12, 7, 1 |
 | middle | waiting | boring | 179, 188, 197, 207, 197, 179 |
-| middle | running | thirst | 1, 8, 16, 23, 16, 1 |
+| middle | running | dance | 128, 146, 155, 164, 173, 128 |
 | middle | review | happy | 1, 3, 4, 3, 3, 1 |
 | senior | idle | down | 1, 3, 4, 6, 7, 8 |
 | senior | running-right | right | 1, 2, 3, 4, 5, 6, 7, 8 |
 | senior | running-left | left | 1, 2, 3, 4, 5, 6, 7, 8 |
 | senior | waving | dance | 1, 7, 13, 1 |
-| senior | jumping | dance | 128, 146, 155, 164, 173 |
+| senior | jumping | woter | 1, 3, 6, 10, 24 |
 | senior | failed | angry | 1, 6, 11, 16, 23, 11, 6, 1 |
 | senior | waiting | boring | 1, 4, 8, 11, 4, 1 |
-| senior | running | thirst | 46, 51, 56, 61, 56, 46 |
+| senior | running | dance | 128, 146, 155, 164, 173, 128 |
 | senior | review | happy | 1, 2, 3, 2, 2, 1 |
 | classic | idle | down | 1, 3, 4, 6, 7, 9 |
 | classic | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
