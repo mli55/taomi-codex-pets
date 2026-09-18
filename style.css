@@ -25,3 +25,10 @@
 .configuration-group + .configuration-group{margin-top:24px}
 .configuration-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 .configuration-option:disabled{cursor:default}
+
+/* Keep pet navigation alongside the brand and installation guide. */
+.header{gap:24px}
+.header .pet-tabs{margin:0;min-width:0;flex-shrink:0}
+.header nav{flex-shrink:0;white-space:nowrap}
+@media(max-width:800px){.header{gap:12px}.header .pet-tabs{width:auto}.header .pet-tabs button{padding:10px 12px}}
+@media(max-width:600px){.header{gap:8px}.brand{font-size:22px;letter-spacing:-.5px}.brand small{display:none}.header .pet-tabs{flex:1}.header .pet-tabs button{flex-direction:column;gap:2px;padding:7px 8px}.header .pet-tabs strong{font-size:12px}.header .pet-tabs span{font-size:10px}.header nav{font-size:12px}.header nav a{padding:8px 0;background:none}}
