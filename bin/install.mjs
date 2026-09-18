@@ -3,10 +3,10 @@ import { mkdir, readFile, writeFile, copyFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
-const forms={super:'神力超级拉姆',water:'神奇水系拉姆',wood:'弹力木系拉姆',fire:'霹雳火系拉姆'};
+const forms={junior:'初级拉姆',middle:'中级拉姆',senior:'高级拉姆',classic:'超级拉姆',super:'神力超级拉姆',water:'神奇水系拉姆',wood:'弹力木系拉姆',fire:'霹雳火系拉姆'};
 const args=process.argv.slice(2);
 if(args.includes('--help')||args.includes('-h')){
-  console.log('用法: npx --yes github:mli55/taomi-codex-pets [--pet ram|nono] [--form super|water|wood|fire] [--color 1..10] [--variant normal|super|annual]\n使用原游戏的十种身体配色，默认黄色（2）。已有宠物不会被覆盖。');process.exit(0);
+  console.log('用法: npx --yes github:mli55/taomi-codex-pets [--pet ram|nono] [--form junior|middle|senior|classic|super|water|wood|fire] [--color 1..10] [--variant normal|super|annual]\n使用原游戏的十种身体配色，默认黄色（2）。已有宠物不会被覆盖。');process.exit(0);
 }
 let pet='ram', form='super', color='2',variant='super';
 for(let i=0;i<args.length;i+=2){

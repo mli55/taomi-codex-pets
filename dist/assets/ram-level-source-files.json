@@ -1,0 +1,23 @@
+{
+  "file": "lamubone.swf",
+  "url": "http://mole.61.com/resource/NPC/lamubone.swf",
+  "sha256": "01abf65f3e8db098068a830268bd7a7cefefc1edc93a44565788783d23f8a0cf",
+  "stages": {
+    "junior": {
+      "label": "level2",
+      "spriteId": 936
+    },
+    "middle": {
+      "label": "level3",
+      "spriteId": 1532
+    },
+    "senior": {
+      "label": "level4",
+      "spriteId": 1777
+    },
+    "classic": {
+      "label": "level101",
+      "spriteId": 2525
+    }
+  }
+}

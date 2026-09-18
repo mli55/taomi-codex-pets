@@ -1,6 +1,8 @@
 # Taomi Codex Pets · 拉姆与 NoNo
 
-把摩尔庄园原页游拉姆带进 Codex。支持神力超级拉姆、神奇水系、弹力木系、霹雳火系，使用原客户端的十种身体配色。
+网站：[mli55.github.io/taomi-codex-pets](https://mli55.github.io/taomi-codex-pets/)
+
+把摩尔庄园原页游拉姆带进 Codex。支持初级、中级、高级、超级拉姆，以及神力超级、水系、木系、火系，使用原客户端的十种身体配色。
 
 本项目是同人格式适配，不是官方宠物产品。成品角色图像来自原页游 SWF；没有使用 AI 重绘素材。
 
@@ -25,7 +27,8 @@ npx --yes github:mli55/taomi-codex-pets --pet nono --variant super
 
 `--pet`：`ram`（默认）或 `nono`。
 
-`--form`：`super`、`water`、`wood`、`fire`。
+`--form`：`junior` 初级、`middle` 中级、`senior` 高级、`classic` 超级、`super` 神力超级、`water` 水系、`wood` 木系、`fire` 火系。
+
 
 `--color`：1 红色、2 黄色、3 天蓝色、4 粉红色、5 橘黄色、6 灰色、7 黑色、8 紫色、9 土色、10 绿色。
 
@@ -73,3 +76,9 @@ npm run check
 可检索名称：Taomi、淘米、普通 NoNo、至尊 NoNo、Codex Pet、Codex Pets、Ram、拉姆、超级拉姆、摩尔庄园、NoNo、超能 NoNo、赛尔号。
 
 角色、美术和原游戏内容权益归上海淘米及相关权利方所有。本仓库不以开源代码许可授权原游戏素材。Codex 格式说明参考 [官方 Pets 文档](https://learn.chatgpt.com/docs/pets)。
+
+NoNo 换色：已从官方客户端和三种素材确认存在指定机身部件的换色机制；完整官方色值尚未核实，目前不开放自配颜色。详见 [SOURCES.md](SOURCES.md)。
+
+## GitHub Pages
+
+网站从 `gh-pages` 分支根目录发布，内容对应 `dist/`。更新并提交源码后，运行 `git subtree push --prefix dist origin gh-pages` 同步网站。

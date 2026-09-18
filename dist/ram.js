@@ -1,6 +1,10 @@
 (()=>{
 'use strict';
 const PETS = {
+  junior:{name:'初级拉姆'},
+  middle:{name:'中级拉姆'},
+  senior:{name:'高级拉姆'},
+  classic:{name:'超级拉姆'},
   super: { name: '神力超级拉姆', hue: 51 },
   water: { name: '神奇水系拉姆', hue: 204 },
   wood: { name: '弹力木系拉姆', hue: 116 },
@@ -39,6 +43,7 @@ function applyColor(){
 async function loadForm(next){
   form=next;const request=++generation;loadedForm=null;original=null;render();
   $('download').disabled=true;$('download-png').disabled=true;$('pet-label').textContent=PETS[form].name;
+  
   $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;
   $('download-status').textContent='';
   root.querySelectorAll('.form').forEach(el=>{const a=el.dataset.form===form;el.classList.toggle('active',a);el.setAttribute('aria-pressed',String(a));});
@@ -54,7 +59,8 @@ async function loadForm(next){
     applyColor();resetFrame();$('download').disabled=false;$('download-png').disabled=false;
   }catch(error){if(request!==generation)return;$('download-status').textContent=error.message;}
 }
-function chooseColor(next){color=next;markGroup('.swatch',el=>el.dataset.color===next);$('color-note').textContent=PALETTE[color].name;applyColor();$('download-status').textContent='';$('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;}
+function chooseColor(next){color=next;markGroup('.swatch',el=>el.dataset.color===next);$('color-note').textContent=PALETTE[color].name;applyColor();$('download-status').textContent='';
+  $('install-command').textContent='npx --yes github:mli55/taomi-codex-pets --form '+form+' --color '+color;}
 root.querySelectorAll('.form').forEach(b=>b.addEventListener('click',()=>loadForm(b.dataset.form)));
 root.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>chooseColor(b.dataset.color)));
 

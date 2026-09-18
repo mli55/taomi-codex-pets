@@ -109,3 +109,24 @@
 ## 元素形态定位
 
 水、木、火原 Flash 动作有不同的注册点。`scripts/center_ram.py` 按每组动作的完整可见范围进行水平居中，同一组所有帧使用相同位移，保留原动作内部的摆动。颜色遮罩使用完全相同的位移；超级拉姆保持原定位。
+
+
+## 拉姆基础成长形态
+
+来源：[官方 lamubone.swf](http://mole.61.com/resource/NPC/lamubone.swf)，SHA-256：`01abf65f3e8db098068a830268bd7a7cefefc1edc93a44565788783d23f8a0cf`。客户端 `LamuNPC` 默认载入此文件，`LamuUIManage` 使用 `level` 加实际等级选择形态。`level2 / level3 / level4 / level101` 分别对应本项目初级、中级、高级、超级选项；其中超级是普通外观，独立于已有的神力超级拉姆。
+
+`export-ram-levels.py` 保留原色和眼部变换，提取动作帧及三通道身体探针；`compose-ram-levels.py` 按动作组统一定位。帧号和来源见 `ram-level-animation-sources.json` 与 `ram-level-source-files.json`。
+
+## NoNo 换色核对
+
+官方 `RobotCoreDLL.swf` 的 `NonoModel.onResLoad` 会读取服务端 `_info.color`，对 `color_1` 和可选的 `color_2` 调用 `DisplayUtil.FillColor`；`onNonoEvent` 的 `COLOR_CHANGE` 分支会实时重设这两个部件。
+
+三种官方素材均已核对：
+
+| 版本 | 可换色实例 | 原始 Sprite ID |
+| --- | --- | --- |
+| 普通 | color_1、color_2 | 126、39 |
+| 超能（一级） | color_1 | 57 |
+| 至尊 | color_1 | 91 |
+
+这证实三个原页游版本均有机身换色机制，不代表改变全部画面或统一改变光耳颜色，也不保证当前游戏仍向玩家开放旧的换色入口。完整官方选色表尚未核实，因此本次仅记录核对结果，网站仍保留原始 NoNo 配色，不提供猜测的颜色值。

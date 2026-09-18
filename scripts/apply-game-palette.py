@@ -3,9 +3,9 @@ from pathlib import Path
 import argparse,json
 import numpy as np
 from PIL import Image
-p=argparse.ArgumentParser();p.add_argument('--assets',type=Path,default=Path('dist/assets'));a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--assets',type=Path,default=Path('dist/assets'));p.add_argument('--forms',nargs='+',default=['super','water','wood','fire','junior','middle','senior','classic']);a=p.parse_args()
 palette=json.loads((a.assets/'palette.json').read_text())
-for form in ['super','water','wood','fire']:
+for form in a.forms:
  neutral=np.array(Image.open(a.assets/f'{form}-neutral.png').convert('RGBA'))
  mask=np.array(Image.open(a.assets/f'{form}-mask.png').convert('RGB')).astype(float)/255
  for key,entry in palette.items():
