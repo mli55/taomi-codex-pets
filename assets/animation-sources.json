@@ -159,24 +159,25 @@
       },
       {
         "state": "running",
-        "gameAction": "thirst",
-        "sourceFrameCount": 140,
+        "gameAction": "dance",
+        "sourceFrameCount": 209,
         "actionFrames": [
-          13,
           19,
-          25,
-          31,
-          25,
-          13
+          28,
+          37,
+          46,
+          37,
+          19
         ],
         "frames": [
-          692,
-          698,
-          704,
-          710,
-          704,
-          692
-        ]
+          489,
+          498,
+          507,
+          516,
+          507,
+          489
+        ],
+        "registration": "bounded"
       },
       {
         "state": "review",
