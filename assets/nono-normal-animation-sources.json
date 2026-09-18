@@ -48,7 +48,21 @@
       72,
       82,
       91
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.62,
+      "sourceBox": [
+        34,
+        14,
+        209,
+        205
+      ],
+      "cellOffset": [
+        -1,
+        9
+      ]
+    }
   },
   {
     "state": "jumping",
@@ -60,7 +74,21 @@
       11,
       40,
       6
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.6526315789473685,
+      "sourceBox": [
+        4,
+        0,
+        156,
+        198
+      ],
+      "cellOffset": [
+        0,
+        7
+      ]
+    }
   },
   {
     "state": "failed",
@@ -75,7 +103,21 @@
       19,
       14,
       9
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.6458333333333334,
+      "sourceBox": [
+        3,
+        25,
+        189,
+        243
+      ],
+      "cellOffset": [
+        -1,
+        1
+      ]
+    }
   },
   {
     "state": "waiting",
@@ -104,12 +146,16 @@
     ],
     "registration": {
       "mode": "fixed",
-      "scale": 1.1275167785234899,
+      "scale": 0.6262626262626263,
       "sourceBox": [
         11,
-        32,
+        25,
         160,
         186
+      ],
+      "cellOffset": [
+        1,
+        34
       ]
     }
   },
@@ -124,6 +170,20 @@
       30,
       39,
       27
-    ]
+    ],
+    "registration": {
+      "mode": "fixed",
+      "scale": 0.6813186813186813,
+      "sourceBox": [
+        35,
+        20,
+        182,
+        243
+      ],
+      "cellOffset": [
+        1,
+        14
+      ]
+    }
   }
 ]
