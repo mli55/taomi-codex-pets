@@ -729,13 +729,13 @@
     },
     "annual": {
       "waving": {
-        "sourceState": "waving",
-        "sourceFile": "annual-action-2.swf",
+        "sourceState": "jumping",
+        "sourceFile": "annual-exp-3.swf",
         "frames": [
-          53,
-          56,
-          59,
-          64
+          1,
+          6,
+          11,
+          1
         ]
       },
       "review": {
@@ -765,26 +765,26 @@
         ]
       },
       "running": {
+        "sourceState": "waving",
+        "sourceFile": "annual-action-2.swf",
+        "frames": [
+          53,
+          55,
+          57,
+          59,
+          61,
+          64
+        ]
+      },
+      "jumping": {
         "sourceState": "running",
         "sourceFile": "annual-action-6.swf",
         "frames": [
           45,
           48,
           50,
-          56,
           59,
           64
-        ]
-      },
-      "jumping": {
-        "sourceState": "review",
-        "sourceFile": "annual-exp-3.swf",
-        "frames": [
-          1,
-          6,
-          11,
-          6,
-          1
         ]
       },
       "waiting": {

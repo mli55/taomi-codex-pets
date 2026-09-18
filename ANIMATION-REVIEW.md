@@ -6,7 +6,7 @@
 
 拉姆工作采用原口渴动作出现水瓶、气泡前的片段。悬停采用转身，并限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。
 
-NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔方工作、惊讶等待、召唤旋转悬停；至尊保留召唤后半段工作和轻微皱眉等待，惊讶用于悬停。三个版本的检查状态使用高兴；超能打招呼按选择使用生气片段。
+NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔方工作、惊讶等待、召唤旋转悬停；至尊使用开机后半段工作、轻微皱眉等待、惊讶打招呼、召唤旋转悬停。三个版本的检查状态使用高兴；超能打招呼按选择使用生气片段。
 
 预览按客户端逐帧时长播放，非待机三遍后回待机。动画文件无法改变客户端状态触发或持续时间。
 
@@ -105,11 +105,11 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | nono-annual | idle | base | 1, 3, 5, 7, 5, 1 |
 | nono-annual | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 |
 | nono-annual | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 |
-| nono-annual | waving | annual-action-2.swf | 53, 56, 59, 64 |
-| nono-annual | jumping | annual-exp-3.swf | 1, 6, 11, 6, 1 |
+| nono-annual | waving | annual-exp-3.swf | 1, 6, 11, 1 |
+| nono-annual | jumping | annual-action-6.swf | 45, 48, 50, 59, 64 |
 | nono-annual | failed | annual-exp-4.swf | 1, 7, 10, 13, 16, 13, 7, 1 |
 | nono-annual | waiting | annual-exp-2.swf | 11, 14, 16, 18, 16, 11 |
-| nono-annual | running | annual-action-6.swf | 45, 48, 50, 56, 59, 64 |
+| nono-annual | running | annual-action-2.swf | 53, 55, 57, 59, 61, 64 |
 | nono-annual | review | annual-exp-1.swf | 1, 4, 9, 6, 4, 1 |
 
 自动检查：124 张可下载图集的尺寸、非空帧、单元格边界、动态变化和整行完全重复检查通过。
