@@ -84,7 +84,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | classic | waiting | boring | 1, 3, 5, 9, 5, 1 |
 | classic | running | thirst | 5, 14, 22, 31, 22, 5 |
 | classic | review | happy | 20, 24, 29, 34, 24, 20 |
-| nono-normal | idle | base | 5, 3, 1, 3, 5, 7 |
+| nono-normal | idle | base | 5, 3, 1, 3, 5, 5 |
 | nono-normal | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 |
 | nono-normal | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 |
 | nono-normal | waving | normal-action-2.swf | 67, 72, 82, 91 |
@@ -102,7 +102,7 @@ NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔�
 | nono | waiting | super-exp-3.swf | 1, 7, 17, 23, 7, 1 |
 | nono | running | super-action-7.swf | 46, 52, 58, 64, 58, 46 |
 | nono | review | super-action-6.swf | 42, 45, 48, 51, 54, 56 |
-| nono-annual | idle | base | 1, 3, 5, 7, 5, 3 |
+| nono-annual | idle | base | 1, 3, 5, 7, 5, 1 |
 | nono-annual | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 |
 | nono-annual | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 |
 | nono-annual | waving | annual-action-2.swf | 53, 56, 59, 64 |
