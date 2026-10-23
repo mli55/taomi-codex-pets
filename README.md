@@ -1,4 +1,4 @@
-# Taomi Codex Pets · 摩尔庄园&赛尔号
+# 淘米Codex Pets · 摩尔庄园&赛尔号
 
 网站：[mli55.github.io/taomi-codex-pets](https://mli55.github.io/taomi-codex-pets/)
 
