@@ -76,20 +76,24 @@
       },
       {
         "state": "waving",
-        "gameAction": "dance",
-        "sourceFrameCount": 209,
+        "gameAction": "happy",
+        "sourceFrameCount": 86,
         "actionFrames": [
           1,
+          3,
           7,
-          13,
-          7
+          3
         ],
         "frames": [
-          471,
-          477,
-          483,
-          477
-        ]
+          64,
+          66,
+          70,
+          66
+        ],
+        "preparedFrames": {
+          "manifest": "scripts/sources/super-loop-frames/manifest.json"
+        },
+        "loopReview": "换成正面闭嘴微笑与轻点头：四帧下压后回升，宝石贴近身体两侧；避开原 dance 第13帧红、蓝宝石同时飞向右上造成的偏侧感。末中间姿势停留后接回抬头和待机。"
       },
       {
         "state": "jumping",

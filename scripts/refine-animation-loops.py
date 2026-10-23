@@ -98,7 +98,7 @@ def main():
             new_frames = edit['frames']
             if source['frames'] != new_frames or len(new_frames) != COUNTS[row]:
                 raise ValueError(f'{form}/{state}: prepared selection mismatch')
-            if source['action'] != entry['gameAction']:
+            if source['action'] != edit.get('gameAction', entry['gameAction']):
                 raise ValueError(f'{form}/{state}: prepared action mismatch')
             for suffix, key in [('-neutral.png', 'neutral'), ('-mask.png', 'mask')]:
                 asset = manifest[key]
@@ -114,6 +114,10 @@ def main():
                     (0, row * 208))
             entry[frame_key] = new_frames
             entry['frames'] = source['absoluteFrames']
+            if 'gameAction' in edit:
+                entry['gameAction'] = source['action']
+                entry['sourceFrameCount'] = source['sourceFrameCount']
+                selection['gameAction'] = source['action']
             entry['preparedFrames'] = copy.deepcopy(prepared)
             if source['registration'] is None:
                 entry.pop('registration', None)

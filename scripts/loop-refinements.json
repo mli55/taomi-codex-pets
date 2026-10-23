@@ -554,6 +554,27 @@
         "manifest": "scripts/sources/super-loop-frames/manifest.json"
       },
       "reason": "正向保留展开笑脸、起伏与闭嘴收尾；末帧停留在收起的笑脸，便于接下一遍及待机。"
+    },
+    {
+      "form": "super",
+      "state": "waving",
+      "fromFrames": [
+        1,
+        7,
+        13,
+        7
+      ],
+      "gameAction": "happy",
+      "frames": [
+        1,
+        3,
+        7,
+        3
+      ],
+      "prepared": {
+        "manifest": "scripts/sources/super-loop-frames/manifest.json"
+      },
+      "reason": "换成正面闭嘴微笑与轻点头：四帧下压后回升，宝石贴近身体两侧；避开原 dance 第13帧红、蓝宝石同时飞向右上造成的偏侧感。末中间姿势停留后接回抬头和待机。"
     }
   ]
 }

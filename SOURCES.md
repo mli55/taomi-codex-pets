@@ -7,7 +7,7 @@
 以下简介按官方介绍整理，并非逐字引用：
 
 - 拉姆：来自摩尔庄园的植物精灵，是摩尔贴心的伙伴。参考[摩尔庄园官方介绍](https://molemain.61.com.tw/parents/parents_2.html)。
-- NoNo：肖恩发明的精灵助手，帮助赛尔照顾小精灵。它也需要充电、学习和悉心照顾。参考[赛尔号官方介绍](https://seer.61.com/main/special/index.html)。
+- NoNo：肖恩发明的精灵助手，帮助赛尔照顾小精灵。参考[赛尔号官方介绍](https://seer.61.com/main/special/index.html)。
 
 ## 官方源
 

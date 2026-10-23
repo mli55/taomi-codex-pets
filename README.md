@@ -2,7 +2,7 @@
 
 网站：[mli55.github.io/taomi-codex-pets](https://mli55.github.io/taomi-codex-pets/)
 
-把摩尔庄园的拉姆和赛尔号的 NoNo 带进 Codex。可以在网站切换形态、选择颜色并预览动作，再复制安装命令或下载宠物包。
+拉姆与 NoNo 的 Codex pets
 
 | 宠物 | 可选形态 |
 | --- | --- |

@@ -252,14 +252,59 @@
           586
         ]
       ]
+    },
+    "waving": {
+      "sourceRow": 4,
+      "action": "happy",
+      "sourceFrameCount": 86,
+      "frames": [
+        1,
+        3,
+        7,
+        3
+      ],
+      "absoluteFrames": [
+        64,
+        66,
+        70,
+        66
+      ],
+      "registration": null,
+      "scale": 1.0340909090909092,
+      "sourceBoxes": [
+        [
+          251,
+          402,
+          389,
+          570
+        ],
+        [
+          259,
+          404,
+          384,
+          576
+        ],
+        [
+          241,
+          436,
+          398,
+          578
+        ],
+        [
+          259,
+          404,
+          384,
+          576
+        ]
+      ]
     }
   },
   "neutral": {
     "file": "neutral.png",
-    "sha256": "68a6c38b6470e898e74e407c6caa0cc6ae6e0dd537dd3e4b9e78fd08d259ed7d"
+    "sha256": "b45685582e588ec821ede9475bf92abb02c0ac551fb48ec042538a34d9043302"
   },
   "mask": {
     "file": "mask.png",
-    "sha256": "74048f4e27a1f710c115b5c8b002fad68779f609eabd43516fabf6cf53a42f2a"
+    "sha256": "26b9a5e221f3ae48fa27ee016bd304a330ce437e14ecb2cba7ece567a26fbdda"
   }
 }

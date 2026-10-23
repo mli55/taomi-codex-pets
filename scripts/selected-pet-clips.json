@@ -45,12 +45,12 @@
       },
       "waving": {
         "sourceState": "review",
-        "gameAction": "dance",
+        "gameAction": "happy",
         "frames": [
           1,
+          3,
           7,
-          13,
-          7
+          3
         ]
       },
       "jumping": {
