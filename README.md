@@ -6,10 +6,10 @@
 
 | 宠物 | 可选形态 |
 | --- | --- |
-| 普通拉姆 | 初级拉姆、中级拉姆、高级拉姆 |
-| 超级拉姆 | 超级拉姆、神力超级拉姆 |
-| 神力拉姆 | 神奇水系拉姆、弹力木系拉姆、霹雳火系拉姆 |
-| NoNo | 普通 NoNo、超能 NoNo、至尊 NoNo |
+| 普通拉姆 | <img src="docs/images/forms/junior.png" width="112" alt="初级拉姆" title="初级拉姆"> <img src="docs/images/forms/middle.png" width="112" alt="中级拉姆" title="中级拉姆"> <img src="docs/images/forms/senior.png" width="112" alt="高级拉姆" title="高级拉姆"> |
+| 超级拉姆 | <img src="docs/images/forms/classic.png" width="112" alt="超级拉姆" title="超级拉姆"> <img src="docs/images/forms/super.png" width="112" alt="神力超级拉姆" title="神力超级拉姆"> |
+| 神力拉姆 | <img src="docs/images/forms/water.png" width="112" alt="神奇水系拉姆" title="神奇水系拉姆"> <img src="docs/images/forms/wood.png" width="112" alt="弹力木系拉姆" title="弹力木系拉姆"> <img src="docs/images/forms/fire.png" width="112" alt="霹雳火系拉姆" title="霹雳火系拉姆"> |
+| NoNo | <img src="docs/images/forms/nono-normal.png" width="112" alt="普通 NoNo" title="普通 NoNo"> <img src="docs/images/forms/nono.png" width="112" alt="超能 NoNo" title="超能 NoNo"> <img src="docs/images/forms/nono-annual.png" width="112" alt="至尊 NoNo" title="至尊 NoNo"> |
 
 ![拉姆与 NoNo 悬停动作预览](docs/images/pets-hover.gif)
 

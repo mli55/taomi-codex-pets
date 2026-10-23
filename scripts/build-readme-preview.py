@@ -1,4 +1,4 @@
-"""Build the README gallery from the installed sprites and website playback timing.
+"""Build README stills and animation from the installed sprites and playback timing.
 
 Requires Python with Pillow and Node.js. Pass --font for a Chinese font when
 none of the common system font paths below is available.
@@ -54,6 +54,12 @@ def main():
         ['node', '-e', program], cwd=ROOT, text=True))['frames']
     atlases = [Image.open(ROOT / 'dist/assets' / (key + '.png')).convert('RGBA')
                for key, _ in PETS]
+    stills_dir = args.output.parent / 'forms'
+    stills_dir.mkdir(parents=True, exist_ok=True)
+    for (key, _), atlas in zip(PETS, atlases):
+        # Keep the complete first idle cell, including its original transparent
+        # padding, so the table preserves the installed poses and proportions.
+        atlas.crop((0, 0, *CELL)).save(stills_dir / (key + '.png'), optimize=True)
     frames = []
     for index, pose in enumerate(sequence):
         frame = Image.new('RGB', (4 * CELL[0], 3 * ROW_HEIGHT), BACKGROUND)
