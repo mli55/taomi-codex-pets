@@ -460,6 +460,100 @@
         2
       ],
       "reason": "按实际姿势组织一次下压、抬起；最高姿势接近下一轮起点，避免六帧内两次突跳。"
+    },
+    {
+      "form": "super",
+      "state": "jumping",
+      "fromFrames": [
+        127,
+        138,
+        149,
+        160,
+        171
+      ],
+      "frames": [
+        131,
+        134,
+        140,
+        143,
+        145
+      ],
+      "prepared": {
+        "manifest": "scripts/sources/super-loop-frames/manifest.json"
+      },
+      "reason": "五帧只保留一次前后翻身，从正面起势到正面略倾收尾；避开后续横滚，保持原方向并可重复衔接。"
+    },
+    {
+      "form": "super",
+      "state": "waiting",
+      "fromFrames": [
+        1,
+        8,
+        14,
+        21,
+        14,
+        8
+      ],
+      "frames": [
+        1,
+        5,
+        9,
+        13,
+        9,
+        5
+      ],
+      "prepared": {
+        "manifest": "scripts/sources/super-loop-frames/manifest.json"
+      },
+      "reason": "保留皱眉与小幅叶冠摆动，移除突然缩团的第 21 帧；在六帧内轻摆回程，整行统一比例。"
+    },
+    {
+      "form": "super",
+      "state": "running",
+      "fromFrames": [
+        19,
+        28,
+        37,
+        46,
+        37,
+        28
+      ],
+      "frames": [
+        19,
+        23,
+        27,
+        31,
+        35,
+        39
+      ],
+      "prepared": {
+        "manifest": "scripts/sources/super-loop-frames/manifest.json"
+      },
+      "reason": "选取连续一段正面摇摆和宝石绕行，按原方向播放；避免跨多个舞蹈阶段后倒放造成急换向。"
+    },
+    {
+      "form": "super",
+      "state": "review",
+      "fromFrames": [
+        8,
+        12,
+        20,
+        28,
+        20,
+        12
+      ],
+      "frames": [
+        8,
+        11,
+        17,
+        23,
+        29,
+        33
+      ],
+      "prepared": {
+        "manifest": "scripts/sources/super-loop-frames/manifest.json"
+      },
+      "reason": "正向保留展开笑脸、起伏与闭嘴收尾；末帧停留在收起的笑脸，便于接下一遍及待机。"
     }
   ]
 }

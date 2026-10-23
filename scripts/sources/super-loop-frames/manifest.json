@@ -1,0 +1,265 @@
+{
+  "sourceUrl": "http://mole.61.com/resource/petcloth/swf2/pet101/skill_7.swf",
+  "sourceSha256": "4bcaaba6cc71bb956a2e8617ee016c9d1b3cce405afcb823b0947bd9ba4dfa20",
+  "exporter": "JPEXS 26.3.0, zoom 4; prepare-body-probes + prepare-full-ram; compose-selected-actions.clean/pack_row",
+  "cellSize": [
+    192,
+    208
+  ],
+  "rows": {
+    "jumping": {
+      "sourceRow": 0,
+      "action": "dance",
+      "frames": [
+        131,
+        134,
+        140,
+        143,
+        145
+      ],
+      "absoluteFrames": [
+        601,
+        604,
+        610,
+        613,
+        615
+      ],
+      "registration": {
+        "mode": "bounded",
+        "scale": 0.875,
+        "sourceCenter": [
+          327.9,
+          524.0
+        ]
+      },
+      "scale": 0.875,
+      "sourceBoxes": [
+        [
+          254,
+          436,
+          405,
+          628
+        ],
+        [
+          249,
+          430,
+          401,
+          628
+        ],
+        [
+          277,
+          425,
+          378,
+          628
+        ],
+        [
+          271,
+          379,
+          363,
+          584
+        ],
+        [
+          269,
+          403,
+          381,
+          560
+        ]
+      ]
+    },
+    "waiting": {
+      "sourceRow": 1,
+      "action": "boring",
+      "frames": [
+        1,
+        5,
+        9,
+        13,
+        9,
+        5
+      ],
+      "absoluteFrames": [
+        207,
+        211,
+        215,
+        219,
+        215,
+        211
+      ],
+      "registration": null,
+      "scale": 1.0340909090909092,
+      "sourceBoxes": [
+        [
+          253,
+          403,
+          390,
+          571
+        ],
+        [
+          252,
+          411,
+          390,
+          579
+        ],
+        [
+          245,
+          409,
+          395,
+          573
+        ],
+        [
+          261,
+          405,
+          386,
+          577
+        ],
+        [
+          245,
+          409,
+          395,
+          573
+        ],
+        [
+          252,
+          411,
+          390,
+          579
+        ]
+      ]
+    },
+    "running": {
+      "sourceRow": 2,
+      "action": "dance",
+      "frames": [
+        19,
+        23,
+        27,
+        31,
+        35,
+        39
+      ],
+      "absoluteFrames": [
+        489,
+        493,
+        497,
+        501,
+        505,
+        509
+      ],
+      "registration": {
+        "mode": "bounded",
+        "scale": 1.05,
+        "sourceCenter": [
+          328.5,
+          480.1666666666667
+        ]
+      },
+      "scale": 1.05,
+      "sourceBoxes": [
+        [
+          260,
+          391,
+          420,
+          558
+        ],
+        [
+          222,
+          404,
+          390,
+          570
+        ],
+        [
+          246,
+          399,
+          403,
+          567
+        ],
+        [
+          253,
+          391,
+          405,
+          558
+        ],
+        [
+          249,
+          414,
+          401,
+          565
+        ],
+        [
+          263,
+          404,
+          400,
+          577
+        ]
+      ]
+    },
+    "review": {
+      "sourceRow": 3,
+      "action": "happy",
+      "frames": [
+        8,
+        11,
+        17,
+        23,
+        29,
+        33
+      ],
+      "absoluteFrames": [
+        71,
+        74,
+        80,
+        86,
+        92,
+        96
+      ],
+      "registration": null,
+      "scale": 0.9479166666666666,
+      "sourceBoxes": [
+        [
+          241,
+          436,
+          398,
+          578
+        ],
+        [
+          254,
+          395,
+          396,
+          573
+        ],
+        [
+          252,
+          394,
+          389,
+          573
+        ],
+        [
+          254,
+          395,
+          389,
+          573
+        ],
+        [
+          252,
+          394,
+          389,
+          573
+        ],
+        [
+          259,
+          418,
+          395,
+          586
+        ]
+      ]
+    }
+  },
+  "neutral": {
+    "file": "neutral.png",
+    "sha256": "68a6c38b6470e898e74e407c6caa0cc6ae6e0dd537dd3e4b9e78fd08d259ed7d"
+  },
+  "mask": {
+    "file": "mask.png",
+    "sha256": "74048f4e27a1f710c115b5c8b002fad68779f609eabd43516fabf6cf53a42f2a"
+  }
+}

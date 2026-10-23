@@ -8,6 +8,7 @@ can be rerun without applying a permutation or resampling twice.
 from pathlib import Path
 import argparse
 import copy
+import hashlib
 import io
 import json
 import subprocess
@@ -87,6 +88,39 @@ def main():
             entry[frame_key] = [old_frames[i] for i in indices]
             if not is_nono:
                 entry['frames'] = [entry['frames'][i] for i in indices]
+        elif 'prepared' in edit:
+            # Checked-in, full original poses and their aligned color masks.
+            # These are already packed once; rebuilding must not resample them.
+            prepared = edit['prepared']
+            manifest_path = ROOT / prepared['manifest']
+            manifest = json.loads(manifest_path.read_text())
+            source = manifest['rows'][state]
+            new_frames = edit['frames']
+            if source['frames'] != new_frames or len(new_frames) != COUNTS[row]:
+                raise ValueError(f'{form}/{state}: prepared selection mismatch')
+            if source['action'] != entry['gameAction']:
+                raise ValueError(f'{form}/{state}: prepared action mismatch')
+            for suffix, key in [('-neutral.png', 'neutral'), ('-mask.png', 'mask')]:
+                asset = manifest[key]
+                data = (manifest_path.parent / asset['file']).read_bytes()
+                if hashlib.sha256(data).hexdigest() != asset['sha256']:
+                    raise ValueError(f'{form}/{state}: prepared {key} checksum mismatch')
+                sheet = Image.open(io.BytesIO(data))
+                source_row = source['sourceRow']
+                if sheet.size != (1536, 208 * len(manifest['rows'])):
+                    raise ValueError('Invalid prepared source sheet size')
+                image(form + suffix).paste(
+                    sheet.crop((0, source_row * 208, 1536, (source_row + 1) * 208)),
+                    (0, row * 208))
+            entry[frame_key] = new_frames
+            entry['frames'] = source['absoluteFrames']
+            entry['preparedFrames'] = copy.deepcopy(prepared)
+            if source['registration'] is None:
+                entry.pop('registration', None)
+                selection.pop('registration', None)
+            else:
+                entry['registration'] = copy.deepcopy(source['registration'])
+                selection['registration'] = copy.deepcopy(source['registration'])
         else:
             # Source frame coordinates are retained; apply one affine transform
             # to the entire expression and its color mask, never per-frame fit.
@@ -127,14 +161,20 @@ def main():
                     raise ValueError(f'{name}/{row}/{column}: empty or clipped pose')
     args.output.mkdir(parents=True, exist_ok=True)
     for name, atlas in images.items():
-        atlas.save(args.output / name, optimize=True)
+        destination = args.output / name
+        if destination.exists():
+            existing = Image.open(destination)
+            if existing.mode == atlas.mode and existing.size == atlas.size and existing.tobytes() == atlas.tobytes():
+                continue
+        atlas.save(destination, optimize=True)
     for filename in changed_metadata:
         (args.output / filename).write_text(json.dumps(records[filename], ensure_ascii=False, indent=2) + '\n')
     if args.output.resolve() == (ROOT / 'dist/assets').resolve():
         (ROOT / 'scripts/selected-pet-clips.json').write_text(json.dumps(clips, ensure_ascii=False, indent=2) + '\n')
     else:
         (args.output / 'selected-pet-clips.json').write_text(json.dumps(clips, ensure_ascii=False, indent=2) + '\n')
-    print(f'{len(plan["edits"])} reviewed rows written. Rebuild the junior palette before validation.')
+    palette_forms = sorted({e['form'] for e in plan['edits'] if 'preview' in e or 'prepared' in e})
+    print(f'{len(plan["edits"])} reviewed rows written. Rebuild palettes: {", ".join(palette_forms)}.')
 
 
 if __name__ == '__main__':

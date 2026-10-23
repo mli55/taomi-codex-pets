@@ -6,7 +6,7 @@
 
 以下简介按官方介绍整理，并非逐字引用：
 
-- 拉姆：来自摩尔庄园的植物精灵，是摩尔贴心的伙伴，一起生活、玩耍，在悉心照料下成长。参考[摩尔庄园官方介绍](https://molemain.61.com.tw/parents/parents_2.html)。
+- 拉姆：来自摩尔庄园的植物精灵，是摩尔贴心的伙伴。参考[摩尔庄园官方介绍](https://molemain.61.com.tw/parents/parents_2.html)。
 - NoNo：肖恩发明的精灵助手，帮助赛尔照顾小精灵。它也需要充电、学习和悉心照顾。参考[赛尔号官方介绍](https://seer.61.com/main/special/index.html)。
 
 ## 官方源
@@ -184,4 +184,21 @@ NoNo 动作尺寸：普通的打招呼、跳跃、失败、工作、检查，以
 
 本轮逐项判断及当前帧数、时长见 [ANIMATION-REVIEW.md](ANIMATION-REVIEW.md)。更新 19 行：高级、基础超级、水、木、火拉姆的待机与左右移动补齐叶冠回程；初级失败补出原片中间表情；基础超级失败补齐回落；普通、至尊 NoNo 检查整理为一次起伏。全部 hover 保留强反馈，完整转圈仍沿原方向播放。此记录及当前来源 JSON 优先于上文历史选帧。
 
-复现本轮成品：先运行 `python3 scripts/refine-animation-loops.py`，再运行 `python3 scripts/apply-game-palette.py --forms junior` 和 `python3 scripts/audit-pet-animations.py`。修订计划为 `scripts/loop-refinements.json`，固定从其中记录的 Git 提交读取原图；不依赖本机临时 SWF 导出目录。初级失败使用仓库内 `ram-preview/junior` 的原始预览帧，图形和配色遮罩接受相同的整行变换。脚本重建这些指定文件，应在调整计划后使用，避免覆盖后续手工修改。
+复现当前成品：先运行 `python3 scripts/refine-animation-loops.py`，再运行 `python3 scripts/apply-game-palette.py --forms junior super` 和 `python3 scripts/audit-pet-animations.py`。修订计划为 `scripts/loop-refinements.json`，固定从其中记录的 Git 提交读取原图；不依赖本机临时 SWF 导出目录。初级失败使用仓库内 `ram-preview/junior` 的原始预览帧，图形和配色遮罩接受相同的整行变换。脚本重建这些指定文件，应在调整计划后使用，避免覆盖后续手工修改。
+
+### 神力超级拉姆选帧复查（2026-10-23）
+
+九个状态全部复查，保留待机、左右移动、打招呼和失败；更新以下四行及十种配色。帧数和客户端逐帧时长不变。
+
+| 状态 | 原动作及帧号 | 调整依据 |
+| --- | --- | --- |
+| 悬停 / jumping | dance：131、134、140、143、145 | 一次前后翻身，末帧恢复正面略倾；不再混入后段横滚。 |
+| 工作 / running | dance：19、23、27、31、35、39 | 连续的正面摇摆与宝石绕行，避免大跨度倒放。 |
+| 等待 / waiting | boring：1、5、9、13、9、5 | 保留皱眉和小幅摆动，避开第 21 帧的突然缩团；整行统一放大至接近待机的比例。 |
+| 完成 / review | happy：8、11、17、23、29、33 | 顺序完成笑脸起伏，以闭嘴笑脸承接末帧长停和下一遍。 |
+
+本次重新从上述官方 `skill_7.swf` 导出原帧，并核对原文件 SHA-256。JPEXS 26.3.0 使用 zoom=4；neutral / probe 沿用 `prepare-body-probes.py` 的身体遮罩规则、`prepare-full-ram.py` 的展开时间轴，以及 `compose-selected-actions.py` 的清理和整行排版。没有新增姿势或生成插帧。
+
+四行排版后的 neutral 与 RGB 遮罩保存在 `scripts/sources/super-loop-frames/`；manifest 记录来源校验值、原始帧号、比例和布局。重建脚本先校验这两张缓存的 SHA-256，再逐行复制，避免重采样。完整原片资料库保留原样。
+
+本机 ChatGPT.app 26.1016.62342 的实现确认 v1 有效帧数为 6、8、8、4、5、8、6、6、6，待机为 6.6 秒；桌面动作默认播放三遍后回待机，显式循环的内嵌头像持续重复。运行 `node scripts/preview-super-loops.mjs` 后，从仓库根目录启动静态服务器，打开 `/qa/super-loops/`，可对比修改前后的九个状态，切换连续循环或三遍后待机，并逐帧查看末帧到首帧。README 动图由 `python3 scripts/build-readme-preview.py` 同步生成。

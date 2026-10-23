@@ -96,18 +96,18 @@
         "gameAction": "dance",
         "sourceFrameCount": 209,
         "actionFrames": [
-          127,
-          138,
-          149,
-          160,
-          171
+          131,
+          134,
+          140,
+          143,
+          145
         ],
         "frames": [
-          597,
-          608,
-          619,
-          630,
-          641
+          601,
+          604,
+          610,
+          613,
+          615
         ],
         "registration": {
           "mode": "bounded",
@@ -116,7 +116,11 @@
             327.9,
             524.0
           ]
-        }
+        },
+        "preparedFrames": {
+          "manifest": "scripts/sources/super-loop-frames/manifest.json"
+        },
+        "loopReview": "五帧只保留一次前后翻身，从正面起势到正面略倾收尾；避开后续横滚，保持原方向并可重复衔接。"
       },
       {
         "state": "failed",
@@ -149,20 +153,24 @@
         "sourceFrameCount": 154,
         "actionFrames": [
           1,
-          8,
-          14,
-          21,
-          14,
-          8
+          5,
+          9,
+          13,
+          9,
+          5
         ],
         "frames": [
           207,
-          214,
-          220,
-          227,
-          220,
-          214
-        ]
+          211,
+          215,
+          219,
+          215,
+          211
+        ],
+        "preparedFrames": {
+          "manifest": "scripts/sources/super-loop-frames/manifest.json"
+        },
+        "loopReview": "保留皱眉与小幅叶冠摆动，移除突然缩团的第 21 帧；在六帧内轻摆回程，整行统一比例。"
       },
       {
         "state": "running",
@@ -170,21 +178,32 @@
         "sourceFrameCount": 209,
         "actionFrames": [
           19,
-          28,
-          37,
-          46,
-          37,
-          28
+          23,
+          27,
+          31,
+          35,
+          39
         ],
         "frames": [
           489,
-          498,
-          507,
-          516,
-          507,
-          498
+          493,
+          497,
+          501,
+          505,
+          509
         ],
-        "registration": "bounded"
+        "registration": {
+          "mode": "bounded",
+          "scale": 1.05,
+          "sourceCenter": [
+            328.5,
+            480.1666666666667
+          ]
+        },
+        "preparedFrames": {
+          "manifest": "scripts/sources/super-loop-frames/manifest.json"
+        },
+        "loopReview": "选取连续一段正面摇摆和宝石绕行，按原方向播放；避免跨多个舞蹈阶段后倒放造成急换向。"
       },
       {
         "state": "review",
@@ -192,20 +211,24 @@
         "sourceFrameCount": 86,
         "actionFrames": [
           8,
-          12,
-          20,
-          28,
-          20,
-          12
+          11,
+          17,
+          23,
+          29,
+          33
         ],
         "frames": [
           71,
-          75,
-          83,
-          91,
-          83,
-          75
-        ]
+          74,
+          80,
+          86,
+          92,
+          96
+        ],
+        "preparedFrames": {
+          "manifest": "scripts/sources/super-loop-frames/manifest.json"
+        },
+        "loopReview": "正向保留展开笑脸、起伏与闭嘴收尾；末帧停留在收起的笑脸，便于接下一遍及待机。"
       }
     ]
   },
