@@ -135,7 +135,7 @@ async function exportPet(onlyPng=false){
   $('download').disabled=true;$('download-png').disabled=true;$('download-status').textContent='正在打包你选的拉姆…';
   try{const png=await pngBlob();
     if(onlyPng)downloadBlob(png,id+'-spritesheet.png');
-    else{const metadata={id,displayName,spriteVersionNumber:1,spritesheetPath:'spritesheet.png'};
+    else{const metadata={id,displayName,description:PetDescriptions.ram,spriteVersionNumber:1,spritesheetPath:'spritesheet.png'};
       const readme=`${displayName}\n\n安装：把本文件夹放进 CODEX_HOME/pets（默认 ~/.codex/pets；Windows 为 %USERPROFILE%\\.codex\\pets）。\n打开 Codex 设置 → Pets / 宠物，刷新并选择它。输入 /pet 唤出宠物。\n\n本包只含数据，不执行任何脚本。\n本包包含原游戏动作图集及 v2 补全参考说明。现有可安装图集为 v1；若需升级，请按 V2-UPGRADE.txt 和 v2-reference.json 优先复用原素材，仅补全缺失朝向，保留原有九行动作。\n图集：1536×1872，8列9行，每格192×208。\n行：idle, running-right, running-left, waving, jumping, failed, waiting, running, review。\n帧数：6,8,8,4,5,8,6,6,6。\n状态：待机、向右、向左、打招呼、跳跃（悬停）、失败、等待、工作、检查。\n配色：${PALETTE[color].name}（编号 ${color}）\n\n来源与说明：https://github.com/mli55/taomi-codex-pets\n官方宠物文档：https://learn.chatgpt.com/docs/pets\n摩尔庄园同人作品，非官方出品；角色权益归原权利方所有。\n`;
       downloadBlob(makeZip([{name:id+'/pet.json',data:JSON.stringify(metadata,null,2)},{name:id+'/spritesheet.png',data:new Uint8Array(await png.arrayBuffer())},{name:id+'/README.txt',data:readme},{name:id+'/V2-UPGRADE.txt',data:PetUpgrade.instructions},{name:id+'/v2-reference.json',data:JSON.stringify(PetUpgrade.manifest(displayName),null,2)}]),id+'.zip');}
     $('download-status').textContent='已开始下载。';
