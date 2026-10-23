@@ -1,119 +1,130 @@
 # 动作检查记录
 
-当前发布图集的动作与循环检查记录。
+本轮逐项检查 11 个形态 × 9 个状态。更新 19 行，保留其余 80 行；以少帧下能否看清动作、交互反馈和重复播放的衔接为准。README 仅保留用户安装与选择说明。
 
-逐帧检查 11 个形态的九种 Codex 状态。优先区分悬停、工作与检查；保留原游戏图形。打招呼与悬停可来自同一长动画，但使用不同片段。循环不强制以恢复帧结尾；转圈保留原方向，表情及摇摆使用邻近姿势接回首帧。
+时长核对来自本机 ChatGPT.app 的宠物播放实现；是当前安装版本的行为，不承诺未来客户端保持不变。图集无法改写这些时长。
 
-普通和神力拉姆工作采用此前悬停的转身片段，悬停恢复最初 woter 的水珠落下、淋湿和恢复片段及整体缩放。超级拉姆使用跳舞前段的摇摆工作、后段的转身悬停。转身限制舞台位移；每行使用统一缩放，配色遮罩与图形一起定位。初级和中级正面仍保留此前确认的原动态。
+| 状态 | 帧数 | 一遍时长 |
+|---|---:|---:|
+| 待机 | 6 | 6600 ms |
+| 左右移动 | 各 8 | 1060 ms |
+| 打招呼 | 4 | 700 ms |
+| 跳跃／hover 反馈 | 5 | 840 ms |
+| 失败 | 8 | 1220 ms |
+| 等待 | 6 | 1010 ms |
+| 工作 | 6 | 820 ms |
+| 检查 | 6 | 1030 ms |
 
-NoNo：普通使用充电工作、惊讶等待、生气悬停；超能使用魔方工作、惊讶等待、召唤旋转悬停；至尊使用开机后半段工作、轻微皱眉等待、惊讶打招呼、召唤旋转悬停。三个版本的检查状态使用高兴；超能打招呼按选择使用生气片段。
+默认非待机播放三遍后回慢速待机；客户端显式循环时会持续重复。末帧比中间帧长，因此不能靠重复首尾帧掩盖所有接缝。减少动态效果时只显示一帧。
 
-保留 47 行重排已有像素，11 行补充原始中间姿势；woter 单独恢复到调整前，待机和左右移动未改。
+本轮保留全部 hover：浇水、转身、炸毛在五帧里反馈足够明显。叶冠摆动和表情可以补回程；完整旋转必须保持方向，不统一套往返序列。部分带特效动作的身体仍小于待机，后续若重做布局，应整行处理身体和特效，不能逐帧放大。
 
-预览按客户端逐帧时长播放，非待机三遍后回待机。动画文件无法改变客户端状态触发或持续时间。
+19 行修改覆盖五种拉姆的待机与左右移动、两种失败表情、两种 NoNo 检查反馈。18 行重排完整原帧；初级失败补入缓存原片的中间姿势，整行使用同一变换并同步配色遮罩。没有重画、拼接眼睛或生成中间姿势。
 
-| 形态 | Codex 状态 | 原动画 | 原帧号（从 1 起） |
-|---|---|---|---|
-| super | idle | down | 1, 5, 8, 12, 15, 19 |
-| super | running-right | right | 1, 4, 6, 9, 11, 14, 16, 19 |
-| super | running-left | left | 1, 4, 6, 9, 11, 14, 16, 19 |
-| super | waving | dance | 1, 7, 13, 7 |
-| super | jumping | dance | 127, 138, 149, 160, 171 |
-| super | failed | angry | 1, 3, 6, 8, 11, 8, 6, 3 |
-| super | waiting | boring | 1, 8, 14, 21, 14, 8 |
-| super | running | dance | 19, 28, 37, 46, 37, 28 |
-| super | review | happy | 8, 12, 20, 28, 20, 12 |
-| water | idle | down | 1, 3, 4, 6, 7, 9 |
-| water | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
-| water | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
-| water | waving | dance | 1, 7, 13, 7 |
-| water | jumping | woter | 1, 4, 6, 10, 27 |
-| water | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
-| water | waiting | boring | 1, 4, 8, 11, 8, 4 |
-| water | running | dance | 127, 136, 145, 154, 163, 172 |
-| water | review | happy | 1, 2, 3, 2, 3, 2 |
-| wood | idle | down | 1, 3, 4, 6, 7, 9 |
-| wood | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
-| wood | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
-| wood | waving | dance | 1, 7, 13, 7 |
-| wood | jumping | woter | 1, 3, 6, 12, 24 |
-| wood | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
-| wood | waiting | boring | 1, 4, 8, 11, 8, 4 |
-| wood | running | dance | 127, 136, 145, 154, 163, 172 |
-| wood | review | happy | 1, 2, 3, 2, 3, 2 |
-| fire | idle | down | 1, 3, 4, 6, 7, 9 |
-| fire | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
-| fire | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
-| fire | waving | dance | 1, 7, 13, 7 |
-| fire | jumping | woter | 1, 4, 7, 13, 24 |
-| fire | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
-| fire | waiting | boring | 1, 4, 8, 11, 8, 4 |
-| fire | running | dance | 127, 136, 145, 154, 163, 172 |
-| fire | review | happy | 1, 2, 3, 2, 3, 2 |
-| junior | idle | down | 1, 3, 6, 8, 11, 13 |
-| junior | running-right | right | 1, 3, 4, 6, 8, 10, 11, 13 |
-| junior | running-left | left | 1, 3, 4, 6, 8, 10, 11, 13 |
-| junior | waving | dance | 1, 7, 13, 7 |
-| junior | jumping | woter | 1, 3, 6, 16, 38 |
-| junior | failed | angry | 14, 28, 41, 41, 41, 41, 41, 28 |
-| junior | waiting | boring | 22, 32, 42, 63, 73, 32 |
-| junior | running | dance | 128, 137, 146, 155, 164, 173 |
-| junior | review | happy | 1, 6, 13, 22, 13, 6 |
-| middle | idle | down | 1, 5, 6, 5, 1, 1 |
-| middle | running-right | right | 1, 3, 5, 7, 8, 10, 12, 14 |
-| middle | running-left | left | 1, 3, 5, 7, 8, 10, 12, 14 |
-| middle | waving | dance | 1, 7, 13, 7 |
-| middle | jumping | woter | 1, 3, 7, 11, 32 |
-| middle | failed | angry | 1, 7, 12, 18, 24, 18, 12, 7 |
-| middle | waiting | boring | 179, 188, 197, 207, 197, 188 |
-| middle | running | dance | 128, 137, 146, 155, 164, 173 |
-| middle | review | happy | 1, 3, 4, 3, 4, 3 |
-| senior | idle | down | 1, 3, 4, 6, 7, 8 |
-| senior | running-right | right | 1, 2, 3, 4, 5, 6, 7, 8 |
-| senior | running-left | left | 1, 2, 3, 4, 5, 6, 7, 8 |
-| senior | waving | dance | 1, 7, 13, 7 |
-| senior | jumping | woter | 1, 3, 6, 10, 24 |
-| senior | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 |
-| senior | waiting | boring | 1, 4, 8, 11, 8, 4 |
-| senior | running | dance | 128, 137, 146, 155, 164, 173 |
-| senior | review | happy | 1, 2, 3, 2, 3, 2 |
-| classic | idle | down | 1, 3, 4, 6, 7, 9 |
-| classic | running-right | right | 1, 2, 3, 4, 6, 7, 8, 9 |
-| classic | running-left | left | 1, 2, 3, 4, 6, 7, 8, 9 |
-| classic | waving | dance | 1, 3, 6, 3 |
-| classic | jumping | dance | 63, 69, 75, 81, 87 |
-| classic | failed | angry | 6, 9, 12, 16, 21, 24, 18, 12 |
-| classic | waiting | boring | 1, 3, 5, 9, 5, 3 |
-| classic | running | dance | 10, 19, 28, 36, 28, 19 |
-| classic | review | happy | 20, 24, 29, 34, 29, 24 |
-| nono-normal | idle | base | 5, 3, 1, 3, 5, 5 |
-| nono-normal | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 |
-| nono-normal | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 |
-| nono-normal | waving | normal-action-2.swf | 67, 72, 82, 91 |
-| nono-normal | jumping | normal-exp-2.swf | 1, 6, 11, 40, 6 |
-| nono-normal | failed | normal-exp-4.swf | 1, 9, 14, 19, 24, 19, 14, 9 |
-| nono-normal | waiting | normal-exp-3.swf | 1, 7, 13, 22, 13, 7 |
-| nono-normal | running | normal-action-1.swf | 1, 4, 7, 9, 12, 15 |
-| nono-normal | review | normal-exp-1.swf | 24, 27, 39, 30, 39, 27 |
-| nono | idle | base | 1, 2, 3, 3, 2, 1 |
-| nono | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 |
-| nono | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 |
-| nono | waving | super-exp-2.swf | 14, 18, 26, 30 |
-| nono | jumping | super-action-6.swf | 42, 45, 48, 51, 53 |
-| nono | failed | super-exp-4.swf | 1, 6, 12, 17, 22, 17, 12, 6 |
-| nono | waiting | super-exp-3.swf | 1, 7, 17, 23, 17, 7 |
-| nono | running | super-action-7.swf | 46, 52, 58, 64, 58, 52 |
-| nono | review | super-exp-1.swf | 89, 90, 92, 94, 92, 90 |
-| nono-annual | idle | base | 1, 3, 5, 7, 5, 1 |
-| nono-annual | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 |
-| nono-annual | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 |
-| nono-annual | waving | annual-exp-3.swf | 1, 6, 11, 6 |
-| nono-annual | jumping | annual-action-6.swf | 45, 49, 53, 57, 61 |
-| nono-annual | failed | annual-exp-4.swf | 1, 7, 10, 13, 16, 13, 10, 7 |
-| nono-annual | waiting | annual-exp-2.swf | 11, 14, 16, 18, 16, 14 |
-| nono-annual | running | annual-action-2.swf | 53, 55, 57, 59, 57, 55 |
-| nono-annual | review | annual-exp-1.swf | 1, 4, 9, 6, 9, 4 |
+下表逐项列出保留或修改的判断。帧号供维护核对，动画好坏仍需结合实际时长观察。
+
+| 形态 | Codex 状态 | 原动画 | 原帧号（从 1 起） | 本轮判断 |
+|---|---|---|---|---|
+| super | idle | down | 1, 5, 8, 12, 15, 19 | 保留：小幅原始动态适合慢速待机，不需要大动作。 |
+| super | running-right | right | 1, 4, 6, 9, 11, 14, 16, 19 | 保留：朝向清楚，八帧保留移动节奏。 |
+| super | running-left | left | 1, 4, 6, 9, 11, 14, 16, 19 | 保留：朝向清楚，八帧保留移动节奏。 |
+| super | waving | dance | 1, 7, 13, 7 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| super | jumping | dance | 127, 138, 149, 160, 171 | 保留：五帧转身反馈明显，按原方向接回；不倒放整个旋转。 |
+| super | failed | angry | 1, 3, 6, 8, 11, 8, 6, 3 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| super | waiting | boring | 1, 8, 14, 21, 14, 8 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| super | running | dance | 19, 28, 37, 46, 37, 28 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| super | review | happy | 8, 12, 20, 28, 20, 12 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| water | idle | down | 1, 3, 6, 9, 6, 3 | 更新：叶冠摆动补上回程，末帧从邻近姿势接首帧；保留原幅度和像素。 |
+| water | running-right | right | 1, 1, 3, 6, 8, 8, 6, 3 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| water | running-left | left | 1, 1, 3, 6, 8, 8, 6, 3 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| water | waving | dance | 1, 7, 13, 7 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| water | jumping | woter | 1, 4, 6, 10, 27 | 保留：水滴落下、淋湿、恢复的五帧反应明显；恢复后接下一轮落水。 |
+| water | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| water | waiting | boring | 1, 4, 8, 11, 8, 4 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| water | running | dance | 127, 136, 145, 154, 163, 172 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| water | review | happy | 1, 2, 3, 2, 3, 2 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| wood | idle | down | 1, 3, 6, 9, 6, 3 | 更新：叶冠摆动补上回程，末帧从邻近姿势接首帧；保留原幅度和像素。 |
+| wood | running-right | right | 1, 1, 3, 6, 8, 8, 6, 3 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| wood | running-left | left | 1, 1, 3, 6, 8, 8, 6, 3 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| wood | waving | dance | 1, 7, 13, 7 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| wood | jumping | woter | 1, 3, 6, 12, 24 | 保留：水滴落下、淋湿、恢复的五帧反应明显；恢复后接下一轮落水。 |
+| wood | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| wood | waiting | boring | 1, 4, 8, 11, 8, 4 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| wood | running | dance | 127, 136, 145, 154, 163, 172 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| wood | review | happy | 1, 2, 3, 2, 3, 2 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| fire | idle | down | 1, 3, 6, 9, 6, 3 | 更新：叶冠摆动补上回程，末帧从邻近姿势接首帧；保留原幅度和像素。 |
+| fire | running-right | right | 1, 1, 3, 6, 8, 8, 6, 3 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| fire | running-left | left | 1, 1, 3, 6, 8, 8, 6, 3 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| fire | waving | dance | 1, 7, 13, 7 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| fire | jumping | woter | 1, 4, 7, 13, 24 | 保留：水滴落下、淋湿、恢复的五帧反应明显；恢复后接下一轮落水。 |
+| fire | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| fire | waiting | boring | 1, 4, 8, 11, 8, 4 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| fire | running | dance | 127, 136, 145, 154, 163, 172 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| fire | review | happy | 1, 2, 3, 2, 3, 2 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| junior | idle | down | 1, 3, 6, 8, 11, 13 | 保留：小幅原始动态适合慢速待机，不需要大动作。 |
+| junior | running-right | right | 1, 3, 4, 6, 8, 10, 11, 13 | 保留：朝向清楚，八帧保留移动节奏。 |
+| junior | running-left | left | 1, 3, 4, 6, 8, 10, 11, 13 | 保留：朝向清楚，八帧保留移动节奏。 |
+| junior | waving | dance | 1, 7, 13, 7 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| junior | jumping | woter | 1, 3, 6, 16, 38 | 保留：水滴落下、淋湿、恢复的五帧反应明显；恢复后接下一轮落水。 |
+| junior | failed | angry | 14, 28, 32, 36, 41, 36, 32, 28 | 更新：用已保存的原动画中间帧补出憋气、张嘴、回落；消除同一张嘴姿势连续占五帧的停滞。 |
+| junior | waiting | boring | 22, 32, 42, 63, 73, 32 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| junior | running | dance | 128, 137, 146, 155, 164, 173 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| junior | review | happy | 1, 6, 13, 22, 13, 6 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| middle | idle | down | 1, 5, 6, 5, 1, 1 | 保留：小幅原始动态适合慢速待机，不需要大动作。 |
+| middle | running-right | right | 1, 3, 5, 7, 8, 10, 12, 14 | 保留：朝向清楚，八帧保留移动节奏。 |
+| middle | running-left | left | 1, 3, 5, 7, 8, 10, 12, 14 | 保留：朝向清楚，八帧保留移动节奏。 |
+| middle | waving | dance | 1, 7, 13, 7 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| middle | jumping | woter | 1, 3, 7, 11, 32 | 保留：水滴落下、淋湿、恢复的五帧反应明显；恢复后接下一轮落水。 |
+| middle | failed | angry | 1, 7, 12, 18, 24, 18, 12, 7 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| middle | waiting | boring | 179, 188, 197, 207, 197, 188 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| middle | running | dance | 128, 137, 146, 155, 164, 173 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| middle | review | happy | 1, 3, 4, 3, 4, 3 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| senior | idle | down | 1, 1, 6, 7, 7, 6 | 更新：叶冠摆动补上回程，末帧从邻近姿势接首帧；保留原幅度和像素。 |
+| senior | running-right | right | 1, 1, 5, 5, 7, 7, 5, 5 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| senior | running-left | left | 1, 1, 5, 5, 7, 7, 5, 5 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| senior | waving | dance | 1, 7, 13, 7 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| senior | jumping | woter | 1, 3, 6, 10, 24 | 保留：水滴落下、淋湿、恢复的五帧反应明显；恢复后接下一轮落水。 |
+| senior | failed | angry | 1, 6, 11, 16, 23, 16, 11, 6 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| senior | waiting | boring | 1, 4, 8, 11, 8, 4 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| senior | running | dance | 128, 137, 146, 155, 164, 173 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| senior | review | happy | 1, 2, 3, 2, 3, 2 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| classic | idle | down | 1, 6, 7, 9, 7, 6 | 更新：叶冠摆动补上回程，末帧从邻近姿势接首帧；保留原幅度和像素。 |
+| classic | running-right | right | 1, 1, 6, 7, 9, 9, 7, 6 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| classic | running-left | left | 1, 1, 6, 7, 9, 9, 7, 6 | 更新：方向不变，叶冠从展开到收回形成往返循环，避免末端直接跳回静止姿势。 |
+| classic | waving | dance | 1, 3, 6, 3 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| classic | jumping | dance | 63, 69, 75, 81, 87 | 保留：五帧转身反馈明显，按原方向接回；不倒放整个旋转。 |
+| classic | failed | spring | 137, 139, 141, 143, 145, 143, 141, 139 | 更新：补齐回程中间姿势，去掉首尾重复帧造成的额外停顿；保留受挫的明显伸缩。 |
+| classic | waiting | boring | 1, 3, 5, 9, 5, 3 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| classic | running | dance | 10, 19, 28, 36, 28, 19 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| classic | review | happy | 20, 24, 29, 34, 29, 24 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| nono-normal | idle | base | 5, 3, 1, 3, 5, 5 | 保留：小幅原始动态适合慢速待机，不需要大动作。 |
+| nono-normal | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 | 保留：朝向清楚，八帧保留移动节奏。 |
+| nono-normal | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 | 保留：朝向清楚，八帧保留移动节奏。 |
+| nono-normal | waving | normal-action-2.swf | 67, 72, 82, 91 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| nono-normal | jumping | normal-exp-2.swf | 1, 6, 11, 40, 6 | 保留：炸毛、压缩与眼神变化明显，五帧能读出被触碰的反应。 |
+| nono-normal | failed | normal-exp-4.swf | 1, 9, 14, 19, 24, 19, 14, 9 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| nono-normal | waiting | normal-exp-3.swf | 1, 7, 13, 22, 13, 7 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| nono-normal | running | normal-action-1.swf | 1, 4, 7, 9, 12, 15 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| nono-normal | review | normal-exp-1.swf | 24, 27, 30, 39, 30, 27 | 更新：按机身高度组织一次下沉、回升，保留笑脸与耳朵变化，减少低位反复跳动。 |
+| nono | idle | base | 1, 2, 3, 3, 2, 1 | 保留：小幅原始动态适合慢速待机，不需要大动作。 |
+| nono | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 | 保留：朝向清楚，八帧保留移动节奏。 |
+| nono | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 | 保留：朝向清楚，八帧保留移动节奏。 |
+| nono | waving | super-exp-2.swf | 14, 18, 26, 30 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| nono | jumping | super-action-6.swf | 42, 45, 48, 51, 53 | 保留：五帧转身反馈明显，按原方向接回；不倒放整个旋转。 |
+| nono | failed | super-exp-4.swf | 1, 6, 12, 17, 22, 17, 12, 6 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| nono | waiting | super-exp-3.swf | 1, 7, 17, 23, 17, 7 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| nono | running | super-action-7.swf | 46, 52, 58, 64, 58, 52 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| nono | review | super-exp-1.swf | 89, 90, 92, 94, 92, 90 | 保留：六帧笑脸或起伏能表达完成反馈，无需强求动作名称对应。 |
+| nono-annual | idle | base | 1, 3, 5, 7, 5, 1 | 保留：小幅原始动态适合慢速待机，不需要大动作。 |
+| nono-annual | running-right | base | 48, 49, 50, 51, 52, 53, 54, 55 | 保留：朝向清楚，八帧保留移动节奏。 |
+| nono-annual | running-left | base | 16, 17, 18, 19, 20, 21, 22, 23 | 保留：朝向清楚，八帧保留移动节奏。 |
+| nono-annual | waving | annual-exp-3.swf | 1, 6, 11, 6 | 保留：四帧内能看清表情或起伏，适合短促招呼；不强求原动作名称。 |
+| nono-annual | jumping | annual-action-6.swf | 45, 49, 53, 57, 61 | 保留：五帧转身反馈明显，按原方向接回；不倒放整个旋转。 |
+| nono-annual | failed | annual-exp-4.swf | 1, 7, 10, 13, 16, 13, 10, 7 | 保留：八帧中表情或身体变化清楚，回程接近起点。 |
+| nono-annual | waiting | annual-exp-2.swf | 11, 14, 16, 18, 16, 14 | 保留：六帧短表情适合反复提醒，没有远离身体的道具。 |
+| nono-annual | running | annual-action-2.swf | 53, 55, 57, 59, 57, 55 | 保留：六帧中的充电、魔方、转身或摇摆足以读出持续活动。 |
+| nono-annual | review | annual-exp-1.swf | 1, 4, 6, 4, 1, 9 | 更新：按实际姿势组织一次下压、抬起；最高姿势接近下一轮起点，避免六帧内两次突跳。 |
 
 自动检查：124 张可下载图集的尺寸、非空帧、单元格边界、动态变化和整行完全重复检查通过。
 
-视觉检查使用默认配色逐帧图，并在本地网页确认实际预览。对动画观感的取舍仍以预览为准；不同形态使用相同原游戏动作属于正常情况。
+视觉检查使用默认配色逐帧对照图；本地对照页按相同的客户端时长播放修改前后图集。对动画观感的取舍仍以预览为准；不同形态使用相同原游戏动作属于正常情况。

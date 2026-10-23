@@ -172,3 +172,9 @@ woter 已回退到 `5507c07` 的图集行、选帧和整体缩放，保留水珠
 NoNo 动作尺寸：普通的打招呼、跳跃、失败、工作、检查，以及超能的打招呼、失败、等待、检查，使用原始完整帧重新导出。以各自待机的脸部屏幕宽度为参照，整行使用同一比例；保留原始表情、帧序与自然形变，不逐帧缩放或拼接眼睛。`registration.scale`、`sourceBox` 和 `cellOffset` 记录比例与定位，彩色图集沿用同一布局。至尊各动作未发现同样的放大差异，保持原样。
 
 基础超级拉姆的 failed 改用原 `spring` 动作落地后沮丧的片段（137、139、141、143、145、143、139、137 帧），避免原 angry 的表情变化过弱和后段背对镜头。该行统一缩放并限制上下位移，保持身体清楚可见；神力超级拉姆的 failed 和其他行不变。
+
+### 本轮循环修订
+
+本轮逐项判断及当前帧数、时长见 [ANIMATION-REVIEW.md](ANIMATION-REVIEW.md)。更新 19 行：高级、基础超级、水、木、火拉姆的待机与左右移动补齐叶冠回程；初级失败补出原片中间表情；基础超级失败补齐回落；普通、至尊 NoNo 检查整理为一次起伏。全部 hover 保留强反馈，完整转圈仍沿原方向播放。此记录及当前来源 JSON 优先于上文历史选帧。
+
+复现本轮成品：先运行 `python3 scripts/refine-animation-loops.py`，再运行 `python3 scripts/apply-game-palette.py --forms junior` 和 `python3 scripts/audit-pet-animations.py`。修订计划为 `scripts/loop-refinements.json`，固定从其中记录的 Git 提交读取原图；不依赖本机临时 SWF 导出目录。初级失败使用仓库内 `ram-preview/junior` 的原始预览帧，图形和配色遮罩接受相同的整行变换。脚本重建这些指定文件，应在调整计划后使用，避免覆盖后续手工修改。
